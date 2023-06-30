@@ -1,0 +1,50 @@
+.tweet {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  padding: 20px;
+  gap: 15px;
+
+  &__info {
+    // display: flex;
+    // flex-direction: column;
+    // gap: 5px;
+
+    &--header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 5px;
+
+      > a {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: var(--sm-font);
+
+        p {
+          font-weight: bold;
+        }
+
+        span:nth-child(2) {
+        }
+
+        span:last-child {
+        }
+      }
+
+      button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+
+        svg {
+          font-size: var(--base-font);
+        }
+      }
+    }
+
+    &--text {
+      font-size: var(--sm-font);
+    }
+  }
+}
