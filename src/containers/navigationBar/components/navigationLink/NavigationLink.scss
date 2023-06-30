@@ -1,0 +1,17 @@
+.navigation-link {
+  font-size: var(--md-font);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 15px;
+  border-radius: 40px;
+  transition: 0.2s ease;
+
+  &:hover {
+    background-color: var(--accent);
+  }
+
+  span {
+    text-transform: capitalize;
+  }
+}

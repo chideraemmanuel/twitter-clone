@@ -1,0 +1,39 @@
+.navbar {
+  //   border: 1px solid red;
+  height: 80vh;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  &__logo {
+    padding-left: 15px;
+  }
+
+  &__navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    &--links {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &--button {
+      background-color: var(--primary-color);
+      border: none;
+      width: 100%;
+      border-radius: 40px;
+      padding: 10px;
+      color: #fff;
+      font-size: var(--base-font);
+      cursor: pointer;
+      transition: 0.2s ease;
+
+      &:hover {
+        background-color: darken($color: #029bf0, $amount: 10);
+      }
+    }
+  }
+}
