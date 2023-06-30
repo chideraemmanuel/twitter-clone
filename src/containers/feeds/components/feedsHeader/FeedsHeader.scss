@@ -1,0 +1,53 @@
+.feeds-header {
+  //   background-color: var(--header-bg);
+  background: var(--header-bg);
+  backdrop-filter: var(--header-bg-blur);
+  //   padding: 24px var(--side-padding);
+  border-bottom: var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  h1 {
+    padding: 15px 20px;
+    font-size: var(--md-font);
+    font-weight: 500;
+  }
+
+  &__filter {
+    display: flex;
+    align-items: center;
+    // justify-content: center;
+
+    &--button {
+      flex: 1;
+      text-align: center;
+
+      &:hover {
+        background-color: var(--accent);
+      }
+
+      input {
+        display: none;
+
+        &:checked + label span {
+          border-color: var(--primary-color);
+        }
+      }
+
+      label {
+        display: inline-block;
+        cursor: pointer;
+        width: 100%;
+
+        span {
+          display: inline-block;
+          padding: 20px 0;
+          height: 100%;
+          font-size: var(--base-font);
+          border-bottom: 3px solid transparent;
+        }
+      }
+    }
+  }
+}

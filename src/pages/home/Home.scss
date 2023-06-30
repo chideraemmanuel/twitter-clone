@@ -3,5 +3,20 @@
   grid-template-columns: 1fr 2fr 1fr;
   max-width: var(--body-max-width);
   margin: 0 auto;
-  padding: 0 var(--side-padding);
+  //   padding: 0 var(--side-padding);
+  padding-right: 15px;
+
+  @media screen and (max-width: 1280px) {
+    grid-template-columns: auto 2fr 1fr;
+  }
+
+  @media screen and (max-width: 1024px) {
+    grid-template-columns: auto 1fr;
+  }
+
+  &__main {
+    border-right: var(--border);
+    border-left: var(--border);
+    min-height: 100vh;
+  }
 }

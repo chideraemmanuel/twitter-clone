@@ -1,5 +1,4 @@
 .navigation-link {
-  font-size: var(--md-font);
   display: flex;
   align-items: center;
   gap: 20px;
@@ -11,7 +10,27 @@
     background-color: var(--accent);
   }
 
+  @media screen and (max-width: 1280px) {
+    justify-content: center;
+  }
+
+  // &.active {
+  //   span {
+  //     font-weight: 600;
+  //   }
+  // }
+
+  svg {
+    font-size: var(--md-font);
+  }
+
   span {
     text-transform: capitalize;
+    font-size: var(--md-font);
+    font-weight: 400;
+
+    @media screen and (max-width: 1280px) {
+      display: none;
+    }
   }
 }

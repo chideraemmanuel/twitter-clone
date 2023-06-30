@@ -2,7 +2,7 @@ import Logo from "../../components/logo/Logo";
 import "./NavigationBar.scss";
 import NavigationLink from "./components/navigationLink/NavigationLink";
 import { navigationConstants } from "./constants";
-import { Link } from "react-router-dom";
+import { FaFeather } from "react-icons/fa";
 
 const NavigationBar: React.FC = () => {
   return (
@@ -20,7 +20,10 @@ const NavigationBar: React.FC = () => {
           ))}
         </ul>
 
-        <button className="navbar__navigation--button">Tweet</button>
+        <button className="navbar__navigation--button">
+          <FaFeather />
+          <span>Tweet</span>
+        </button>
       </div>
     </nav>
   );

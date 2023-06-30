@@ -11,7 +11,7 @@ const Home: React.FC<Props> = ({ children }) => {
     <div className="home">
       <NavigationBar />
 
-      <main>{children}</main>
+      <main className="home__main">{children}</main>
 
       <Sidebar />
     </div>
