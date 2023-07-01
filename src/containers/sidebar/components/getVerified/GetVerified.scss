@@ -1,0 +1,28 @@
+.get-verified {
+  background-color: var(--accent);
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: flex-start;
+
+  h2 {
+    font-size: var(--md-font);
+    line-height: 1;
+  }
+
+  h3 {
+    font-size: var(--sm-font);
+    line-height: 1;
+    font-weight: 500;
+  }
+
+  a {
+    display: inline-block;
+    padding: 7px 15px;
+    border-radius: 100px;
+    background-color: var(--secondary-color);
+    color: var(--bg-color);
+  }
+}

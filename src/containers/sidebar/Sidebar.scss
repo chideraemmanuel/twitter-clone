@@ -1,5 +1,14 @@
 .sidebar {
-  // span {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  padding-right: 0;
+  // height: 100vh;
+  // overflow: auto;
+  // border: 1px solid red;
+
+  // *:last-child {
   //   position: sticky;
   //   top: 0;
   // }

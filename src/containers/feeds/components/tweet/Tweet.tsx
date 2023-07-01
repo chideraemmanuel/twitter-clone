@@ -33,7 +33,7 @@ const Tweet: React.FC = () => {
           </p>
         </Link>
 
-        <TweetImages />
+        {/* <TweetImages /> */}
 
         <TweetActions />
       </div>

@@ -7,7 +7,7 @@ const FeedsHeader: React.FC = () => {
 
       <div className="feeds-header__filter">
         <div className="feeds-header__filter--button">
-          <input type="radio" name="feedFilter" id="forYou" />
+          <input type="radio" name="feedFilter" id="forYou" checked />
           <label htmlFor="forYou">
             <span>For you</span>
           </label>

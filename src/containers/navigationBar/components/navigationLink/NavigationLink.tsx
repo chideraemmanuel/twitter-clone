@@ -1,13 +1,13 @@
 import "./NavigationLink.scss";
 import { IconType } from "react-icons";
 import { NavLink } from "react-router-dom";
+import { NavigationTypes } from "../../constants";
 
-interface Props {
-  title: string;
-  icon: IconType;
-}
-
-const NavigationLink: React.FC<Props> = ({ title, icon: Icon }) => {
+const NavigationLink: React.FC<NavigationTypes> = ({
+  title,
+  icon: Icon,
+  activeIcon: ActiveIcon,
+}) => {
   return (
     <NavLink to="/" className="navigation-link">
       <Icon />

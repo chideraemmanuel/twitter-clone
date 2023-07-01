@@ -11,6 +11,26 @@ const Feeds: React.FC = () => {
 
       <div className="feeds__content">
         <Tweet />
+        <Tweet />
+        <Tweet />
+        <Tweet />
+        <Tweet />
+        <Tweet />
+        <Tweet />
+        <Tweet />
+        <Tweet />
+        <Tweet />
+        <Tweet />
+        <Tweet />
+        <Tweet />
+        <Tweet />
+        <Tweet />
+        <Tweet />
+        <Tweet />
+        <Tweet />
+        <Tweet />
+        <Tweet />
+        <Tweet />
       </div>
     </div>
   );

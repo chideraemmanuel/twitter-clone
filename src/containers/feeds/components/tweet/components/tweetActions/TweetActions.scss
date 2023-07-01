@@ -1,0 +1,99 @@
+.tweet-actions {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  //   border: 1px solid red;
+  //   overflow: hidden;
+
+  @media screen and (max-width: 768px) {
+    gap: 20px;
+  }
+
+  @media screen and (max-width: 540px) {
+    gap: 15px;
+  }
+
+  button {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--secondary-text-color);
+
+    svg {
+      font-size: var(--base-font);
+      padding: 5px;
+      box-sizing: content-box;
+      //   background-color: red;
+      border-radius: 50%;
+      transition: 0.3s ease;
+
+      @media screen and (max-width: 768px) {
+        font-size: var(--sm-font);
+      }
+    }
+
+    span {
+      font-size: var(--sm-font);
+      transition: 0.3s ease;
+    }
+  }
+
+  button:first-child {
+    &:hover {
+      svg {
+        background-color: lighten($color: #029bf0, $amount: 40);
+        color: #029bf0;
+      }
+
+      span {
+        color: #029bf0;
+      }
+    }
+  }
+
+  button:nth-child(2) {
+    &:hover {
+      svg {
+        background-color: lighten($color: #00d100, $amount: 50);
+        color: #00d100;
+      }
+
+      span {
+        color: #00d100;
+      }
+    }
+  }
+
+  button:nth-child(3) {
+    &:hover {
+      svg {
+        background-color: lighten($color: #ff3c00, $amount: 40);
+        color: #ff3c00;
+      }
+
+      span {
+        color: #ff3c00;
+      }
+    }
+  }
+
+  button:nth-child(4) {
+    &:hover {
+      svg {
+        background-color: lighten($color: #029bf0, $amount: 40);
+        color: #029bf0;
+      }
+
+      span {
+        color: #029bf0;
+      }
+    }
+  }
+
+  button:nth-child(5) {
+  }
+}
