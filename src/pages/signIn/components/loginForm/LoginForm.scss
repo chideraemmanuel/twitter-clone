@@ -1,0 +1,99 @@
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  h2 {
+    font-size: var(--md-font);
+    text-align: center;
+  }
+
+  &__providers {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__division {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    > div {
+      height: 1px;
+      background-color: var(--gray-500);
+      flex: 1;
+    }
+
+    span {
+      color: var(--gray-9);
+      font-size: var(--base-font);
+      //   line-height: 0;
+    }
+  }
+
+  &__credentials {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &--input {
+      display: flex;
+      flex-direction: column;
+
+      input {
+        font-size: 1rem;
+        padding: 15px;
+        border-radius: 5px;
+        border: 1px solid var(--gray-500);
+        outline: none;
+        background-color: transparent;
+
+        &:focus {
+          border-color: var(--primary-color);
+        }
+
+        @media screen and (max-width: 768px) {
+          transform: scaleY(0.8);
+        }
+      }
+
+      span {
+        font-size: 13px;
+        color: red;
+
+        @media screen and (max-width: 640px) {
+          font-size: 11px;
+        }
+      }
+    }
+  }
+}
+
+.login-validation {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__top {
+    background-color: var(--accent);
+    color: var(--gray-600);
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    padding: 15px;
+    font-size: var(--sm-font);
+    cursor: default;
+
+    @media screen and (max-width: 768px) {
+      padding: 10px;
+    }
+
+    span:first-child {
+    }
+
+    span:last-child {
+      font-size: 1rem;
+    }
+  }
+}

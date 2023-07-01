@@ -1,0 +1,24 @@
+.button {
+  display: block;
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid var(--gray-500);
+  padding: 15px;
+  border-radius: 100px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: var(--sm-font);
+  transition: 0.3s ease;
+
+  &.dark {
+    background-color: var(--secondary-color);
+    color: var(--bg-color);
+  }
+
+  &:hover {
+    transform: scale(1.03);
+  }
+}

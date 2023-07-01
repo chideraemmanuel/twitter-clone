@@ -45,13 +45,17 @@
         }
       }
 
-      button {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
+      &_options {
+        position: relative;
 
-        svg {
-          font-size: var(--base-font);
+        button {
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+
+          svg {
+            font-size: var(--base-font);
+          }
         }
       }
     }

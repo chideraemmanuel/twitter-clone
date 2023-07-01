@@ -4,7 +4,12 @@
   justify-content: space-between;
   width: 100%;
 
+  &:hover {
+    // background-color: var(--gray-300);
+  }
+
   &__info {
+    flex: 1;
     h3 {
       font-size: var(--base-font);
     }
