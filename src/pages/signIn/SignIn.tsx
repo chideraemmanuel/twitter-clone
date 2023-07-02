@@ -12,9 +12,15 @@ import { FaTimes } from "react-icons/fa";
 const user = false;
 
 const SignIn: React.FC = () => {
-  const { signUpForm } = useSelector((store: StoreTypes) => store.signIn);
+  const { signUpForm, currentUser } = useSelector(
+    (store: StoreTypes) => store.signIn
+  );
 
-  if (auth.currentUser) {
+  // if (auth.currentUser) {
+  //   return <Navigate to="/" replace />;
+  // }
+
+  if (currentUser) {
     return <Navigate to="/" replace />;
   }
 

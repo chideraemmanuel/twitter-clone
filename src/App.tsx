@@ -8,6 +8,10 @@ import "./App.scss";
 import Home from "./pages/home/Home";
 import Feeds from "./containers/feeds/Feeds";
 import SignIn from "./pages/signIn/SignIn";
+import { auth } from "./config/firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "./redux/slices/signInSlice";
 
 const App: React.FC = () => {
   // const router = createBrowserRouter(
@@ -18,6 +22,12 @@ const App: React.FC = () => {
   //   )
   // );
 
+  const dispatch = useDispatch();
+
+  onAuthStateChanged(auth, (user) => {
+    dispatch(setCurrentUser(user));
+  });
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/">
@@ -27,11 +37,7 @@ const App: React.FC = () => {
     )
   );
 
-  return (
-    <div className="App">
-      <RouterProvider router={router} />
-    </div>
-  );
+  return <div className="App">{<RouterProvider router={router} />}</div>;
 };
 
 export default App;
