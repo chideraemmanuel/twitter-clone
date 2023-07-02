@@ -88,12 +88,12 @@
       border-color: var(--primary-color);
 
       & + label {
-        transform: translateY(-20px);
+        transform: translateY(-13px);
         color: var(--primary-color);
         font-size: 11px;
 
         @media screen and (max-width: 768px) {
-          transform: translateY(-15px);
+          transform: translateY(-10px);
         }
       }
     }
@@ -114,7 +114,7 @@
     position: absolute;
     left: 15px;
     // top: calc(24px - var(--sm-font));
-    top: 24px;
+    top: 15px;
     // transform: translateY(-24px);
     font-size: var(--sm-font);
     text-transform: capitalize;

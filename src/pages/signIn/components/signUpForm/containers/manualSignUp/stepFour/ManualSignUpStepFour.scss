@@ -1,0 +1,11 @@
+.manualSignUpStepFour {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}

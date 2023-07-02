@@ -1,30 +1,30 @@
 import "./SignUpForm.scss";
 import Button from "../button/Button";
 import { FaApple, FaGoogle } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import Input from "../input/Input";
+import { signInWithPopup, signOut } from "firebase/auth";
+import { auth, googleProvider } from "../../../../config/firebase";
+import { useNavigate } from "react-router-dom";
+import SignUpInitial from "./containers/initial/SignUpInitial";
+import { useSelector } from "react-redux";
+import { StoreTypes } from "../../../../redux/store";
+import ManualSignUp from "./containers/manualSignUp/ManualSignUp";
 
 const SignUpForm: React.FC = () => {
+  const {
+    signUpForm: {
+      active,
+      initialPageActive,
+      type: { manual, google },
+    },
+  } = useSelector((store: StoreTypes) => store.signIn);
+
   return (
     <div className="sign-up-form">
-      <h2>Join Twitter today</h2>
+      {active && initialPageActive && <SignUpInitial />}
 
-      <div className="sign-up-form__providers">
-        <Button text="Sign in with Google" icon={FaGoogle} />
-        <Button text="Sign in with Apple" icon={FaApple} />
-      </div>
-
-      <div className="login-form__division">
-        <div></div>
-        <span>or</span>
-        <div></div>
-      </div>
-
-      <Button text="Create account" dark />
-
-      <p>
-        By signing up, you agree to the Terms of Service and Privacy Policy,
-        including Cookie Use
-      </p>
+      {manual.active && <ManualSignUp />}
     </div>
   );
 };

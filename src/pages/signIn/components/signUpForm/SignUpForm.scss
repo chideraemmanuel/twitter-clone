@@ -1,20 +1,3 @@
 .sign-up-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-
-  h2 {
-    font-size: var(--md-font);
-    text-align: center;
-  }
-
-  &__providers {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  p {
-    font-size: var(--sm-font);
-  }
+  height: 100% !important;
 }

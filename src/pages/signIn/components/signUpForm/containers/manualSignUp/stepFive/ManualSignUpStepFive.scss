@@ -1,0 +1,11 @@
+.manualSignUpStepFive {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}

@@ -2,6 +2,7 @@ import { Navigate } from "react-router-dom";
 import NavigationBar from "../../containers/navigationBar/NavigationBar";
 import Sidebar from "../../containers/sidebar/Sidebar";
 import "./Home.scss";
+import { auth } from "../../config/firebase";
 
 interface Props {
   children: React.ReactNode;
@@ -10,7 +11,7 @@ interface Props {
 const user = false;
 
 const Home: React.FC<Props> = ({ children }) => {
-  if (!user) {
+  if (!auth.currentUser) {
     return <Navigate to="/login" replace />;
   }
 

@@ -1,12 +1,20 @@
 import { FaTimes } from "react-icons/fa";
 import "./CardLayout.scss";
 import Logo from "../../../../components/logo/Logo";
+import { IconType } from "react-icons";
 
-const CardLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+interface Props {
+  children: React.ReactNode;
+  header: React.ReactNode;
+  icon?: IconType;
+  iconClickHandler?: () => void;
+}
+
+const CardLayout: React.FC<Props> = ({ children, header, icon: Icon }) => {
   return (
     <div className="card-layout">
-      <FaTimes />
-      <Logo />
+      {Icon && <Icon />}
+      <div className="card-layout__header">{header}</div>
       {children}
     </div>
   );

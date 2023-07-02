@@ -1,0 +1,31 @@
+.sign-up-initial {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__providers {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  p {
+    font-size: var(--sm-font);
+  }
+
+  &__footer {
+    font-size: var(--sm-font);
+    padding-top: 50px;
+
+    span {
+      //   background: transparent;
+      //   border: none;
+      color: var(--primary-color);
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
