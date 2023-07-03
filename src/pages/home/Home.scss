@@ -4,7 +4,7 @@
   max-width: var(--body-max-width);
   margin: 0 auto;
   //   padding: 0 var(--side-padding);
-  padding-right: 15px;
+  // padding-right: 15px;
 
   @media screen and (max-width: 1280px) {
     grid-template-columns: auto 2fr 1fr;
@@ -12,6 +12,10 @@
 
   @media screen and (max-width: 1024px) {
     grid-template-columns: auto 1fr;
+  }
+
+  @media screen and (max-width: 480px) {
+    grid-template-columns: 1fr;
   }
 
   > * {

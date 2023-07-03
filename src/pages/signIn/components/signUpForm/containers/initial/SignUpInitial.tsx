@@ -13,20 +13,6 @@ import { startCreateAccount } from "../../../../../../redux/slices/signInSlice";
 const SignUpInitial: React.FC = () => {
   const dispatch = useDispatch();
 
-  //   const navigate = useNavigate();
-
-  //   const signInWithGoogle = async () => {
-  //     try {
-  //       await signInWithPopup(auth, googleProvider);
-  //       navigate("/");
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-
-  //   console.log(auth);
-  //   signOut(auth);
-
   return (
     <div className="sign-up-initial">
       <FormHeader text="Join Twitter today" />
@@ -44,7 +30,7 @@ const SignUpInitial: React.FC = () => {
 
       <Button
         text="Create account"
-        dark={true}
+        type="dark"
         onClick={() => dispatch(startCreateAccount())}
       />
 

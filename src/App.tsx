@@ -14,18 +14,14 @@ import { useDispatch } from "react-redux";
 import { setCurrentUser } from "./redux/slices/signInSlice";
 
 const App: React.FC = () => {
-  // const router = createBrowserRouter(
-  //   createRoutesFromElements(
-  //     <Route path="/" element={<Home children={<Feeds />} />}>
-  //       <Route path="login" element={<SignIn />} />
-  //     </Route>
-  //   )
-  // );
-
   const dispatch = useDispatch();
 
+  //  SET CURRENT USER STATE ON AUTH STATE CHANGE
   onAuthStateChanged(auth, (user) => {
-    dispatch(setCurrentUser(user));
+    if (user) {
+      dispatch(setCurrentUser());
+    }
+    return;
   });
 
   const router = createBrowserRouter(

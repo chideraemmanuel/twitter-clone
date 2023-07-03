@@ -22,8 +22,6 @@ const Input: React.FC<Props> = ({ type, label, value, setValue }) => {
         onChange={(e) => dispatch(setValue(e.target.value))}
       />
 
-      {/* <label htmlFor={label}>{label}</label> */}
-
       {type === "password" && <FiEye />}
     </div>
   );

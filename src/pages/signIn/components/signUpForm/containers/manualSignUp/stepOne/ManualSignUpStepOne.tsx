@@ -34,7 +34,7 @@ const ManualSignUpStepOne: React.FC = () => {
 
       <Button
         text="Next"
-        dark={true}
+        type="dark"
         onClick={() => dispatch(nextManualSignInStep())}
       />
     </div>

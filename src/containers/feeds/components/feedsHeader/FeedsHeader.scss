@@ -8,10 +8,30 @@
   top: 0;
   z-index: 10;
 
-  h1 {
+  &__top {
     padding: 15px 20px;
-    font-size: var(--md-font);
-    font-weight: 500;
+
+    h1 {
+      font-size: var(--md-font);
+      font-weight: 500;
+
+      @media screen and (max-width: 480px) {
+        display: none;
+      }
+    }
+
+    &--mobile {
+      display: none;
+
+      @media screen and (max-width: 480px) {
+        display: flex;
+
+        .logo {
+          flex: 1;
+          text-align: center;
+        }
+      }
+    }
   }
 
   &__filter {

@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export interface signInStateTypes {
-  currentUser: any;
+export interface SignInStateTypes {
+  currentUser: {
+    active: boolean;
+    isLoading: boolean;
+  };
   signUpForm: {
     active: boolean;
     initialPageActive: boolean;
@@ -16,31 +19,20 @@ export interface signInStateTypes {
       manual: {
         active: boolean;
         step: number;
-        // userInfo: {
-        //   name: string
-        //   email: string
-        //   DOB: string
-        //   username: string
-        //   password: string
-        // }
       };
       google: {
         active: boolean;
         step: number;
-        // userInfo: {
-        //   name: string
-        //   email: string
-        //   DOB: string
-        //   username: string
-        //   password: string
-        // }
       };
     };
   };
 }
 
-const initialState: signInStateTypes = {
-  currentUser: null,
+const initialState: SignInStateTypes = {
+  currentUser: {
+    active: false,
+    isLoading: true,
+  },
   signUpForm: {
     active: true,
     initialPageActive: true,
@@ -55,24 +47,10 @@ const initialState: signInStateTypes = {
       manual: {
         active: false,
         step: 0,
-        // userInfo: {
-        //   name: "",
-        //   email: "",
-        //   DOB: "",
-        //   username: "",
-        //   password: "",
-        // },
       },
       google: {
         active: false,
         step: 0,
-        // userInfo: {
-        //   name: "",
-        //   email: "",
-        //   DOB: "",
-        //   username: "",
-        //   password: "",
-        // },
       },
     },
   },
@@ -82,33 +60,50 @@ const signInSlice = createSlice({
   name: "signIn",
   initialState,
   reducers: {
-    startCreateAccount: (state: signInStateTypes) => {
+    startCreateAccount: (state: SignInStateTypes) => {
       state.signUpForm.initialPageActive = false;
       state.signUpForm.type.manual.active = true;
       state.signUpForm.type.manual.step = 1;
     },
-    nextManualSignInStep: (state: signInStateTypes) => {
+    nextManualSignInStep: (state: SignInStateTypes) => {
       // state.signUpForm.initialPageActive = false;
       // state.signUpForm.type.manual.active = true;
       state.signUpForm.type.manual.step += 1;
     },
-    setName: (state: signInStateTypes, action) => {
+    previousManualSignInStep: (state: SignInStateTypes) => {
+      // state.signUpForm.initialPageActive = false;
+      // state.signUpForm.type.manual.active = true;
+      if (state.signUpForm.type.manual.step === 1) {
+        state.signUpForm.initialPageActive = true;
+        state.signUpForm.type.manual.active = false;
+        return;
+      }
+
+      if (state.signUpForm.type.manual.step === 0) {
+        return;
+      }
+
+      state.signUpForm.type.manual.step -= 1;
+    },
+    setName: (state: SignInStateTypes, action) => {
       state.signUpForm.userInfo.name = action.payload;
     },
-    setEmail: (state: signInStateTypes, action) => {
+    setEmail: (state: SignInStateTypes, action) => {
       state.signUpForm.userInfo.email = action.payload;
     },
-    setDOB: (state: signInStateTypes, action) => {
+    setDOB: (state: SignInStateTypes, action) => {
       state.signUpForm.userInfo.DOB = action.payload;
     },
-    setUsername: (state: signInStateTypes, action) => {
+    setUsername: (state: SignInStateTypes, action) => {
       state.signUpForm.userInfo.username = action.payload;
     },
-    setPassword: (state: signInStateTypes, action) => {
+    setPassword: (state: SignInStateTypes, action) => {
       state.signUpForm.userInfo.password = action.payload;
     },
-    setCurrentUser: (state: signInStateTypes, action) => {
-      state.currentUser = action.payload;
+    setCurrentUser: (state: SignInStateTypes) => {
+      // state.currentUser = action.payload;
+      state.currentUser.active = true;
+      state.currentUser.isLoading = false;
     },
   },
 });
@@ -116,6 +111,7 @@ const signInSlice = createSlice({
 export const {
   startCreateAccount,
   nextManualSignInStep,
+  previousManualSignInStep,
   setName,
   setEmail,
   setDOB,

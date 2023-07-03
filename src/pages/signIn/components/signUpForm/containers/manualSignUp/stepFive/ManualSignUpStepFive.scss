@@ -3,9 +3,34 @@
   flex-direction: column;
   gap: 50px;
 
-  > div {
+  .manualSignUpStepFive__top {
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    &--confirmation {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+  }
+
+  .manualSignUpStepFive__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    p {
+      font-size: var(--sm-font);
+
+      span {
+        color: var(--primary-color);
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
 }

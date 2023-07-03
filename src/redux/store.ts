@@ -1,12 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
-import signInReducer, { signInStateTypes } from "../redux/slices/signInSlice";
+import signInReducer, { SignInStateTypes } from "../redux/slices/signInSlice";
+import navigationReducer, {
+  NavigationStateTypes,
+} from "./slices/navigationSlice";
 
 export interface StoreTypes {
-  signIn: signInStateTypes;
+  signIn: SignInStateTypes;
+  navigation: NavigationStateTypes;
 }
 
 export const store = configureStore({
   reducer: {
     signIn: signInReducer,
+    navigation: navigationReducer,
   },
 });

@@ -1,0 +1,22 @@
+.profile-image-alt {
+  display: inline-block;
+  width: var(--xl-font);
+  height: var(--xl-font);
+  border-radius: 50%;
+
+  //   @media screen and (max-width: 768px) {
+  //     width: var(--xl-font);
+  //     height: var(--xl-font);
+  //   }
+
+  //   @media screen and (max-width: 540px) {
+  //     width: var(--lg-font);
+  //     height: var(--lg-font);
+  //   }
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+  }
+}

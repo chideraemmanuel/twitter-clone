@@ -1,65 +1,17 @@
 .navbar {
-  //   border: 1px solid red;
-  height: 80vh;
-  padding: 15px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  position: sticky;
-  top: 0;
+  > *:first-child {
+    display: flex !important;
 
-  @media screen and (max-width: 1280px) {
-    padding: 15px 16px;
-  }
-
-  @media screen and (max-width: 1024px) {
-    padding: 15px 12px;
-  }
-
-  &__logo {
-    padding-left: 15px;
-  }
-
-  &__navigation {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-
-    &--links {
-      display: flex;
-      flex-direction: column;
+    @media screen and (max-width: 480px) {
+      display: none !important;
     }
+  }
 
-    &--button {
-      background-color: var(--primary-color);
-      border: none;
-      width: 100%;
-      border-radius: 100px;
-      padding: 15px 10px;
-      color: #fff;
-      font-size: var(--base-font);
-      cursor: pointer;
-      transition: 0.2s ease;
+  > *:last-child {
+    display: none !important;
 
-      &:hover {
-        background-color: darken($color: #029bf0, $amount: 10);
-      }
-
-      svg {
-        display: none;
-
-        @media screen and (max-width: 1280px) {
-          display: inline-block;
-        }
-      }
-
-      span {
-        display: inline-block;
-
-        @media screen and (max-width: 1280px) {
-          display: none;
-        }
-      }
+    @media screen and (max-width: 480px) {
+      display: flex !important;
     }
   }
 }

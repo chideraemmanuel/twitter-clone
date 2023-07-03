@@ -1,0 +1,19 @@
+.confirmationBox {
+  background-color: var(--gray-500);
+  // background-color: var(--accent);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  border-radius: 5px;
+
+  span {
+    font-size: var(--sm-font);
+    color: var(--gray-900);
+  }
+
+  h5 {
+    font-size: var(--base-font);
+    color: var(--gray-900);
+  }
+}

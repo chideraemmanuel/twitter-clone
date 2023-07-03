@@ -8,19 +8,16 @@ import { useSelector } from "react-redux";
 import { StoreTypes } from "../../redux/store";
 import Logo from "../../components/logo/Logo";
 import { FaTimes } from "react-icons/fa";
-
-const user = false;
+import PreviousStepIcon from "./components/previousStepIcon/PreviousStepIcon";
+import { previousManualSignInStep } from "../../redux/slices/signInSlice";
 
 const SignIn: React.FC = () => {
   const { signUpForm, currentUser } = useSelector(
     (store: StoreTypes) => store.signIn
   );
 
-  // if (auth.currentUser) {
-  //   return <Navigate to="/" replace />;
-  // }
-
-  if (currentUser) {
+  //  NAVIGATE TO HOMEPAGE IF USER IS AVAILABLE (PROTECTING THE ROUTE)
+  if (currentUser.active) {
     return <Navigate to="/" replace />;
   }
 
@@ -28,16 +25,23 @@ const SignIn: React.FC = () => {
     <div className="sign-in">
       <div className="sign-in__overlay"></div>
 
-      <CardLayout header={<Logo />} icon={FaTimes}>
-        {signUpForm.active && <SignUpForm />}
-        {/* <LoginForm /> */}
+      {/* ONLY RENDER ANYTHING WHEN USER ISN'T LOADING */}
 
-        {/* <div className="sign-in__footer">
+      {!currentUser.isLoading && (
+        <CardLayout
+          header={<Logo />}
+          icon={<PreviousStepIcon action={previousManualSignInStep} />}
+        >
+          {signUpForm.active && <SignUpForm />}
+          {/* <LoginForm /> */}
+
+          {/* <div className="sign-in__footer">
           <p>
             Don't have an account? <span>Sign up</span>
           </p>
         </div> */}
-      </CardLayout>
+        </CardLayout>
+      )}
     </div>
   );
 };

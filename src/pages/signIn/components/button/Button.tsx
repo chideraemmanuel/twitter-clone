@@ -5,13 +5,20 @@ import "./Button.scss";
 interface Props {
   text: string;
   icon?: IconType;
-  dark?: boolean;
+  type?: "dark" | "primary";
+  disabled?: boolean;
   onClick: () => Promise<void> | any;
 }
 
-const Button: React.FC<Props> = ({ text, icon: Icon, dark, onClick }) => {
+const Button: React.FC<Props> = ({
+  text,
+  icon: Icon,
+  type,
+  onClick,
+  disabled,
+}) => {
   return (
-    <button className={dark ? "button dark" : "button"} onClick={onClick}>
+    <button className={`button ${type}`} onClick={onClick} disabled={disabled}>
       {Icon && <Icon />}
       <span>{text}</span>
     </button>

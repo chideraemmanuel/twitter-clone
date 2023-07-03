@@ -7,60 +7,62 @@ import {
   createAccountManual,
   userTypes,
 } from "../../../../../../../utils/createAccountManual";
-import { useNavigate } from "react-router-dom";
+import ConfirmationBox from "../../../../confirmationBox/ConfirmationBox";
 
 const ManualSignUpStepFive: React.FC = () => {
   const { name, email, DOB, username, password } = useSelector(
     (store: StoreTypes) => store.signIn.signUpForm.userInfo
   );
 
-  const navigate = useNavigate();
+  // const signUp = (data: userTypes) => {
+  //   createAccountManual(data);
+  //   // navigate("/");
+  // };
 
-  const signUp = (data: userTypes) => {
-    createAccountManual(data);
-    // navigate("/");
-  };
+  const { data, isLoading, refetch, error } = createAccountManual({
+    name,
+    email,
+    DOB,
+    username,
+    password,
+  });
 
-  //  const signUp = async () => {
-  //    try {
-  //      await addDoc(usersCollectionReference, {
-  //        name,
-  //        email,
-  //        DOB,
-  //        username,
-  //        password,
-  //      });
-  //      await createUserWithEmailAndPassword(auth, email, password);
-  //      navigate("/");
-  //    } catch (error) {
-  //      console.log(error);
-  //    }
-  //  };
+  console.log("Data", data);
+  console.log("isLoading", isLoading);
+  console.log("Error", error);
 
   return (
     <div className="manualSignUpStepFive">
-      <div className="">
+      <div className="manualSignUpStepFive__top">
         <FormHeader text="Create your account" />
-        {/* CONFIRMATION */}
 
-        <span>name: {name}</span>
-        <span>email: {email}</span>
-        <span>DOB: {DOB}</span>
-        <span>username: @{username}</span>
+        {/* CONFIRMATION */}
+        <div className="manualSignUpStepFive__top--confirmation">
+          <ConfirmationBox label="name" value={name} />
+          <ConfirmationBox label="email" value={email} />
+          <ConfirmationBox label="date of birth" value={DOB} />
+          <ConfirmationBox label="username" value={username} />
+        </div>
       </div>
 
-      <div className="">
+      <div className="manualSignUpStepFive__bottom">
         <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni non
-          aliquam cum nesciunt, ea voluptate laboriosam minus sunt ut repellat
-          doloremque, quia reprehenderit assumenda. Explicabo debitis unde
-          necessitatibus at accusantium! lore
+          By signing up, you agree to the <span>Terms of Service</span> and
+          <span>Privacy Policy</span>, including <span>Cookie Use</span>.
+          Twitter may use your contact information, including your email address
+          and phone number for the purposes outlined in our Privacy Policy, like
+          keeping your account secure and personalizing our services, including
+          ads. <span>Learn more</span>. Others will be able to find you by email
+          or phone number, when provided, unless you choose otherwise{" "}
+          <span>here</span>.
         </p>
 
         <Button
-          text="Sign up"
-          dark={true}
-          onClick={() => signUp({ name, email, DOB, username, password })}
+          text={isLoading ? "Creating account..." : "Sign up"}
+          disabled={isLoading}
+          type="primary"
+          // onClick={() => signUp({ name, email, DOB, username, password })}
+          onClick={() => refetch()}
         />
       </div>
     </div>
