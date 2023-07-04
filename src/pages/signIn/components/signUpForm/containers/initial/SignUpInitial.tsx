@@ -34,6 +34,7 @@ const SignUpInitial: React.FC = () => {
 
   const handleAppleSignUp = async () => {
     const result = await signInWithProvider("apple");
+    if (!result) return;
     dispatch(setProviderId("apple.com"));
     dispatch(startProviderSignUp({ provider: "apple" }));
     dispatch(setName(result?.user.displayName));

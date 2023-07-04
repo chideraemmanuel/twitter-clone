@@ -16,6 +16,7 @@
 
   @media screen and (max-width: 480px) {
     justify-content: flex-start;
+    gap: 10px;
   }
 
   // &.active {
@@ -26,6 +27,10 @@
 
   svg {
     font-size: var(--md-font);
+
+    @media screen and (max-width: 480px) {
+      font-size: var(--base-font);
+    }
   }
 
   span {
@@ -39,6 +44,7 @@
 
     @media screen and (max-width: 480px) {
       display: inline-block;
+      font-size: var(--base-font);
     }
   }
 }

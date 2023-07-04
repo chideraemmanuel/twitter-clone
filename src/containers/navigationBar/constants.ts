@@ -88,3 +88,44 @@ export const navigationConstants: NavigationTypes[] = [
     activeIcon: IoEllipsisHorizontalCircle,
   },
 ];
+
+export const mobileNavigationConstants: NavigationTypes[] = [
+  {
+    title: "/",
+    icon: BiHomeCircle,
+    activeIcon: BiSolidHomeCircle,
+  },
+  {
+    title: "explore",
+    icon: BiSearch,
+    activeIcon: BiSolidSearch,
+  },
+  {
+    title: "notifications",
+    icon: BiBell,
+    activeIcon: BiSolidBell,
+  },
+  {
+    title: "messages",
+    icon: BiEnvelope,
+    activeIcon: BiSolidEnvelope,
+  },
+];
+
+export const mobileSideMenuConstants: NavigationTypes[] = [
+  {
+    title: "profile",
+    icon: BiUser,
+    activeIcon: BiSolidUser,
+  },
+  {
+    title: "bookmarks",
+    icon: BiBookmark,
+    activeIcon: BiSolidBookmark,
+  },
+  {
+    title: "lists",
+    icon: FaList,
+    activeIcon: FaListAlt,
+  },
+];

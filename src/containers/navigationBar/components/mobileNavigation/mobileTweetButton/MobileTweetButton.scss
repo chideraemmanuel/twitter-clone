@@ -1,0 +1,19 @@
+.mobileTweetButton {
+  display: none;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 10px 12px;
+  border-radius: 50%;
+  font-size: var(--md-font);
+  position: absolute;
+  bottom: calc(10px + 10px + var(--lg-font) + 20px);
+  right: var(--side-padding);
+  z-index: 10;
+  font-size: var(--lg-font);
+
+  @media screen and (max-width: 480px) {
+    display: inline-block;
+  }
+}

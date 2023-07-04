@@ -30,6 +30,14 @@
         align-items: center;
         gap: 20px;
 
+        @media screen and (max-width: 768px) {
+          gap: 15px;
+        }
+
+        @media screen and (max-width: 540px) {
+          gap: 10px;
+        }
+
         svg {
           color: var(--primary-color);
           font-size: var(--base-font);
@@ -47,9 +55,9 @@
         border: none;
         background-color: var(--primary-color);
         color: #fff;
-        padding: 9px 20px;
+        padding: 7px 20px;
         border-radius: 100px;
-        font-size: var(--base-font);
+        font-size: var(--sm-font);
         cursor: pointer;
         transition: 0.2s ease;
 

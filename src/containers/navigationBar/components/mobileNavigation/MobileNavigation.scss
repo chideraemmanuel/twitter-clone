@@ -1,72 +1,45 @@
 .mobileNavigation {
-  position: absolute;
+  //   background-color: red;
   background-color: var(--bg-color);
-  height: 100vh;
-  width: 70vw;
-  left: -100%;
-  z-index: 12;
-  padding: 15px 24px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 30px;
-  transition: 0.3s ease;
+  //   justify-content: space-around;
+  justify-content: space-between;
+  padding: 10px 40px;
+  z-index: 10;
 
   @media (prefers-color-scheme: light) {
     background-color: #fff;
-    box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.2);
+    box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.1);
   }
 
-  &.active {
-    left: 0;
-  }
-
-  &__logo {
-    padding-left: 15px;
-  }
-
-  &__profile {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-
-    // > * {
-    //   flex: 1;
-    // }
-
-    span {
-      font-size: var(--sm-font);
-    }
-  }
-
-  &__navigation {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-
-    &--links {
+  &__link {
+    svg {
+      display: inline-block;
+      font-size: var(--lg-font);
+      color: var(--gray-800);
     }
 
-    &--button {
-      background-color: var(--primary-color);
-      border: none;
-      width: 100%;
-      border-radius: 100px;
-      padding: 15px 10px;
-      color: #fff;
-      font-size: var(--base-font);
-      cursor: pointer;
-      transition: 0.2s ease;
+    svg:first-child {
+      display: inline-block;
+    }
 
-      &:active {
-        background-color: darken($color: #029bf0, $amount: 10);
+    svg:last-child {
+      display: none;
+    }
+
+    &.active {
+      svg:first-child {
+        display: none !important;
+      }
+
+      svg:last-child {
+        display: inline-block !important;
+        color: var(--primary-text-color);
       }
     }
   }
-}
-
-.mobileNavigation-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 11;
-  background-color: rgba($color: #000000, $alpha: 0.2);
 }

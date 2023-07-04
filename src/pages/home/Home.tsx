@@ -5,6 +5,7 @@ import "./Home.scss";
 import { auth } from "../../config/firebase";
 import { useSelector } from "react-redux";
 import { StoreTypes } from "../../redux/store";
+import MobileTweetButton from "../../containers/navigationBar/components/mobileNavigation/mobileTweetButton/MobileTweetButton";
 
 interface Props {
   children: React.ReactNode;
@@ -16,13 +17,14 @@ const Home: React.FC<Props> = ({ children }) => {
   const { currentUser } = useSelector((store: StoreTypes) => store.signIn);
 
   //  NAVIGATE TO LOGIN PAGE IF USER IS NOT AVAILABLE (PROTECTING THE ROUTE)
-  if (!currentUser.active) {
-    return <Navigate to="/login" replace />;
-  }
+  // if (!currentUser.active) {
+  //   return <Navigate to="/login" replace />;
+  // }
 
   return (
     <div className="home">
       <NavigationBar />
+      <MobileTweetButton />
 
       <main className="home__main">{children}</main>
 

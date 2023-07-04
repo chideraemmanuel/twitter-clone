@@ -34,6 +34,10 @@
         gap: 5px;
         font-size: var(--sm-font);
 
+        @media screen and (max-width: 480px) {
+          font-size: var(--xs-font);
+        }
+
         p {
           font-weight: bold;
         }
@@ -55,6 +59,9 @@
 
           svg {
             font-size: var(--base-font);
+            @media screen and (max-width: 480px) {
+              font-size: var(--sm-font);
+            }
           }
         }
       }
@@ -64,6 +71,10 @@
       display: inline-block;
       font-size: var(--sm-font);
       padding-bottom: 10px;
+
+      @media screen and (max-width: 480px) {
+        font-size: var(--xs-font);
+      }
     }
   }
 }

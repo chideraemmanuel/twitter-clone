@@ -13,6 +13,14 @@
     gap: 15px;
   }
 
+  @media screen and (max-width: 480px) {
+    gap: 20px;
+  }
+
+  @media screen and (max-width: 375px) {
+    gap: 15px;
+  }
+
   button {
     cursor: pointer;
     background: transparent;
@@ -22,6 +30,10 @@
     align-items: center;
     gap: 7px;
     color: var(--secondary-text-color);
+
+    @media screen and (max-width: 768px) {
+      gap: 5px;
+    }
 
     svg {
       font-size: var(--base-font);
@@ -33,12 +45,17 @@
 
       @media screen and (max-width: 768px) {
         font-size: var(--sm-font);
+        padding: 3px;
       }
     }
 
     span {
       font-size: var(--sm-font);
       transition: 0.3s ease;
+
+      @media screen and (max-width: 480px) {
+        font-size: var(--xs-font);
+      }
     }
   }
 

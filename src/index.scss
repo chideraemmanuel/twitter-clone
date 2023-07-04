@@ -16,6 +16,7 @@
   --side-padding: 15px;
 
   // FONT SIZES
+  --xs-font: clamp(0.75rem, 0.7021rem + 0.2128vw, 0.875rem);
   --sm-font: clamp(0.875rem, 0.831rem + 0.1878vw, 1rem);
   --base-font: clamp(1rem, 0.934rem + 0.2817vw, 1.1875rem);
   // --md-font: clamp(1.25rem, 1.14rem + 0.4695vw, 1.5625rem);
