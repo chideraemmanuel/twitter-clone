@@ -1,0 +1,19 @@
+.providerSignUpStepOne {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  gap: 50px;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  //   input[type="date"] {
+  //     ::placeholder {
+  //       display: none;
+  //     }
+  //   }
+}

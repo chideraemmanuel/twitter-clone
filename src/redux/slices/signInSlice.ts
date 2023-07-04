@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface SignInStateTypes {
+  providerId: string | null;
   currentUser: {
     active: boolean;
     isLoading: boolean;
@@ -20,8 +21,9 @@ export interface SignInStateTypes {
         active: boolean;
         step: number;
       };
-      google: {
+      provider: {
         active: boolean;
+        providerName: "google" | "apple" | null;
         step: number;
       };
     };
@@ -29,6 +31,7 @@ export interface SignInStateTypes {
 }
 
 const initialState: SignInStateTypes = {
+  providerId: null,
   currentUser: {
     active: false,
     isLoading: true,
@@ -48,8 +51,9 @@ const initialState: SignInStateTypes = {
         active: false,
         step: 0,
       },
-      google: {
+      provider: {
         active: false,
+        providerName: null,
         step: 0,
       },
     },
@@ -76,6 +80,7 @@ const signInSlice = createSlice({
       if (state.signUpForm.type.manual.step === 1) {
         state.signUpForm.initialPageActive = true;
         state.signUpForm.type.manual.active = false;
+        state.signUpForm.type.manual.step = 0;
         return;
       }
 
@@ -84,6 +89,45 @@ const signInSlice = createSlice({
       }
 
       state.signUpForm.type.manual.step -= 1;
+    },
+    startProviderSignUp: (state: SignInStateTypes, action) => {
+      state.signUpForm.initialPageActive = false;
+      state.signUpForm.type.provider.providerName = action.payload.provider;
+
+      // if (state.signUpForm.type.provider.providerName === "google") {
+      //   state.signUpForm.type.provider.active = true;
+      //   state.signUpForm.type.provider.step = 1;
+      //   return;
+      // }
+
+      state.signUpForm.type.provider.active = true;
+      state.signUpForm.type.provider.step = 1;
+    },
+    nextProviderSignInStep: (state: SignInStateTypes) => {
+      // if (state.signUpForm.type.provider.providerName === "google") {
+      //   state.signUpForm.type.provider.step += 1;
+      //   return;
+      // }
+
+      state.signUpForm.type.provider.step += 1;
+    },
+    previousProviderSignInStep: (state: SignInStateTypes) => {
+      if (
+        // state.signUpForm.type.provider.providerName === "google" &&
+        state.signUpForm.type.provider.step === 1
+      ) {
+        state.signUpForm.initialPageActive = true;
+        state.signUpForm.type.provider.active = false;
+        state.signUpForm.type.provider.providerName = null;
+        state.signUpForm.type.provider.step = 0;
+      } else if (
+        // state.signUpForm.type.provider.providerName === "google" &&
+        state.signUpForm.type.provider.step === 0
+      ) {
+        return;
+      }
+
+      state.signUpForm.type.provider.step -= 1;
     },
     setName: (state: SignInStateTypes, action) => {
       state.signUpForm.userInfo.name = action.payload;
@@ -100,10 +144,16 @@ const signInSlice = createSlice({
     setPassword: (state: SignInStateTypes, action) => {
       state.signUpForm.userInfo.password = action.payload;
     },
-    setCurrentUser: (state: SignInStateTypes) => {
+    setCurrentUser: (state: SignInStateTypes, action: { payload: boolean }) => {
       // state.currentUser = action.payload;
-      state.currentUser.active = true;
+      state.currentUser.active = action.payload;
       state.currentUser.isLoading = false;
+    },
+    setProviderId: (
+      state: SignInStateTypes,
+      action: { payload: "google.com" | "apple.com" }
+    ) => {
+      state.providerId = action.payload;
     },
   },
 });
@@ -112,12 +162,16 @@ export const {
   startCreateAccount,
   nextManualSignInStep,
   previousManualSignInStep,
+  startProviderSignUp,
+  nextProviderSignInStep,
+  previousProviderSignInStep,
   setName,
   setEmail,
   setDOB,
   setUsername,
   setPassword,
   setCurrentUser,
+  setProviderId,
 } = signInSlice.actions;
 
 export default signInSlice.reducer;

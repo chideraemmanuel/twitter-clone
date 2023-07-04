@@ -1,0 +1,36 @@
+.providerSignUpStepFive {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  .providerSignUpStepFive__top {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &--confirmation {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+  }
+
+  .providerSignUpStepFive__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    p {
+      font-size: var(--sm-font);
+
+      span {
+        color: var(--primary-color);
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

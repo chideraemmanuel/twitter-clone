@@ -1,18 +1,24 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "../../../../button/Button";
 import FormHeader from "../../../../formHeader/FormHeader";
-import "./ManualSignUpStepFive.scss";
+import "./ProviderSignUpStepFive.scss";
 import { StoreTypes } from "../../../../../../../redux/store";
 import {
   createAccount,
   userTypes,
 } from "../../../../../../../utils/createAccount";
 import ConfirmationBox from "../../../../confirmationBox/ConfirmationBox";
+import {
+  setCurrentUser,
+  setProviderId,
+} from "../../../../../../../redux/slices/signInSlice";
 
-const ManualSignUpStepFive: React.FC = () => {
+const ProviderSignUpStepFive: React.FC = () => {
   const { name, email, DOB, username, password } = useSelector(
     (store: StoreTypes) => store.signIn.signUpForm.userInfo
   );
+
+  const dispatch = useDispatch();
 
   // const signUp = (data: userTypes) => {
   //   createAccountManual(data);
@@ -27,28 +33,34 @@ const ManualSignUpStepFive: React.FC = () => {
       username,
       password,
     },
-    "manual"
+    "google"
   );
 
   console.log("Data", data);
   console.log("isLoading", isLoading);
   console.log("Error", error);
 
+  const handleSignIn = async () => {
+    await refetch();
+    dispatch(setCurrentUser(true));
+    // dispatch(setProviderId("google.com"));
+  };
+
   return (
-    <div className="manualSignUpStepFive">
-      <div className="manualSignUpStepFive__top">
+    <div className="providerSignUpStepFive">
+      <div className="providerSignUpStepFive__top">
         <FormHeader text="Create your account" />
 
         {/* CONFIRMATION */}
-        <div className="manualSignUpStepFive__top--confirmation">
-          <ConfirmationBox label="name" value={name} />
+        <div className="providerSignUpStepFive__top--confirmation">
+          {/* <ConfirmationBox label="name" value={name} /> */}
           <ConfirmationBox label="email" value={email} />
           <ConfirmationBox label="date of birth" value={DOB} />
           <ConfirmationBox label="username" value={username} />
         </div>
       </div>
 
-      <div className="manualSignUpStepFive__bottom">
+      <div className="providerSignUpStepFive__bottom">
         <p>
           By signing up, you agree to the <span>Terms of Service</span> and
           <span>Privacy Policy</span>, including <span>Cookie Use</span>.
@@ -65,11 +77,12 @@ const ManualSignUpStepFive: React.FC = () => {
           disabled={isLoading}
           type="primary"
           // onClick={() => signUp({ name, email, DOB, username, password })}
-          onClick={() => refetch()}
+          // onClick={() => refetch()}
+          onClick={handleSignIn}
         />
       </div>
     </div>
   );
 };
 
-export default ManualSignUpStepFive;
+export default ProviderSignUpStepFive;

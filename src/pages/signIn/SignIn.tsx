@@ -9,12 +9,17 @@ import { StoreTypes } from "../../redux/store";
 import Logo from "../../components/logo/Logo";
 import { FaTimes } from "react-icons/fa";
 import PreviousStepIcon from "./components/previousStepIcon/PreviousStepIcon";
-import { previousManualSignInStep } from "../../redux/slices/signInSlice";
+import {
+  previousManualSignInStep,
+  previousProviderSignInStep,
+} from "../../redux/slices/signInSlice";
 
 const SignIn: React.FC = () => {
   const { signUpForm, currentUser } = useSelector(
     (store: StoreTypes) => store.signIn
   );
+
+  const { manual, provider } = signUpForm.type;
 
   //  NAVIGATE TO HOMEPAGE IF USER IS AVAILABLE (PROTECTING THE ROUTE)
   if (currentUser.active) {
@@ -30,7 +35,18 @@ const SignIn: React.FC = () => {
       {!currentUser.isLoading && (
         <CardLayout
           header={<Logo />}
-          icon={<PreviousStepIcon action={previousManualSignInStep} />}
+          icon={
+            // ONLY SHOW PREVIOUS STEP ICON WHEN NEEDED
+            manual.step > 0 || provider.step > 0 ? (
+              <PreviousStepIcon
+                action={
+                  manual.active
+                    ? previousManualSignInStep
+                    : previousProviderSignInStep
+                }
+              />
+            ) : null
+          }
         >
           {signUpForm.active && <SignUpForm />}
           {/* <LoginForm /> */}

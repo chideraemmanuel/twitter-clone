@@ -16,7 +16,7 @@ const Home: React.FC<Props> = ({ children }) => {
   const { currentUser } = useSelector((store: StoreTypes) => store.signIn);
 
   //  NAVIGATE TO LOGIN PAGE IF USER IS NOT AVAILABLE (PROTECTING THE ROUTE)
-  if (!currentUser) {
+  if (!currentUser.active) {
     return <Navigate to="/login" replace />;
   }
 

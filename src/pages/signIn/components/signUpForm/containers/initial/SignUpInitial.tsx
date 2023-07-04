@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "./SignUpInitial.scss";
-import { signInWithPopup, signOut } from "firebase/auth";
+import { onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
 import { auth, googleProvider } from "../../../../../../config/firebase";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
@@ -8,10 +8,37 @@ import Button from "../../../button/Button";
 import FormHeader from "../../../formHeader/FormHeader";
 import FormDivision from "../../../formDivision/FormDivision";
 import { useDispatch } from "react-redux";
-import { startCreateAccount } from "../../../../../../redux/slices/signInSlice";
+import {
+  setCurrentUser,
+  setEmail,
+  setName,
+  setProviderId,
+  startCreateAccount,
+  startProviderSignUp,
+} from "../../../../../../redux/slices/signInSlice";
+import { signInWithProvider } from "../../../../../../utils/signInWithProvider";
+import { useEffect } from "react";
+import { subscribe } from "../../../../../../utils/onAuthStateChange";
 
 const SignUpInitial: React.FC = () => {
   const dispatch = useDispatch();
+
+  const handleGoogleSignUp = async () => {
+    // UNSUBSCRIBE THEN 👇🏾
+    const result = await signInWithProvider("google");
+    dispatch(setProviderId("google.com"));
+    dispatch(startProviderSignUp({ provider: "google" }));
+    dispatch(setName(result?.user.displayName));
+    dispatch(setEmail(result?.user.email));
+  };
+
+  const handleAppleSignUp = async () => {
+    const result = await signInWithProvider("apple");
+    dispatch(setProviderId("apple.com"));
+    dispatch(startProviderSignUp({ provider: "apple" }));
+    dispatch(setName(result?.user.displayName));
+    dispatch(setEmail(result?.user.email));
+  };
 
   return (
     <div className="sign-up-initial">
@@ -19,11 +46,15 @@ const SignUpInitial: React.FC = () => {
 
       <div className="sign-up-initial__providers">
         <Button
-          text="Sign in with Google"
+          text="Sign up with Google"
           icon={FcGoogle}
-          //   onClick={signInWithGoogle}
+          onClick={handleGoogleSignUp}
         />
-        <Button text="Sign in with Apple" icon={FaApple} />
+        <Button
+          text="Sign up with Apple"
+          icon={FaApple}
+          onClick={handleAppleSignUp}
+        />
       </div>
 
       <FormDivision />
