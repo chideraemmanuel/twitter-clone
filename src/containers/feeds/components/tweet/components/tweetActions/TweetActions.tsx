@@ -8,12 +8,32 @@ import { FiShare, FiUpload } from "react-icons/fi";
 import { LuUpload } from "react-icons/lu";
 import { MdOutlinePoll, MdOutlineFileUpload } from "react-icons/md";
 
-const TweetActions: React.FC = () => {
+interface Props {
+  likes: {
+    amount: number;
+    by: {
+      uid: string;
+      username: string;
+      displayName: string;
+    };
+  };
+  comments: {
+    amount: number;
+    by: {
+      uid: string;
+      username: string;
+      displayName: string;
+      comment: string;
+    };
+  };
+}
+
+const TweetActions: React.FC<Props> = ({ likes, comments }) => {
   return (
     <div className="tweet-actions">
       <button className="tweet-actions__comment">
         <FaRegComment />
-        <span>77</span>
+        {comments.amount > 0 && <span>{comments.amount}</span>}
       </button>
 
       <button className="tweet-actions__retweet">
@@ -23,7 +43,7 @@ const TweetActions: React.FC = () => {
 
       <button className="tweet-actions__like">
         <AiOutlineHeart />
-        <span>2,450</span>
+        {likes.amount > 0 && <span>{likes.amount}</span>}
       </button>
 
       <button className="tweet-actions__activity">

@@ -5,7 +5,7 @@ import Tweet from "./components/tweet/Tweet";
 import WhatIsHappening from "./components/whatIsHappening/WhatIsHappening";
 
 const Feeds: React.FC = () => {
-  const {} = getTweets();
+  const { data: tweets, isLoading, error } = getTweets();
 
   return (
     <div className="feeds">
@@ -13,27 +13,9 @@ const Feeds: React.FC = () => {
       <WhatIsHappening />
 
       <div className="feeds__content">
-        <Tweet />
-        <Tweet />
-        <Tweet />
-        <Tweet />
-        <Tweet />
-        <Tweet />
-        <Tweet />
-        <Tweet />
-        <Tweet />
-        <Tweet />
-        <Tweet />
-        <Tweet />
-        <Tweet />
-        <Tweet />
-        <Tweet />
-        <Tweet />
-        <Tweet />
-        <Tweet />
-        <Tweet />
-        <Tweet />
-        <Tweet />
+        {tweets?.map((tweet) => (
+          <Tweet {...tweet} />
+        ))}
       </div>
     </div>
   );

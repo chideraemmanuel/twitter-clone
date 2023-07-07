@@ -7,9 +7,21 @@ import { IoEllipsisHorizontal } from "react-icons/io5";
 import TweetImages from "./components/tweetImages/TweetImages";
 import TweetOptions from "./components/tweetOptions/TweetOptions";
 import { useState } from "react";
+import { TweetTypes } from "../../../../utils/getTweets";
+import useGetUser from "../../../../hooks/useGetUser";
 
-const Tweet: React.FC = () => {
+const Tweet: React.FC<TweetTypes> = ({
+  id,
+  tweetAuthorUID,
+  tweetContent,
+  tweetStats,
+}) => {
   const [optionsActive, setOptionsActive] = useState(false);
+
+  // const { data } = useGetUser(tweetAuthorUID);
+  const { data } = useGetUser(tweetAuthorUID);
+  const { name, username } = data;
+  // console.log(data);
 
   return (
     <div className="tweet">
@@ -18,8 +30,8 @@ const Tweet: React.FC = () => {
       <div className="tweet__info">
         <div className="tweet__info--header">
           <Link to="/">
-            <p>Chidera Emmanuel</p>
-            <span>@chideraemmanuel</span>
+            <p>{name}</p>
+            <span>@{username}</span>
             <span>- 19h</span>
           </Link>
 
@@ -33,17 +45,12 @@ const Tweet: React.FC = () => {
         </div>
 
         <Link to="/" className="tweet__info--text">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis sunt,
-            fugit eveniet odio amet officiis ipsa, enim illum earum tempore
-            architecto, ea laudantium libero a excepturi perspiciatis? Sunt,
-            impedit eveniet.
-          </p>
+          <p>{tweetContent.text}</p>
         </Link>
 
         {/* <TweetImages /> */}
 
-        <TweetActions />
+        <TweetActions {...tweetStats} />
       </div>
     </div>
   );
