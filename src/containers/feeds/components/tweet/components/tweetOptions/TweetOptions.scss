@@ -17,6 +17,10 @@
     padding: 10px 0;
   }
 
+  @media screen and (max-width: 480px) {
+    width: 270px;
+  }
+
   @media (prefers-color-scheme: light) {
     background-color: #fff;
     box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.2);
@@ -34,10 +38,18 @@
 
     svg {
       font-size: var(--base-font);
+
+      @media screen and (max-width: 480px) {
+        font-size: var(--sm-font);
+      }
     }
 
     span {
       font-size: var(--sm-font);
+
+      @media screen and (max-width: 480px) {
+        font-size: var(--xs-font);
+      }
     }
   }
 }

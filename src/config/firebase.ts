@@ -28,3 +28,4 @@ export const appleProvider = new OAuthProvider("apple.com");
 
 // COLLECTION REFERENCES
 export const usersCollectionReference = collection(db, "users");
+export const tweetsCollectionReference = collection(db, "tweets");

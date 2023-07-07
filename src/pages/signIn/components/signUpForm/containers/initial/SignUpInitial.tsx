@@ -13,6 +13,7 @@ import {
   setEmail,
   setName,
   setProviderId,
+  setUID,
   startCreateAccount,
   startProviderSignUp,
 } from "../../../../../../redux/slices/signInSlice";
@@ -26,6 +27,12 @@ const SignUpInitial: React.FC = () => {
   const handleGoogleSignUp = async () => {
     // UNSUBSCRIBE THEN 👇🏾
     const result = await signInWithProvider("google");
+    if (result) {
+      const { uid } = result.user;
+      dispatch(setUID(uid));
+    } else {
+      return;
+    }
     dispatch(setProviderId("google.com"));
     dispatch(startProviderSignUp({ provider: "google" }));
     dispatch(setName(result?.user.displayName));

@@ -18,6 +18,12 @@ const ProviderSignUpStepFive: React.FC = () => {
     (store: StoreTypes) => store.signIn.signUpForm.userInfo
   );
 
+  const { providerName } = useSelector(
+    (store: StoreTypes) => store.signIn.signUpForm.type.provider
+  );
+
+  const { uid } = useSelector((store: StoreTypes) => store.signIn);
+
   const dispatch = useDispatch();
 
   // const signUp = (data: userTypes) => {
@@ -32,8 +38,9 @@ const ProviderSignUpStepFive: React.FC = () => {
       DOB,
       username,
       password,
+      uid,
     },
-    "google"
+    providerName
   );
 
   console.log("Data", data);

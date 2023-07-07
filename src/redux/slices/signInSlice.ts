@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export interface SignInStateTypes {
   providerId: string | null;
+  uid: string;
   currentUser: {
     active: boolean;
     isLoading: boolean;
@@ -23,7 +24,7 @@ export interface SignInStateTypes {
       };
       provider: {
         active: boolean;
-        providerName: "google" | "apple" | null;
+        providerName: "google" | "apple";
         step: number;
       };
     };
@@ -32,10 +33,14 @@ export interface SignInStateTypes {
 
 const initialState: SignInStateTypes = {
   providerId: null,
+  // **********************
+  uid: "",
+  // **********************
   currentUser: {
     active: false,
     isLoading: true,
   },
+  // **********************
   signUpForm: {
     active: true,
     initialPageActive: true,
@@ -53,7 +58,7 @@ const initialState: SignInStateTypes = {
       },
       provider: {
         active: false,
-        providerName: null,
+        providerName: "google",
         step: 0,
       },
     },
@@ -90,7 +95,10 @@ const signInSlice = createSlice({
 
       state.signUpForm.type.manual.step -= 1;
     },
-    startProviderSignUp: (state: SignInStateTypes, action) => {
+    startProviderSignUp: (
+      state: SignInStateTypes,
+      action: { payload: { provider: "google" | "apple" } }
+    ) => {
       state.signUpForm.initialPageActive = false;
       state.signUpForm.type.provider.providerName = action.payload.provider;
 
@@ -118,7 +126,7 @@ const signInSlice = createSlice({
       ) {
         state.signUpForm.initialPageActive = true;
         state.signUpForm.type.provider.active = false;
-        state.signUpForm.type.provider.providerName = null;
+        // state.signUpForm.type.provider.providerName = null;
         state.signUpForm.type.provider.step = 0;
       } else if (
         // state.signUpForm.type.provider.providerName === "google" &&
@@ -143,6 +151,9 @@ const signInSlice = createSlice({
     },
     setPassword: (state: SignInStateTypes, action) => {
       state.signUpForm.userInfo.password = action.payload;
+    },
+    setUID: (state: SignInStateTypes, action) => {
+      state.uid = action.payload;
     },
     setCurrentUser: (state: SignInStateTypes, action: { payload: boolean }) => {
       // state.currentUser = action.payload;
@@ -170,6 +181,7 @@ export const {
   setDOB,
   setUsername,
   setPassword,
+  setUID,
   setCurrentUser,
   setProviderId,
 } = signInSlice.actions;
