@@ -16,7 +16,7 @@ const Feeds: React.FC = () => {
 
       <div className="feeds__content">
         {isLoading && <Spinner />}
-        {!navigator.onLine && <p>Error...</p>}
+        {!navigator.onLine && !isLoading && <p>Error...</p>}
         {tweets?.map((tweet) => (
           <Tweet {...tweet} />
         ))}

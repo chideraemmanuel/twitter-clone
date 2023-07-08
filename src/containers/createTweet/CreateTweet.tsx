@@ -3,7 +3,10 @@ import "./CreateTweet.scss";
 import TweetInput from "./components/tweetInput/TweetInput";
 import WhoCanReplyTweet from "./components/whoCanReplyTweet/WhoCanReplyTweet";
 import { useDispatch, useSelector } from "react-redux";
-import { closeTweetCreation } from "../../redux/slices/tweetSlice";
+import {
+  closeTweetCreation,
+  resetTweetContent,
+} from "../../redux/slices/tweetSlice";
 import { StoreTypes } from "../../redux/store";
 import { getTweetConstants, usePostTweet } from "../../hooks/usePostTweet";
 import { auth } from "../../config/firebase";
@@ -18,6 +21,7 @@ const CreateTweet: React.FC = () => {
   const handlePostTweet = () => {
     if (!auth.currentUser) return;
     postTweet(getTweetConstants(auth.currentUser.uid, tweetContent));
+    dispatch(resetTweetContent());
   };
 
   // console.log(auth.currentUser);
@@ -44,6 +48,7 @@ const CreateTweet: React.FC = () => {
 
         <div className="createTweet__box--footer">
           <WhoCanReplyTweet />
+
           <button
             disabled={tweetContent === "" || isPosting ? true : false}
             onClick={handlePostTweet}

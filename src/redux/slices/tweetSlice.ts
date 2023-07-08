@@ -23,10 +23,17 @@ const tweetSlice = createSlice({
     setTweetContent: (state: TweetStateTypes, action) => {
       state.tweetContent = action.payload;
     },
+    resetTweetContent: (state: TweetStateTypes) => {
+      state.tweetContent = "";
+    },
   },
 });
 
-export const { openTweetCreation, closeTweetCreation, setTweetContent } =
-  tweetSlice.actions;
+export const {
+  openTweetCreation,
+  closeTweetCreation,
+  setTweetContent,
+  resetTweetContent,
+} = tweetSlice.actions;
 
 export default tweetSlice.reducer;

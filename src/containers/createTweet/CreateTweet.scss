@@ -82,6 +82,10 @@
           opacity: 0.5;
           cursor: not-allowed;
         }
+
+        // &:hover {
+        //   background-color: darken($color: #029bf0, $amount: 10);
+        // }
       }
     }
   }
