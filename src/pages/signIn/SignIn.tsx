@@ -13,6 +13,7 @@ import {
   previousManualSignInStep,
   previousProviderSignInStep,
 } from "../../redux/slices/signInSlice";
+import FormHeader from "./components/formHeader/FormHeader";
 
 const SignIn: React.FC = () => {
   const { signUpForm, currentUser } = useSelector(
@@ -28,26 +29,25 @@ const SignIn: React.FC = () => {
 
   return (
     <div className="sign-in">
-      <div className="sign-in__overlay"></div>
-
       {/* ONLY RENDER ANYTHING WHEN USER ISN'T LOADING */}
 
       {!currentUser.isLoading && (
-        <CardLayout
-          header={<Logo />}
-          icon={
-            // ONLY SHOW PREVIOUS STEP ICON WHEN NEEDED
-            manual.step > 0 || provider.step > 0 ? (
-              <PreviousStepIcon
-                action={
-                  manual.active
-                    ? previousManualSignInStep
-                    : previousProviderSignInStep
-                }
-              />
-            ) : null
-          }
-        >
+        <CardLayout>
+          <FormHeader
+            icon={
+              // ONLY SHOW PREVIOUS STEP ICON WHEN NEEDED
+              manual.step > 0 || provider.step > 0 ? (
+                <PreviousStepIcon
+                  action={
+                    manual.active
+                      ? previousManualSignInStep
+                      : previousProviderSignInStep
+                  }
+                />
+              ) : null
+            }
+          />
+
           {signUpForm.active && <SignUpForm />}
           {/* <LoginForm /> */}
 

@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import Button from "../../../../button/Button";
-import FormHeader from "../../../../formHeader/FormHeader";
+import FormTitle from "../../../../formTitle/FormTitle";
 import "./ManualSignUpStepTwo.scss";
 import { nextManualSignInStep } from "../../../../../../../redux/slices/signInSlice";
 
@@ -10,7 +10,7 @@ const ManualSignUpStepTwo: React.FC = () => {
   return (
     <div className="manualSignUpStepTwo">
       <div className="manualSignUpStepTwo__info">
-        <FormHeader text="Customize your experience" />
+        <FormTitle text="Customize your experience" />
       </div>
 
       <Button

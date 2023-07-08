@@ -2,11 +2,25 @@ import { FaTimes } from "react-icons/fa";
 import "./CreateTweet.scss";
 import TweetInput from "./components/tweetInput/TweetInput";
 import WhoCanReplyTweet from "./components/whoCanReplyTweet/WhoCanReplyTweet";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { closeTweetCreation } from "../../redux/slices/tweetSlice";
+import { StoreTypes } from "../../redux/store";
+import { getTweetConstants, usePostTweet } from "../../hooks/usePostTweet";
+import { auth } from "../../config/firebase";
 
 const CreateTweet: React.FC = () => {
   const dispatch = useDispatch();
+
+  const { tweetContent } = useSelector((store: StoreTypes) => store.tweet);
+
+  const { mutate: postTweet, isLoading: isPosting, error } = usePostTweet();
+
+  const handlePostTweet = () => {
+    if (!auth.currentUser) return;
+    postTweet(getTweetConstants(auth.currentUser.uid, tweetContent));
+  };
+
+  // console.log(auth.currentUser);
 
   return (
     <div className="createTweet">
@@ -30,7 +44,12 @@ const CreateTweet: React.FC = () => {
 
         <div className="createTweet__box--footer">
           <WhoCanReplyTweet />
-          <button>Tweet</button>
+          <button
+            disabled={tweetContent === "" || isPosting ? true : false}
+            onClick={handlePostTweet}
+          >
+            {isPosting ? "Posting tweet..." : "Tweet"}
+          </button>
         </div>
       </div>
     </div>

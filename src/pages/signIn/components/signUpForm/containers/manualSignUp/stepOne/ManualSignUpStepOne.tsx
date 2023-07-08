@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../../../button/Button";
-import FormHeader from "../../../../formHeader/FormHeader";
+import FormTitle from "../../../../formTitle/FormTitle";
 import Input from "../../../../input/Input";
 import "./ManualSignUpStepOne.scss";
 import {
@@ -21,7 +21,7 @@ const ManualSignUpStepOne: React.FC = () => {
   return (
     <div className="manualSignUpStepOne">
       <div className="manualSignUpStepOne__form">
-        <FormHeader text="Create your account" />
+        <FormTitle text="Create your account" />
 
         <div className="manualSignUpStepOne__form--inputs">
           <Input type="text" label="Name" value={name} setValue={setName} />

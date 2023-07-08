@@ -7,28 +7,9 @@ import { BsHeart, BsHeartFill, BsUpload } from "react-icons/bs";
 import { FiShare, FiUpload } from "react-icons/fi";
 import { LuUpload } from "react-icons/lu";
 import { MdOutlinePoll, MdOutlineFileUpload } from "react-icons/md";
+import { TweetStats } from "../../../../../../types/tweetTypes";
 
-interface Props {
-  likes: {
-    amount: number;
-    by: {
-      uid: string;
-      username: string;
-      displayName: string;
-    };
-  };
-  comments: {
-    amount: number;
-    by: {
-      uid: string;
-      username: string;
-      displayName: string;
-      comment: string;
-    };
-  };
-}
-
-const TweetActions: React.FC<Props> = ({ likes, comments }) => {
+const TweetActions: React.FC<TweetStats> = ({ likes, comments }) => {
   return (
     <div className="tweet-actions">
       <button className="tweet-actions__comment">

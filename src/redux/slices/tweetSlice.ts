@@ -2,10 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export interface TweetStateTypes {
   isCreatingTweet: boolean;
+  tweetContent: string;
 }
 
 const initialState: TweetStateTypes = {
-  isCreatingTweet: true,
+  isCreatingTweet: false,
+  tweetContent: "",
 };
 
 const tweetSlice = createSlice({
@@ -18,9 +20,13 @@ const tweetSlice = createSlice({
     closeTweetCreation: (state: TweetStateTypes) => {
       state.isCreatingTweet = false;
     },
+    setTweetContent: (state: TweetStateTypes, action) => {
+      state.tweetContent = action.payload;
+    },
   },
 });
 
-export const { openTweetCreation, closeTweetCreation } = tweetSlice.actions;
+export const { openTweetCreation, closeTweetCreation, setTweetContent } =
+  tweetSlice.actions;
 
 export default tweetSlice.reducer;

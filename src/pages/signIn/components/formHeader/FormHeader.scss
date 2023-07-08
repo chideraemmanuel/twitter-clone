@@ -1,5 +1,20 @@
 .form-header {
-  font-size: var(--md-font);
+  //   display: flex;
   text-align: center;
   padding-bottom: 20px;
+
+  &__icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: var(--md-font);
+    cursor: pointer;
+  }
+
+  &__logo {
+    svg {
+      color: var(--primary-color);
+      font-size: var(--xl-font);
+    }
+  }
 }

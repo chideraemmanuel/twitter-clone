@@ -5,19 +5,10 @@ import { IconType } from "react-icons";
 
 interface Props {
   children: React.ReactNode;
-  header: React.ReactNode;
-  icon?: React.ReactNode;
-  iconClickHandler?: () => void;
 }
 
-const CardLayout: React.FC<Props> = ({ children, header, icon }) => {
-  return (
-    <div className="card-layout">
-      <div className="card-layout__icon">{icon}</div>
-      <div className="card-layout__header">{header}</div>
-      <div className="card-layout__body">{children}</div>
-    </div>
-  );
+const CardLayout: React.FC<Props> = ({ children }) => {
+  return <div className="card-layout">{children}</div>;
 };
 
 export default CardLayout;

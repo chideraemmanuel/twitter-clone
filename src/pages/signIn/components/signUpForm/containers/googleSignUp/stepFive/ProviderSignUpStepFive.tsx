@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../../../button/Button";
-import FormHeader from "../../../../formHeader/FormHeader";
+import FormTitle from "../../../../formTitle/FormTitle";
 import "./ProviderSignUpStepFive.scss";
 import { StoreTypes } from "../../../../../../../redux/store";
 import {
@@ -56,7 +56,7 @@ const ProviderSignUpStepFive: React.FC = () => {
   return (
     <div className="providerSignUpStepFive">
       <div className="providerSignUpStepFive__top">
-        <FormHeader text="Create your account" />
+        <FormTitle text="Create your account" />
 
         {/* CONFIRMATION */}
         <div className="providerSignUpStepFive__top--confirmation">

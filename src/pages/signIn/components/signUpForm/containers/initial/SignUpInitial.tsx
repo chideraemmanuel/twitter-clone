@@ -5,7 +5,7 @@ import { auth, googleProvider } from "../../../../../../config/firebase";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
 import Button from "../../../button/Button";
-import FormHeader from "../../../formHeader/FormHeader";
+import FormTitle from "../../../formTitle/FormTitle";
 import FormDivision from "../../../formDivision/FormDivision";
 import { useDispatch } from "react-redux";
 import {
@@ -50,7 +50,7 @@ const SignUpInitial: React.FC = () => {
 
   return (
     <div className="sign-up-initial">
-      <FormHeader text="Join Twitter today" />
+      <FormTitle text="Join Twitter today" />
 
       <div className="sign-up-initial__providers">
         <Button

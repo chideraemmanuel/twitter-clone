@@ -51,6 +51,13 @@
 
     &--icon {
       cursor: pointer;
+      color: var(--gray-800);
+      transition: 0.2s ease;
+      font-size: var(--base-font);
+
+      &:hover {
+        color: var(--gray-1000);
+      }
     }
 
     &--body {
@@ -70,6 +77,11 @@
         padding: 7px 15px;
         font-size: var(--sm-font);
         cursor: pointer;
+
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
       }
     }
   }

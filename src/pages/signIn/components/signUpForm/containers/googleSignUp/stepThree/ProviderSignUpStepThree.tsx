@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../../../button/Button";
-import FormHeader from "../../../../formHeader/FormHeader";
+import FormTitle from "../../../../formTitle/FormTitle";
 import "./ProviderSignUpStepThree.scss";
 import {
   nextProviderSignInStep,
@@ -19,7 +19,7 @@ const ProviderSignUpStepThree: React.FC = () => {
   return (
     <div className="providerSignUpStepThree">
       <div className="providerSignUpStepThree__form">
-        <FormHeader text="What should we call you?" />
+        <FormTitle text="What should we call you?" />
         <p>Your @username is unique. You can always change it later.</p>
 
         <Input

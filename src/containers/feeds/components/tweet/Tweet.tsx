@@ -7,8 +7,8 @@ import { IoEllipsisHorizontal } from "react-icons/io5";
 import TweetImages from "./components/tweetImages/TweetImages";
 import TweetOptions from "./components/tweetOptions/TweetOptions";
 import { useState } from "react";
-import { TweetTypes } from "../../../../utils/getTweets";
 import useGetUser from "../../../../hooks/useGetUser";
+import { TweetTypes } from "../../../../types/tweetTypes";
 
 const Tweet: React.FC<TweetTypes> = ({
   id,

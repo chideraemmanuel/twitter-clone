@@ -3,12 +3,6 @@
   align-items: center;
   gap: 15px;
 
-  input {
-    border: none;
-    outline: none;
-    font-size: 1rem;
-  }
-
   textarea {
     font-size: 1rem;
     outline: none;
@@ -17,6 +11,7 @@
     height: calc(1rem + 20px) !important;
     resize: none;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: transparent;
 
     &::-webkit-scrollbar {
       display: none;

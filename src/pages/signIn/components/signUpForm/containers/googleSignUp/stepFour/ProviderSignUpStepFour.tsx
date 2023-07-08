@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../../../button/Button";
-import FormHeader from "../../../../formHeader/FormHeader";
+import FormTitle from "../../../../formTitle/FormTitle";
 import "./ProviderSignUpStepFour.scss";
 import {
   nextProviderSignInStep,
@@ -19,7 +19,7 @@ const ProviderSignUpStepFour: React.FC = () => {
   return (
     <div className="providerSignUpStepFour">
       <div className="providerSignUpStepFour__form">
-        <FormHeader text="Pick a password" />
+        <FormTitle text="Pick a password" />
         <p>Your password will be used to access your account</p>
 
         <Input

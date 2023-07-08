@@ -1,7 +1,20 @@
+import { FaTwitter } from "react-icons/fa";
 import "./FormHeader.scss";
 
-const FormHeader: React.FC<{ text: string }> = ({ text }) => {
-  return <h2 className="form-header">{text}</h2>;
+interface Props {
+  icon: React.ReactNode;
+}
+
+const FormHeader: React.FC<Props> = ({ icon }) => {
+  return (
+    <div className="form-header">
+      <div className="form-header__icon">{icon}</div>
+
+      <div className="form-header__logo">
+        <FaTwitter />
+      </div>
+    </div>
+  );
 };
 
 export default FormHeader;
