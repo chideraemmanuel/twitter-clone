@@ -3,8 +3,12 @@ import Logo from "../../../../components/logo/Logo";
 import { navigationConstants } from "../../constants";
 import NavigationLink from "../navigationLink/NavigationLink";
 import "./DesktopNavigation.scss";
+import { useDispatch } from "react-redux";
+import { openTweetCreation } from "../../../../redux/slices/tweetSlice";
 
 const DesktopNavigation: React.FC = () => {
+  const dispatch = useDispatch();
+
   return (
     <div className="desktopNavigation">
       <div className="desktopNavigation__logo">
@@ -20,7 +24,10 @@ const DesktopNavigation: React.FC = () => {
           ))}
         </ul>
 
-        <button className="desktopNavigation__navigation--button">
+        <button
+          className="desktopNavigation__navigation--button"
+          onClick={() => dispatch(openTweetCreation())}
+        >
           <FaFeather />
           <span>Tweet</span>
         </button>
