@@ -9,6 +9,9 @@ import TweetOptions from "./components/tweetOptions/TweetOptions";
 import { useState } from "react";
 import useGetUser from "../../../../hooks/useGetUser";
 import { TweetTypes } from "../../../../types/tweetTypes";
+import ReplyTweet from "./components/replyTweet/ReplyTweet";
+import { useSelector } from "react-redux";
+import { StoreTypes } from "../../../../redux/store";
 
 const Tweet: React.FC<TweetTypes> = ({
   id,
@@ -25,36 +28,42 @@ const Tweet: React.FC<TweetTypes> = ({
   // console.log(data);
   // console.log(createdAt.toDate());
 
-  return (
-    <div className="tweet">
-      <ProfileImage />
+  const { isReplyingTweet } = useSelector((store: StoreTypes) => store.tweet);
 
-      <div className="tweet__info">
-        <div className="tweet__info--header">
-          <Link to="/">
-            {data && <p>{data.name}</p>}
-            {data && <span>@{data.username}</span>}
-            <span>- 19h</span>
+  return (
+    <>
+      {isReplyingTweet && <ReplyTweet />}
+
+      <div className="tweet">
+        <ProfileImage />
+
+        <div className="tweet__info">
+          <div className="tweet__info--header">
+            <Link to="/">
+              {data && <p>{data.name}</p>}
+              {data && <span>@{data.username}</span>}
+              <span>- 19h</span>
+            </Link>
+
+            <div className="tweet__info--header_options">
+              <button onClick={() => setOptionsActive(!optionsActive)}>
+                <IoEllipsisHorizontal />
+              </button>
+
+              {optionsActive && <TweetOptions />}
+            </div>
+          </div>
+
+          <Link to="/" className="tweet__info--text">
+            <p>{tweetContent.text}</p>
           </Link>
 
-          <div className="tweet__info--header_options">
-            <button onClick={() => setOptionsActive(!optionsActive)}>
-              <IoEllipsisHorizontal />
-            </button>
+          {/* <TweetImages /> */}
 
-            {optionsActive && <TweetOptions />}
-          </div>
+          <TweetActions {...tweetStats} />
         </div>
-
-        <Link to="/" className="tweet__info--text">
-          <p>{tweetContent.text}</p>
-        </Link>
-
-        {/* <TweetImages /> */}
-
-        <TweetActions {...tweetStats} />
       </div>
-    </div>
+    </>
   );
 };
 

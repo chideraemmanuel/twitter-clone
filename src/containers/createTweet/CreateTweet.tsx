@@ -6,10 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   closeTweetCreation,
   resetTweetContent,
+  setTweetContent,
 } from "../../redux/slices/tweetSlice";
 import { StoreTypes } from "../../redux/store";
 import { getTweetConstants, usePostTweet } from "../../hooks/usePostTweet";
 import { auth } from "../../config/firebase";
+import InterceptionHOC from "../../components/interceptionHOC/InterceptionHOC";
 
 const CreateTweet: React.FC = () => {
   const dispatch = useDispatch();
@@ -28,37 +30,32 @@ const CreateTweet: React.FC = () => {
   // console.log(auth.currentUser);
 
   return (
-    <div className="createTweet">
-      <div className="createTweet__box">
-        <div
-          className="createTweet__box--icon"
-          onClick={() => dispatch(closeTweetCreation())}
-        >
-          <FaTimes />
-        </div>
-
-        <div className="createTweet__box--header">
-          <div className="createTweet__box--header_visibilityFilter">
-            <span>Everyone</span>
-          </div>
-        </div>
-
-        <div className="createTweet__box--body">
-          <TweetInput />
-        </div>
-
-        <div className="createTweet__box--footer">
-          <WhoCanReplyTweet />
-
-          <button
-            disabled={tweetContent === "" || isPosting ? true : false}
-            onClick={handlePostTweet}
-          >
-            {isPosting ? "Posting tweet..." : "Tweet"}
-          </button>
+    <InterceptionHOC closeInterceptionAction={closeTweetCreation}>
+      <div className="createTweet__header">
+        <div className="createTweet__header--visibilityFilter">
+          <span>Everyone</span>
         </div>
       </div>
-    </div>
+
+      <div className="createTweet__body">
+        <TweetInput
+          value={tweetContent}
+          setValue={setTweetContent}
+          placeholder="What is happening?!"
+        />
+      </div>
+
+      <div className="createTweet__footer">
+        <WhoCanReplyTweet />
+
+        <button
+          disabled={tweetContent === "" || isPosting ? true : false}
+          onClick={handlePostTweet}
+        >
+          {isPosting ? "Posting tweet..." : "Tweet"}
+        </button>
+      </div>
+    </InterceptionHOC>
   );
 };
 

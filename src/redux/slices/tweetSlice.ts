@@ -3,11 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 export interface TweetStateTypes {
   isCreatingTweet: boolean;
   tweetContent: string;
+  isReplyingTweet: boolean;
+  replyTweetContent: string;
 }
 
 const initialState: TweetStateTypes = {
   isCreatingTweet: false,
   tweetContent: "",
+  isReplyingTweet: true,
+  replyTweetContent: "",
 };
 
 const tweetSlice = createSlice({
@@ -26,6 +30,18 @@ const tweetSlice = createSlice({
     resetTweetContent: (state: TweetStateTypes) => {
       state.tweetContent = "";
     },
+    openReplyTweet: (state: TweetStateTypes) => {
+      state.isReplyingTweet = true;
+    },
+    closeReplyTweet: (state: TweetStateTypes) => {
+      state.isReplyingTweet = false;
+    },
+    setReplyTweetContent: (state: TweetStateTypes, action) => {
+      state.replyTweetContent = action.payload;
+    },
+    resetReplyTweetContent: (state: TweetStateTypes) => {
+      state.replyTweetContent = "";
+    },
   },
 });
 
@@ -34,6 +50,10 @@ export const {
   closeTweetCreation,
   setTweetContent,
   resetTweetContent,
+  openReplyTweet,
+  closeReplyTweet,
+  setReplyTweetContent,
+  resetReplyTweetContent,
 } = tweetSlice.actions;
 
 export default tweetSlice.reducer;

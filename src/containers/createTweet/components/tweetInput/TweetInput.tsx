@@ -4,9 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { StoreTypes } from "../../../../redux/store";
 import { setTweetContent } from "../../../../redux/slices/tweetSlice";
 
-const TweetInput: React.FC = () => {
-  const { tweetContent } = useSelector((store: StoreTypes) => store.tweet);
+interface Props {
+  value: string;
+  setValue: any;
+  placeholder: string;
+}
 
+const TweetInput: React.FC<Props> = ({ value, setValue, placeholder }) => {
   const dispatch = useDispatch();
 
   return (
@@ -17,10 +21,10 @@ const TweetInput: React.FC = () => {
         // id=""
         // cols="30"
         // rows="10"
-        placeholder="What is happening?!"
+        placeholder={placeholder}
         autoFocus
-        value={tweetContent}
-        onChange={(e) => dispatch(setTweetContent(e.target.value))}
+        value={value}
+        onChange={(e) => dispatch(setValue(e.target.value))}
       ></textarea>
     </div>
   );
