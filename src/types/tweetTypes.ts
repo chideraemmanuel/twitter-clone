@@ -1,5 +1,6 @@
 export interface TweetTypes {
   id?: string;
+  createdAt: any;
   tweetAuthorUID: string;
   tweetContent: TweetContent;
   tweetStats: TweetStats;

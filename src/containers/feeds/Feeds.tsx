@@ -7,7 +7,7 @@ import WhatIsHappening from "./components/whatIsHappening/WhatIsHappening";
 
 const Feeds: React.FC = () => {
   const { data: tweets, isLoading, error, isError } = useGetTweets();
-  console.log(navigator.onLine);
+  // console.log(navigator.onLine);
 
   return (
     <div className="feeds">

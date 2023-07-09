@@ -12,6 +12,7 @@ import { TweetTypes } from "../../../../types/tweetTypes";
 
 const Tweet: React.FC<TweetTypes> = ({
   id,
+  createdAt,
   tweetAuthorUID,
   tweetContent,
   tweetStats,
@@ -20,8 +21,9 @@ const Tweet: React.FC<TweetTypes> = ({
 
   // const { data } = useGetUser(tweetAuthorUID);
   const { data } = useGetUser(tweetAuthorUID);
-  const { name, username } = data;
+  // const { name, username } = data;
   // console.log(data);
+  // console.log(createdAt.toDate());
 
   return (
     <div className="tweet">
@@ -30,8 +32,8 @@ const Tweet: React.FC<TweetTypes> = ({
       <div className="tweet__info">
         <div className="tweet__info--header">
           <Link to="/">
-            <p>{name}</p>
-            <span>@{username}</span>
+            {data && <p>{data.name}</p>}
+            {data && <span>@{data.username}</span>}
             <span>- 19h</span>
           </Link>
 

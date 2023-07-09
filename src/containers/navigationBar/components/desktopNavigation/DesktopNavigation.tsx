@@ -5,6 +5,7 @@ import NavigationLink from "../navigationLink/NavigationLink";
 import "./DesktopNavigation.scss";
 import { useDispatch } from "react-redux";
 import { openTweetCreation } from "../../../../redux/slices/tweetSlice";
+import AccountAction from "../accountAction/AccountAction";
 
 const DesktopNavigation: React.FC = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,8 @@ const DesktopNavigation: React.FC = () => {
           <span>Tweet</span>
         </button>
       </div>
+
+      <AccountAction />
     </div>
   );
 };

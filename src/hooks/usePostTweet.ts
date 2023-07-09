@@ -1,4 +1,4 @@
-import { addDoc } from "firebase/firestore";
+import { addDoc, serverTimestamp } from "firebase/firestore";
 import { tweetsCollectionReference } from "../config/firebase";
 import { useMutation } from "react-query";
 import { TweetTypes } from "../types/tweetTypes";
@@ -20,6 +20,7 @@ export const getTweetConstants = (
 ) => {
   return {
     // id: string;
+    createdAt: serverTimestamp(),
     tweetAuthorUID,
     tweetContent: {
       text: tweetContent,

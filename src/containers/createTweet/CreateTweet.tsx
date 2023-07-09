@@ -22,6 +22,7 @@ const CreateTweet: React.FC = () => {
     if (!auth.currentUser) return;
     postTweet(getTweetConstants(auth.currentUser.uid, tweetContent));
     dispatch(resetTweetContent());
+    dispatch(closeTweetCreation());
   };
 
   // console.log(auth.currentUser);

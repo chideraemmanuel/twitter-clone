@@ -4,16 +4,12 @@ import { tweetsCollectionReference } from "../config/firebase";
 
 const fetchTweets = async () => {
   // might not need onsnapshot because of react query's background fetch
-  try {
-    const response = await getDocs(tweetsCollectionReference);
-    const data = response.docs.map((item) => {
-      return { ...item.data(), id: item.id };
-    });
-    return data;
-  } catch (error) {
-    console.log("nawa oo", error);
-    throw new Error("Could not fetch tweets");
-  }
+  const response = await getDocs(tweetsCollectionReference);
+  const data = response.docs.map((item) => {
+    return { ...item.data(), id: item.id };
+  });
+  console.log(data);
+  return data;
 };
 
 export const useGetTweets = () => {
