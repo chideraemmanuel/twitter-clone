@@ -10,7 +10,7 @@ export interface TweetStateTypes {
 const initialState: TweetStateTypes = {
   isCreatingTweet: false,
   tweetContent: "",
-  isReplyingTweet: true,
+  isReplyingTweet: false,
   replyTweetContent: "",
 };
 

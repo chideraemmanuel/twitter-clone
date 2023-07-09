@@ -7,14 +7,35 @@ import { BsHeart, BsHeartFill, BsUpload } from "react-icons/bs";
 import { FiShare, FiUpload } from "react-icons/fi";
 import { LuUpload } from "react-icons/lu";
 import { MdOutlinePoll, MdOutlineFileUpload } from "react-icons/md";
-import { TweetStats } from "../../../../../../types/tweetTypes";
+import { TweetStatsTypes } from "../../../../../../types/tweetTypes";
+import { likeTweet } from "../../../../../../utils/likeTweet";
+import { auth } from "../../../../../../config/firebase";
+import { useDispatch } from "react-redux";
+import { openReplyTweet } from "../../../../../../redux/slices/tweetSlice";
 
-const TweetActions: React.FC<TweetStats> = ({ likes, comments }) => {
+interface Props {
+  tweetStats: TweetStatsTypes;
+  tweetId: string;
+}
+
+const TweetActions: React.FC<Props> = ({ tweetStats, tweetId }) => {
+  const { comments, likes } = tweetStats;
+
+  const dispatch = useDispatch();
+
+  const handleLike = () => {
+    if (!auth.currentUser) return;
+    likeTweet(tweetId, auth.currentUser?.uid);
+  };
+
   return (
     <div className="tweet-actions">
-      <button className="tweet-actions__comment">
+      <button
+        className="tweet-actions__comment"
+        onClick={() => dispatch(openReplyTweet())}
+      >
         <FaRegComment />
-        {comments.amount > 0 && <span>{comments.amount}</span>}
+        {comments.length > 0 && <span>{comments.length}</span>}
       </button>
 
       <button className="tweet-actions__retweet">
@@ -22,9 +43,9 @@ const TweetActions: React.FC<TweetStats> = ({ likes, comments }) => {
         <span>638</span>
       </button>
 
-      <button className="tweet-actions__like">
+      <button className="tweet-actions__like" onClick={handleLike}>
         <AiOutlineHeart />
-        {likes.amount > 0 && <span>{likes.amount}</span>}
+        {likes.length > 0 && <span>{likes.length}</span>}
       </button>
 
       <button className="tweet-actions__activity">

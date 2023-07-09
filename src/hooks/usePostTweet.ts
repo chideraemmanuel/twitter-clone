@@ -27,14 +27,8 @@ export const getTweetConstants = (
       // images
     },
     tweetStats: {
-      likes: {
-        amount: 0,
-        by: [],
-      },
-      comments: {
-        amount: 0,
-        by: [],
-      },
+      likes: [],
+      comments: [],
     },
   };
 };

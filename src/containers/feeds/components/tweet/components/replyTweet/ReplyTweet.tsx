@@ -3,20 +3,62 @@ import InterceptionHOC from "../../../../../../components/interceptionHOC/Interc
 import ProfileImageAlt from "../../../../../../components/profileImageAlt/ProfileImageAlt";
 import { Link } from "react-router-dom";
 import TweetInput from "../../../../../createTweet/components/tweetInput/TweetInput";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { StoreTypes } from "../../../../../../redux/store";
 import {
   closeReplyTweet,
+  resetReplyTweetContent,
   setReplyTweetContent,
 } from "../../../../../../redux/slices/tweetSlice";
+import { TweetContentTypes } from "../../../../../../types/tweetTypes";
+import { useReplyTweet } from "../../../../../../hooks/useReplyTweet";
+import { auth } from "../../../../../../config/firebase";
 
-const isPosting = false;
+// const isPosting = false;
 
-const ReplyTweet: React.FC = () => {
+interface Props {
+  tweetId: string;
+  tweetContent: TweetContentTypes;
+  tweetAuthor: {
+    name: string;
+    username: string;
+  };
+  // tweetAuthorName: string;
+  // tweetAuthorUsername: string;
+}
+
+const ReplyTweet: React.FC<Props> = ({
+  // tweetAuthorName,
+  // tweetAuthorUsername,
+  tweetId,
+  tweetContent,
+  tweetAuthor,
+}) => {
   const { replyTweetContent } = useSelector((store: StoreTypes) => store.tweet);
+
+  const dispatch = useDispatch();
+
+  const {
+    mutate: replyTweet,
+    isLoading: isPostingReply,
+    isError,
+  } = useReplyTweet();
 
   const handleReplyTweet = () => {
     console.log("Replied!");
+
+    if (!auth.currentUser) return;
+
+    replyTweet({
+      tweetId,
+      reply: {
+        replyAuthorUID: auth.currentUser.uid,
+        comment: replyTweetContent,
+      },
+    });
+
+    dispatch(resetReplyTweetContent());
+    dispatch(closeReplyTweet());
   };
 
   return (
@@ -26,24 +68,18 @@ const ReplyTweet: React.FC = () => {
 
         <div className="replyTweet__info">
           <div className="replyTweet__info--header">
-            <span>Whatever the name is</span>
-            <span>@whatever</span>
-            {/* {data && <p>{data.name}</p>}
-              {data && <span>@{data.username}</span>} */}
+            {/* <span>{tweetAuthorName}</span>
+            <span>@{tweetAuthorUsername}</span> */}
+            <span>{tweetAuthor.name}</span>
+            <span>@{tweetAuthor.username}</span>
             <span>- 19h</span>
           </div>
 
           {/* <p className="replyTweet__info--text">{replyTweetContent.text}</p> */}
-          <p className="replyTweet__info--text">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis,
-            iusto eligendi? Ad veritatis neque explicabo alias temporibus
-            nostrum. Ipsam beatae earum, autem atque, ab deserunt, quo odio sunt
-            assumenda neque consectetur eum reprehenderit a corporis. Officia
-            iusto facere repellendus similique.
-          </p>
+          <p className="replyTweet__info--text">{tweetContent.text}</p>
 
           <span className="replyTweet__info--replyingTo">
-            Replying to <Link to="/">@whatever</Link>
+            Replying to <Link to="/">@{tweetAuthor.username}</Link>
           </span>
         </div>
       </div>
@@ -56,10 +92,10 @@ const ReplyTweet: React.FC = () => {
         />
 
         <button
-          disabled={replyTweetContent === "" || isPosting ? true : false}
+          disabled={replyTweetContent === "" || isPostingReply ? true : false}
           onClick={handleReplyTweet}
         >
-          {isPosting ? "Posting reply..." : "Reply"}
+          {isPostingReply ? "Posting reply..." : "Reply"}
         </button>
       </form>
     </InterceptionHOC>
