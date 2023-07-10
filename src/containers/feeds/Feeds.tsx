@@ -12,6 +12,7 @@ import { StoreTypes } from "../../redux/store";
 const Feeds: React.FC = () => {
   const { data: tweets, isLoading, error, isError } = useGetTweets();
   // console.log(navigator.onLine);
+  // useGetTweets();
 
   const { isReplyingTweet } = useSelector((store: StoreTypes) => store.tweet);
 
@@ -24,9 +25,7 @@ const Feeds: React.FC = () => {
       <div className="feeds__content">
         {isLoading && <Spinner />}
         {!navigator.onLine && !isLoading && <p>Error...</p>}
-        {tweets?.map((tweet) => (
-          <Tweet {...tweet} />
-        ))}
+        {tweets && tweets.map((tweet) => <Tweet {...tweet} />)}
       </div>
     </div>
   );

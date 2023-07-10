@@ -1,6 +1,6 @@
 import { addDoc, serverTimestamp } from "firebase/firestore";
 import { tweetsCollectionReference } from "../config/firebase";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { TweetTypes } from "../types/tweetTypes";
 
 const postTweet = async (data: TweetTypes) => {
@@ -8,7 +8,11 @@ const postTweet = async (data: TweetTypes) => {
 };
 
 export const usePostTweet = () => {
-  const { mutate, isLoading, error } = useMutation(postTweet);
+  const queryClient = useQueryClient();
+
+  const { mutate, isLoading, error } = useMutation(postTweet, {
+    onSuccess: () => queryClient.invalidateQueries("fetch tweets"),
+  });
 
   return { mutate, isLoading, error };
 };

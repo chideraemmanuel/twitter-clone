@@ -12,7 +12,11 @@ const MobileNavigation: React.FC = () => {
 
       <div className="mobileNavigation">
         {mobileNavigationConstants.map((item) => (
-          <NavLink to={item.title} className="mobileNavigation__link">
+          <NavLink
+            to={item.title}
+            className="mobileNavigation__link"
+            key={item.title}
+          >
             <item.icon />
             <item.activeIcon />
           </NavLink>

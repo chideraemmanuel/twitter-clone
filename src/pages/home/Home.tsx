@@ -19,9 +19,9 @@ const Home: React.FC<Props> = ({ children }) => {
   const { isCreatingTweet } = useSelector((store: StoreTypes) => store.tweet);
 
   //  NAVIGATE TO LOGIN PAGE IF USER IS NOT AVAILABLE (PROTECTING THE ROUTE)
-  // if (!currentUser.active) {
-  //   return <Navigate to="/login" replace />;
-  // }
+  if (!currentUser.active) {
+    return <Navigate to="/login" replace />;
+  }
 
   return (
     <div className="home">

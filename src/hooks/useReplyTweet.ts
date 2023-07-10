@@ -1,5 +1,5 @@
-import { doc, setDoc, updateDoc } from "firebase/firestore";
-import { useMutation } from "react-query";
+import { addDoc, arrayUnion, doc, setDoc, updateDoc } from "firebase/firestore";
+import { useMutation, useQueryClient } from "react-query";
 import { db } from "../config/firebase";
 import { TweetCommentInfoTypes } from "../types/tweetTypes";
 import useGetUser from "./useGetUser";
@@ -29,12 +29,10 @@ const replyTweet = async (replyInfo: ReplyInfoTypes) => {
     tweetReference,
     {
       tweetStats: {
-        comments: [
-          {
-            replyAuthorUID,
-            comment,
-          },
-        ],
+        comments: arrayUnion({
+          replyAuthorUID,
+          comment,
+        }),
       },
     },
     { merge: true }
@@ -42,7 +40,10 @@ const replyTweet = async (replyInfo: ReplyInfoTypes) => {
 };
 
 export const useReplyTweet = () => {
-  const { mutate, isLoading, isError } = useMutation(replyTweet);
+  const queryClient = useQueryClient();
+  const { mutate, isLoading, isError } = useMutation(replyTweet, {
+    onSuccess: () => queryClient.invalidateQueries("fetch tweets"),
+  });
 
   return { mutate, isLoading, isError };
 };

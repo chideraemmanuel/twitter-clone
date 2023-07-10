@@ -8,10 +8,14 @@ import { FiShare, FiUpload } from "react-icons/fi";
 import { LuUpload } from "react-icons/lu";
 import { MdOutlinePoll, MdOutlineFileUpload } from "react-icons/md";
 import { TweetStatsTypes } from "../../../../../../types/tweetTypes";
-import { likeTweet } from "../../../../../../utils/likeTweet";
+// import { likeTweet } from "../../../../../../utils/likeTweet";
 import { auth } from "../../../../../../config/firebase";
 import { useDispatch } from "react-redux";
-import { openReplyTweet } from "../../../../../../redux/slices/tweetSlice";
+import {
+  openReplyTweet,
+  resetReplyTweetContent,
+} from "../../../../../../redux/slices/tweetSlice";
+import { useLikeTweet } from "../../../../../../hooks/useLikeTweet";
 
 interface Props {
   tweetStats: TweetStatsTypes;
@@ -23,16 +27,27 @@ const TweetActions: React.FC<Props> = ({ tweetStats, tweetId }) => {
 
   const dispatch = useDispatch();
 
+  const { mutate: likeTweet, isLoading, isError } = useLikeTweet();
+
   const handleLike = () => {
     if (!auth.currentUser) return;
-    likeTweet(tweetId, auth.currentUser?.uid);
+    likeTweet({
+      tweetId,
+      tweetLikerUID: auth.currentUser.uid,
+    });
+  };
+
+  const handleComment = () => {
+    dispatch(resetReplyTweetContent());
+    dispatch(openReplyTweet());
   };
 
   return (
     <div className="tweet-actions">
       <button
         className="tweet-actions__comment"
-        onClick={() => dispatch(openReplyTweet())}
+        // onClick={() => dispatch(openReplyTweet())}
+        onClick={handleComment}
       >
         <FaRegComment />
         {comments.length > 0 && <span>{comments.length}</span>}

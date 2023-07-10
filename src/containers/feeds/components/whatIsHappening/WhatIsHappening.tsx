@@ -10,7 +10,10 @@ import {
   usePostTweet,
 } from "../../../../hooks/usePostTweet";
 import { auth } from "../../../../config/firebase";
-import { resetTweetContent } from "../../../../redux/slices/tweetSlice";
+import {
+  resetTweetContent,
+  setTweetContent,
+} from "../../../../redux/slices/tweetSlice";
 
 const WhatIsHappening: React.FC = () => {
   const dispatch = useDispatch();
@@ -27,7 +30,11 @@ const WhatIsHappening: React.FC = () => {
 
   return (
     <div className="what-is-happening">
-      <TweetInput />
+      <TweetInput
+        value={tweetContent}
+        setValue={setTweetContent}
+        placeholder="What is happening?!"
+      />
 
       <div className="what-is-happening__bottom">
         <WhoCanReplyTweet />

@@ -32,7 +32,7 @@ const Tweet: React.FC<TweetTypes> = ({
 
   return (
     <>
-      {isReplyingTweet && (
+      {isReplyingTweet && tweetAuthor && (
         <ReplyTweet
           tweetAuthor={tweetAuthor}
           tweetContent={tweetContent}

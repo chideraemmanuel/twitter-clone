@@ -12,7 +12,10 @@ import {
 } from "../../../../../../redux/slices/tweetSlice";
 import { TweetContentTypes } from "../../../../../../types/tweetTypes";
 import { useReplyTweet } from "../../../../../../hooks/useReplyTweet";
-import { auth } from "../../../../../../config/firebase";
+import { auth, db } from "../../../../../../config/firebase";
+import { doc, getDoc } from "firebase/firestore";
+import { useEffect } from "react";
+import { useFetchTweet } from "../../../../../../hooks/useFetchTweet";
 
 // const isPosting = false;
 
@@ -37,6 +40,20 @@ const ReplyTweet: React.FC<Props> = ({
   const { replyTweetContent } = useSelector((store: StoreTypes) => store.tweet);
 
   const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   const fetchTweet = async () => {
+  //     // REFERENCE TO TWEET THAT IS BEING REPLIED TO
+  //     const tweetReference = doc(db, "tweets", tweetId);
+
+  //     // FETCH LIKED TWEET FOR CHECKS
+  //     const response = await getDoc(tweetReference);
+  //   };
+  // });
+
+  const { data: tweetData, isLoading: isTweetDataLoading } =
+    useFetchTweet(tweetId);
+  // console.log(tweetData);
 
   const {
     mutate: replyTweet,
@@ -76,7 +93,9 @@ const ReplyTweet: React.FC<Props> = ({
           </div>
 
           {/* <p className="replyTweet__info--text">{replyTweetContent.text}</p> */}
-          <p className="replyTweet__info--text">{tweetContent.text}</p>
+          <p className="replyTweet__info--text">
+            {tweetData?.tweetContent.text}
+          </p>
 
           <span className="replyTweet__info--replyingTo">
             Replying to <Link to="/">@{tweetAuthor.username}</Link>
