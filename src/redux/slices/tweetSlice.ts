@@ -1,17 +1,35 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+interface RepliedTweetTypes {
+  id: string;
+  author: {
+    username: string;
+    displayName: string;
+  };
+  content: string;
+}
+
 export interface TweetStateTypes {
   isCreatingTweet: boolean;
   tweetContent: string;
   isReplyingTweet: boolean;
-  replyTweetContent: string;
+  tweetReplyContent: string;
+  repliedTweet: RepliedTweetTypes;
 }
 
 const initialState: TweetStateTypes = {
   isCreatingTweet: false,
   tweetContent: "",
   isReplyingTweet: false,
-  replyTweetContent: "",
+  tweetReplyContent: "",
+  repliedTweet: {
+    id: "",
+    author: {
+      username: "",
+      displayName: "",
+    },
+    content: "",
+  },
 };
 
 const tweetSlice = createSlice({
@@ -36,11 +54,19 @@ const tweetSlice = createSlice({
     closeReplyTweet: (state: TweetStateTypes) => {
       state.isReplyingTweet = false;
     },
-    setReplyTweetContent: (state: TweetStateTypes, action) => {
-      state.replyTweetContent = action.payload;
+    setTweetReplyContent: (state: TweetStateTypes, action) => {
+      state.tweetReplyContent = action.payload;
     },
-    resetReplyTweetContent: (state: TweetStateTypes) => {
-      state.replyTweetContent = "";
+    resetTweetReplyContent: (state: TweetStateTypes) => {
+      state.tweetReplyContent = "";
+    },
+    setRepliedTweetContent: (
+      state: TweetStateTypes,
+      action: { payload: RepliedTweetTypes }
+    ) => {
+      state.repliedTweet.author = action.payload.author;
+      state.repliedTweet.id = action.payload.id;
+      state.repliedTweet.content = action.payload.content;
     },
   },
 });
@@ -52,8 +78,9 @@ export const {
   resetTweetContent,
   openReplyTweet,
   closeReplyTweet,
-  setReplyTweetContent,
-  resetReplyTweetContent,
+  setTweetReplyContent,
+  resetTweetReplyContent,
+  setRepliedTweetContent,
 } = tweetSlice.actions;
 
 export default tweetSlice.reducer;

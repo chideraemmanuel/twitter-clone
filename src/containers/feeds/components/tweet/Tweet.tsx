@@ -34,9 +34,9 @@ const Tweet: React.FC<TweetTypes> = ({
     <>
       {isReplyingTweet && tweetAuthor && (
         <ReplyTweet
-          tweetAuthor={tweetAuthor}
-          tweetContent={tweetContent}
-          tweetId={id}
+        // tweetAuthor={tweetAuthor}
+        // tweetContent={tweetContent}
+        // tweetId={id}
         />
       )}
 
@@ -67,7 +67,12 @@ const Tweet: React.FC<TweetTypes> = ({
 
             {/* <TweetImages /> */}
 
-            <TweetActions tweetStats={tweetStats} tweetId={id} />
+            <TweetActions
+              tweetStats={tweetStats}
+              tweetId={id}
+              tweetAuthor={tweetAuthor}
+              tweetContent={tweetContent}
+            />
           </div>
         </div>
       )}

@@ -25,7 +25,7 @@ const Feeds: React.FC = () => {
       <div className="feeds__content">
         {isLoading && <Spinner />}
         {!navigator.onLine && !isLoading && <p>Error...</p>}
-        {tweets && tweets.map((tweet) => <Tweet {...tweet} />)}
+        {tweets && tweets.map((tweet) => <Tweet {...tweet} key={tweet.id} />)}
       </div>
     </div>
   );

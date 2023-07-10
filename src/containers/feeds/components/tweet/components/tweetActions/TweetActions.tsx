@@ -7,23 +7,40 @@ import { BsHeart, BsHeartFill, BsUpload } from "react-icons/bs";
 import { FiShare, FiUpload } from "react-icons/fi";
 import { LuUpload } from "react-icons/lu";
 import { MdOutlinePoll, MdOutlineFileUpload } from "react-icons/md";
-import { TweetStatsTypes } from "../../../../../../types/tweetTypes";
+import {
+  TweetContentTypes,
+  TweetStatsTypes,
+} from "../../../../../../types/tweetTypes";
 // import { likeTweet } from "../../../../../../utils/likeTweet";
 import { auth } from "../../../../../../config/firebase";
 import { useDispatch } from "react-redux";
 import {
   openReplyTweet,
-  resetReplyTweetContent,
+  resetTweetReplyContent,
+  setRepliedTweetContent,
 } from "../../../../../../redux/slices/tweetSlice";
 import { useLikeTweet } from "../../../../../../hooks/useLikeTweet";
+import { useFetchTweet } from "../../../../../../hooks/useFetchTweet";
 
 interface Props {
   tweetStats: TweetStatsTypes;
   tweetId: string;
+  tweetContent: TweetContentTypes;
+  tweetAuthor: {
+    name: string;
+    username: string;
+  };
 }
 
-const TweetActions: React.FC<Props> = ({ tweetStats, tweetId }) => {
+const TweetActions: React.FC<Props> = ({
+  tweetStats,
+  tweetId,
+  tweetContent,
+  tweetAuthor,
+}) => {
   const { comments, likes } = tweetStats;
+
+  // console.log(tweetAuthor);
 
   const dispatch = useDispatch();
 
@@ -38,7 +55,20 @@ const TweetActions: React.FC<Props> = ({ tweetStats, tweetId }) => {
   };
 
   const handleComment = () => {
-    dispatch(resetReplyTweetContent());
+    // const { data: tweetData, isLoading: isTweetDataLoading } =
+    //   useFetchTweet(tweetId);
+
+    dispatch(
+      setRepliedTweetContent({
+        id: tweetId,
+        author: {
+          displayName: tweetAuthor.name,
+          username: tweetAuthor.username,
+        },
+        content: tweetContent.text,
+      })
+    );
+    dispatch(resetTweetReplyContent());
     dispatch(openReplyTweet());
   };
 
