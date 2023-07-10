@@ -16,6 +16,7 @@ import {
   setUID,
   startCreateAccount,
   startProviderSignUp,
+  toggleActiveForm,
 } from "../../../../../../redux/slices/signInSlice";
 import { signInWithProvider } from "../../../../../../utils/signInWithProvider";
 import { useEffect } from "react";
@@ -79,7 +80,8 @@ const SignUpInitial: React.FC = () => {
       </p>
 
       <p className="sign-up-initial__footer">
-        Already have an account? <span>Log in</span>
+        Already have an account?{" "}
+        <span onClick={() => dispatch(toggleActiveForm())}>Log in</span>
       </p>
     </div>
   );

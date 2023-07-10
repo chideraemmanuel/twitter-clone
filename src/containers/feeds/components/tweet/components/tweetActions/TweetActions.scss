@@ -116,4 +116,10 @@
 
   button:nth-child(5) {
   }
+
+  &__like.liked {
+    svg {
+      color: red;
+    }
+  }
 }

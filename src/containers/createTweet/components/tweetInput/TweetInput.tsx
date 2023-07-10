@@ -22,7 +22,7 @@ const TweetInput: React.FC<Props> = ({ value, setValue, placeholder }) => {
         // cols="30"
         // rows="10"
         placeholder={placeholder}
-        autoFocus
+        // autoFocus
         value={value}
         onChange={(e) => dispatch(setValue(e.target.value))}
       ></textarea>

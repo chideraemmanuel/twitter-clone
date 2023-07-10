@@ -29,6 +29,29 @@ export interface SignInStateTypes {
       };
     };
   };
+
+  loginForm: {
+    active: boolean;
+    step: number;
+    loginInfo: {
+      // input: string;
+      email: string;
+      // username: string;
+      password: string;
+    };
+    // initialPageActive: boolean;
+    // type: {
+    //   manual: {
+    //     active: boolean;
+    //     step: number;
+    //   };
+    //   provider: {
+    //     active: boolean;
+    //     providerName: "google" | "apple";
+    //     step: number;
+    //   };
+    // };
+  };
 }
 
 const initialState: SignInStateTypes = {
@@ -42,8 +65,8 @@ const initialState: SignInStateTypes = {
   },
   // **********************
   signUpForm: {
-    active: true,
-    initialPageActive: true,
+    active: false,
+    initialPageActive: false,
     userInfo: {
       name: "",
       email: "",
@@ -62,6 +85,28 @@ const initialState: SignInStateTypes = {
         step: 0,
       },
     },
+  },
+  loginForm: {
+    active: true,
+    step: 1,
+    loginInfo: {
+      // input: "",
+      email: "",
+      // username: "",
+      password: "",
+    },
+    // initialPageActive: true,
+    // type: {
+    //   manual: {
+    //     active: false,
+    //     step: 0,
+    //   },
+    //   provider: {
+    //     active: false,
+    //     providerName: "google",
+    //     step: 0,
+    //   },
+    // },
   },
 };
 
@@ -166,6 +211,33 @@ const signInSlice = createSlice({
     ) => {
       state.providerId = action.payload;
     },
+    // ******************
+    toggleActiveForm: (state: SignInStateTypes) => {
+      if (state.loginForm.active) {
+        state.loginForm.active = false;
+        state.signUpForm.active = true;
+        state.signUpForm.initialPageActive = true;
+      } else if (state.signUpForm.active) {
+        state.loginForm.active = true;
+        state.signUpForm.active = false;
+        state.signUpForm.initialPageActive = false;
+      }
+    },
+    // setLoginInfoInput: (state: SignInStateTypes, action) => {
+    //   state.loginForm.loginInfo.input = action.payload;
+    // },
+    setLoginEmail: (state: SignInStateTypes, action) => {
+      state.loginForm.loginInfo.email = action.payload;
+    },
+    setLoginPassword: (state: SignInStateTypes, action) => {
+      state.loginForm.loginInfo.password = action.payload;
+    },
+    previousLoginStep: (state: SignInStateTypes) => {
+      state.loginForm.step -= 1;
+    },
+    nextLoginStep: (state: SignInStateTypes) => {
+      state.loginForm.step += 1;
+    },
   },
 });
 
@@ -184,6 +256,12 @@ export const {
   setUID,
   setCurrentUser,
   setProviderId,
+  toggleActiveForm,
+  setLoginEmail,
+  setLoginPassword,
+  // setLoginInfoInput,
+  previousLoginStep,
+  nextLoginStep,
 } = signInSlice.actions;
 
 export default signInSlice.reducer;

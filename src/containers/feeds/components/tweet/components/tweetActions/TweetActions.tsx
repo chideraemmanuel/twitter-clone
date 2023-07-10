@@ -44,6 +44,13 @@ const TweetActions: React.FC<Props> = ({
 
   const dispatch = useDispatch();
 
+  // CHECK IF CURRENT USER ALREADY LIKED TWEET
+  const findLikerUID = tweetStats.likes.find(
+    (like) => like.tweetLikerUID === auth.currentUser?.uid
+  );
+
+  // console.log(findLikerUID);
+
   const { mutate: likeTweet, isLoading, isError } = useLikeTweet();
 
   const handleLike = () => {
@@ -88,8 +95,14 @@ const TweetActions: React.FC<Props> = ({
         <span>638</span>
       </button>
 
-      <button className="tweet-actions__like" onClick={handleLike}>
-        <AiOutlineHeart />
+      <button
+        className={
+          findLikerUID ? "tweet-actions__like liked" : "tweet-actions__like"
+        }
+        onClick={handleLike}
+      >
+        {findLikerUID ? <AiFillHeart /> : <AiOutlineHeart />}
+
         {likes.length > 0 && <span>{likes.length}</span>}
       </button>
 

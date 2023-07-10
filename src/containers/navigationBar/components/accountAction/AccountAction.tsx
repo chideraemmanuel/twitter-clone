@@ -4,36 +4,43 @@ import ProfileImageAlt from "../../../../components/profileImageAlt/ProfileImage
 import "./AccountAction.scss";
 import { signOut } from "firebase/auth";
 import { auth } from "../../../../config/firebase";
+import useGetUser from "../../../../hooks/useGetUser";
 
 const AccountAction: React.FC = () => {
   const [isActionsOpen, setIsActionsOpen] = useState(false);
 
+  const { data: currentUser } = useGetUser(auth.currentUser?.uid);
+
   return (
-    <button
-      className={isActionsOpen ? "accountAction active" : "accountAction"}
-      onClick={() => setIsActionsOpen((prev) => !prev)}
-    >
-      {isActionsOpen && (
-        <div className="accountAction__actions">
-          <button
-            className="accountAction__actions--logout"
-            onClick={() => signOut(auth)}
-          >
-            Log out @chideraemmanuel
-          </button>
-        </div>
+    <>
+      {currentUser && (
+        <button
+          className={isActionsOpen ? "accountAction active" : "accountAction"}
+          onClick={() => setIsActionsOpen((prev) => !prev)}
+        >
+          {isActionsOpen && (
+            <div className="accountAction__actions">
+              <button
+                className="accountAction__actions--logout"
+                onClick={() => signOut(auth)}
+              >
+                Log out @{currentUser?.username}
+              </button>
+            </div>
+          )}
+          <ProfileImageAlt />
+
+          <div className="accountAction__user">
+            <h5>{currentUser?.name}</h5>
+            <h4>@{currentUser?.username}</h4>
+          </div>
+
+          <div className="accountAction__ellipsis">
+            <IoEllipsisHorizontal />
+          </div>
+        </button>
       )}
-      <ProfileImageAlt />
-
-      <div className="accountAction__user">
-        <h5>Chidera Emmanuel</h5>
-        <h4>@chideraemmanuel</h4>
-      </div>
-
-      <div className="accountAction__ellipsis">
-        <IoEllipsisHorizontal />
-      </div>
-    </button>
+    </>
   );
 };
 
