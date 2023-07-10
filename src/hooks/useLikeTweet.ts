@@ -1,4 +1,10 @@
-import { arrayUnion, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  arrayRemove,
+  arrayUnion,
+  doc,
+  getDoc,
+  setDoc,
+} from "firebase/firestore";
 import { useMutation, useQueryClient } from "react-query";
 import { db } from "../config/firebase";
 import { TweetLikeInfoTypes } from "../types/tweetTypes";
@@ -29,9 +35,9 @@ const likeTweet = async (payload: Params) => {
   if (findLikerUID) {
     // HAS ALREADY BEEN LIKED
     // FILTER OUT THE CURRENT USER'S LIKE
-    const filteredLikes = tweetStats.likes.filter(
-      (like: TweetLikeInfoTypes) => like.tweetLikerUID !== tweetLikerUID
-    );
+    // const filteredLikes = tweetStats.likes.filter(
+    //   (like: TweetLikeInfoTypes) => like.tweetLikerUID !== tweetLikerUID
+    // );
 
     // console.log(filteredLikes);
 
@@ -40,7 +46,9 @@ const likeTweet = async (payload: Params) => {
         tweetReference,
         {
           tweetStats: {
-            likes: filteredLikes,
+            likes: arrayRemove({
+              tweetLikerUID,
+            }),
           },
         },
         { merge: true }

@@ -4,9 +4,9 @@ import FormTitle from "../../../../formTitle/FormTitle";
 import "./ManualSignUpStepFive.scss";
 import { StoreTypes } from "../../../../../../../redux/store";
 import {
-  createAccount,
+  useCreateAccount,
   userTypes,
-} from "../../../../../../../utils/createAccount";
+} from "../../../../../../../hooks/useCreateAccount";
 import ConfirmationBox from "../../../../confirmationBox/ConfirmationBox";
 
 const ManualSignUpStepFive: React.FC = () => {
@@ -19,20 +19,25 @@ const ManualSignUpStepFive: React.FC = () => {
   //   // navigate("/");
   // };
 
-  const { data, isLoading, refetch, error } = createAccount(
-    {
-      name,
-      email,
-      DOB,
-      username,
-      password,
-    },
-    "manual"
-  );
+  const { mutate: createAccount, isLoading: isCreatingAccount } =
+    useCreateAccount();
 
-  console.log("Data", data);
-  console.log("isLoading", isLoading);
-  console.log("Error", error);
+  // console.log("Data", data);
+  // console.log("isLoading", isLoading);
+  // console.log("Error", error);
+
+  const handleCreateAccount = () => {
+    createAccount({
+      data: {
+        name,
+        email,
+        DOB,
+        username,
+        password,
+      },
+      signUpType: "manual",
+    });
+  };
 
   return (
     <div className="manualSignUpStepFive">
@@ -61,11 +66,11 @@ const ManualSignUpStepFive: React.FC = () => {
         </p>
 
         <Button
-          text={isLoading ? "Creating account..." : "Sign up"}
-          disabled={isLoading}
+          text={isCreatingAccount ? "Creating account..." : "Sign up"}
+          disabled={isCreatingAccount}
           type="primary"
           // onClick={() => signUp({ name, email, DOB, username, password })}
-          onClick={() => refetch()}
+          onClick={handleCreateAccount}
         />
       </div>
     </div>

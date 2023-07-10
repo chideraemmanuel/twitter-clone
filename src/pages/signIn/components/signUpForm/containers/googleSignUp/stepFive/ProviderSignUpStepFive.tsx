@@ -4,9 +4,9 @@ import FormTitle from "../../../../formTitle/FormTitle";
 import "./ProviderSignUpStepFive.scss";
 import { StoreTypes } from "../../../../../../../redux/store";
 import {
-  createAccount,
+  useCreateAccount,
   userTypes,
-} from "../../../../../../../utils/createAccount";
+} from "../../../../../../../hooks/useCreateAccount";
 import ConfirmationBox from "../../../../confirmationBox/ConfirmationBox";
 import {
   setCurrentUser,
@@ -31,24 +31,25 @@ const ProviderSignUpStepFive: React.FC = () => {
   //   // navigate("/");
   // };
 
-  const { data, isLoading, refetch, error } = createAccount(
-    {
-      name,
-      email,
-      DOB,
-      username,
-      password,
-      uid,
-    },
-    providerName
-  );
+  const { mutate: createAccount, isLoading: isCreatingAccount } =
+    useCreateAccount();
 
-  console.log("Data", data);
-  console.log("isLoading", isLoading);
-  console.log("Error", error);
+  // console.log("Data", data);
+  // console.log("isLoading", isLoading);
+  // console.log("Error", error);
 
   const handleSignIn = async () => {
-    await refetch();
+    createAccount({
+      data: {
+        name,
+        email,
+        DOB,
+        username,
+        password,
+        uid,
+      },
+      signUpType: providerName,
+    });
     dispatch(setCurrentUser(true));
     // dispatch(setProviderId("google.com"));
   };
@@ -80,8 +81,8 @@ const ProviderSignUpStepFive: React.FC = () => {
         </p>
 
         <Button
-          text={isLoading ? "Creating account..." : "Sign up"}
-          disabled={isLoading}
+          text={isCreatingAccount ? "Creating account..." : "Sign up"}
+          disabled={isCreatingAccount}
           type="primary"
           // onClick={() => signUp({ name, email, DOB, username, password })}
           // onClick={() => refetch()}
