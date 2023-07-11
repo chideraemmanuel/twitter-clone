@@ -6,8 +6,6 @@ import SignUpForm from "./components/signUpForm/SignUpForm";
 import { auth } from "../../config/firebase";
 import { useSelector } from "react-redux";
 import { StoreTypes } from "../../redux/store";
-import Logo from "../../components/logo/Logo";
-import { FaTimes } from "react-icons/fa";
 import PreviousStepIcon from "./components/previousStepIcon/PreviousStepIcon";
 import {
   previousLoginStep,
@@ -23,20 +21,10 @@ const SignIn: React.FC = () => {
 
   const { manual, provider } = signUpForm.type;
 
-  const getAction = () => {
-    if (manual.active) {
-      previousManualSignInStep;
-    } else if (provider.active) {
-      previousProviderSignInStep;
-    } else {
-      return previousLoginStep;
-    }
-  };
-
   //  NAVIGATE TO HOMEPAGE IF USER IS AVAILABLE (PROTECTING THE ROUTE)
-  if (currentUser.active) {
-    return <Navigate to="/" replace />;
-  }
+  // if (currentUser.active) {
+  //   return <Navigate to="/" replace />;
+  // }
 
   return (
     <div className="sign-in">
@@ -55,10 +43,10 @@ const SignIn: React.FC = () => {
                       : previousProviderSignInStep
                   }
                 />
-              ) : (
-                // ELSE SHOW ICON FOR LOGIN
+              ) : // ONLY SHOW PREVIOUS STEP ICON WHEN NEEDED (LOGIN)
+              loginForm.step > 1 ? (
                 <PreviousStepIcon action={previousLoginStep} />
-              )
+              ) : null
             }
           />
 

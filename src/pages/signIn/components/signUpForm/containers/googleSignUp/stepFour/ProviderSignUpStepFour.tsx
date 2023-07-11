@@ -16,6 +16,18 @@ const ProviderSignUpStepFour: React.FC = () => {
     (store: StoreTypes) => store.signIn.signUpForm.userInfo
   );
 
+  const handleNext = () => {
+    if (password === "") {
+      alert("Please enter a password");
+      return;
+    } else if (password.length < 6) {
+      alert("Password is too short");
+      return;
+    }
+
+    dispatch(nextProviderSignInStep());
+  };
+
   return (
     <div className="providerSignUpStepFour">
       <div className="providerSignUpStepFour__form">
@@ -31,11 +43,7 @@ const ProviderSignUpStepFour: React.FC = () => {
         {/* <Input type="password" label="confirm password" /> */}
       </div>
 
-      <Button
-        text="Next"
-        type="dark"
-        onClick={() => dispatch(nextProviderSignInStep())}
-      />
+      <Button text="Next" type="dark" onClick={handleNext} />
     </div>
   );
 };

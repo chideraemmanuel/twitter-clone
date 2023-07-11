@@ -8,6 +8,8 @@ import { StoreTypes } from "../../../../../redux/store";
 import { closeMobileMenu } from "../../../../../redux/slices/navigationSlice";
 import ProfileImageAlt from "../../../../../components/profileImageAlt/ProfileImageAlt";
 import NavigationLink from "../../navigationLink/NavigationLink";
+import useGetUser from "../../../../../hooks/useGetUser";
+import { auth } from "../../../../../config/firebase";
 
 const MobileSideMenu: React.FC = () => {
   const { mobileMenuOpen } = useSelector(
@@ -15,6 +17,8 @@ const MobileSideMenu: React.FC = () => {
   );
 
   const dispatch = useDispatch();
+
+  const { data: currentUser } = useGetUser(auth.currentUser?.uid);
 
   return (
     <>
@@ -31,13 +35,15 @@ const MobileSideMenu: React.FC = () => {
         {/* <div className="mobileSideMenu__logo">
         <Logo />
     </div> */}
-        <div className="mobileSideMenu__profile">
-          <ProfileImageAlt />
-          <div className="mobileSideMenu__profile--name">
-            <span>Chidera Emmanuel</span>
-            <span>@chideraemmanuel</span>
+        {currentUser && (
+          <div className="mobileSideMenu__profile">
+            <ProfileImageAlt />
+            <div className="mobileSideMenu__profile--name">
+              <span>{currentUser.name}</span>
+              <span>@{currentUser.username}</span>
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="mobileSideMenu__navigation">
           <ul className="mobileSideMenu__navigation--links">

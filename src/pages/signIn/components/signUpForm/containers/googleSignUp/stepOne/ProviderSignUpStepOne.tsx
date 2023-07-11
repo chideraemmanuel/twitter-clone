@@ -18,6 +18,15 @@ const ProviderSignUpStepOne: React.FC = () => {
     (store: StoreTypes) => store.signIn.signUpForm.userInfo
   );
 
+  const handleNext = () => {
+    // FIELD VALIDATION
+    if (DOB === "") {
+      alert("Please enter your date of birth");
+      return;
+    }
+    dispatch(nextProviderSignInStep());
+  };
+
   return (
     <div className="providerSignUpStepOne">
       <div className="providerSignUpStepOne__form">
@@ -29,11 +38,7 @@ const ProviderSignUpStepOne: React.FC = () => {
         </div>
       </div>
 
-      <Button
-        text="Next"
-        type="dark"
-        onClick={() => dispatch(nextProviderSignInStep())}
-      />
+      <Button text="Next" type="dark" onClick={handleNext} />
     </div>
   );
 };

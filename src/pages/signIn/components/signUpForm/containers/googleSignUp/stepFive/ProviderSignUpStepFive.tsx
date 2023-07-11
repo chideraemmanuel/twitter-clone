@@ -38,7 +38,7 @@ const ProviderSignUpStepFive: React.FC = () => {
   // console.log("isLoading", isLoading);
   // console.log("Error", error);
 
-  const handleSignIn = async () => {
+  const handleSignUp = async () => {
     createAccount({
       data: {
         name,
@@ -86,7 +86,7 @@ const ProviderSignUpStepFive: React.FC = () => {
           type="primary"
           // onClick={() => signUp({ name, email, DOB, username, password })}
           // onClick={() => refetch()}
-          onClick={handleSignIn}
+          onClick={handleSignUp}
         />
       </div>
     </div>

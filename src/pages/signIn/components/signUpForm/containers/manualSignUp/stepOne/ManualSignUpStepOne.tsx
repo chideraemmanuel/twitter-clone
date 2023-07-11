@@ -10,6 +10,8 @@ import {
   setName,
 } from "../../../../../../../redux/slices/signInSlice";
 import { StoreTypes } from "../../../../../../../redux/store";
+import { getDocs, query, where } from "firebase/firestore";
+import { usersCollectionReference } from "../../../../../../../config/firebase";
 
 const ManualSignUpStepOne: React.FC = () => {
   const dispatch = useDispatch();
@@ -17,6 +19,44 @@ const ManualSignUpStepOne: React.FC = () => {
   const { name, email, DOB, username, password } = useSelector(
     (store: StoreTypes) => store.signIn.signUpForm.userInfo
   );
+
+  const handleNext = async () => {
+    // MINOR FIELD VALIDATIONS
+    if (name === "") {
+      alert("Please enter your name");
+      return;
+    } else if (email === "") {
+      alert("Please enter your email");
+      return;
+    } else if (DOB === "") {
+      alert("Please enter your date of birth");
+      return;
+    }
+
+    // CHECK IF ACCOUNT EXISTS
+    const q = query(usersCollectionReference, where("email", "==", email));
+
+    try {
+      const response = await getDocs(q);
+      // console.log(response);
+      // if (!response) return;
+
+      if (response.docs.length > 0) {
+        // MANUAL MAIL HAS AN ACCOUNT
+        // throw error
+        alert("Account already in use.");
+        console.log("account already in use");
+        return;
+      } else {
+        // MANUAL MAIL DOES NOT HAVE AN ACCOUNT
+        // CONTINUE SIGN UP
+        dispatch(nextManualSignInStep());
+      }
+    } catch (error) {
+      alert("An error occured during email verification");
+      console.log(error);
+    }
+  };
 
   return (
     <div className="manualSignUpStepOne">
@@ -32,11 +72,7 @@ const ManualSignUpStepOne: React.FC = () => {
         </div>
       </div>
 
-      <Button
-        text="Next"
-        type="dark"
-        onClick={() => dispatch(nextManualSignInStep())}
-      />
+      <Button text="Next" type="dark" onClick={handleNext} />
     </div>
   );
 };

@@ -1,7 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import "./SignUpInitial.scss";
 import { onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
-import { auth, googleProvider } from "../../../../../../config/firebase";
+import {
+  auth,
+  googleProvider,
+  usersCollectionReference,
+} from "../../../../../../config/firebase";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
 import Button from "../../../button/Button";
@@ -21,32 +25,85 @@ import {
 import { signInWithProvider } from "../../../../../../utils/signInWithProvider";
 import { useEffect } from "react";
 import { subscribe } from "../../../../../../utils/onAuthStateChange";
+import { getDocs, query, where } from "firebase/firestore";
 
 const SignUpInitial: React.FC = () => {
   const dispatch = useDispatch();
 
   const handleGoogleSignUp = async () => {
-    // UNSUBSCRIBE THEN 👇🏾
-    const result = await signInWithProvider("google");
-    if (result) {
-      const { uid } = result.user;
-      dispatch(setUID(uid));
-    } else {
+    try {
+      const result = await signInWithProvider("google");
+
+      // CHECK IF GOOGLE MAIL HAS AN ACCOUNT
+      const q = query(
+        usersCollectionReference,
+        where("email", "==", result?.user.email)
+      );
+
+      try {
+        const response = await getDocs(q);
+        // console.log(response);
+
+        if (response.docs.length > 0) {
+          // GOOGLE MAIL HAS AN ACCOUNT
+          // THROW ERROR
+          alert("Account already in use.");
+          console.log("account already in use");
+          return;
+        } else {
+          // GOOGLE MAIL DOESN'T HAVE AN ACCOUNT
+          // CONTINUE SIGN UP
+          dispatch(setUID(result?.user.uid));
+          dispatch(setProviderId("google.com"));
+          dispatch(startProviderSignUp({ provider: "google" }));
+          dispatch(setName(result?.user.displayName));
+          dispatch(setEmail(result?.user.email));
+        }
+      } catch (error) {
+        alert("An error occured during account verification");
+        console.log(error);
+      }
+    } catch (error) {
+      alert("An error occured during sign in");
+      console.log(error);
       return;
     }
-    dispatch(setProviderId("google.com"));
-    dispatch(startProviderSignUp({ provider: "google" }));
-    dispatch(setName(result?.user.displayName));
-    dispatch(setEmail(result?.user.email));
   };
 
   const handleAppleSignUp = async () => {
     const result = await signInWithProvider("apple");
-    if (!result) return;
-    dispatch(setProviderId("apple.com"));
-    dispatch(startProviderSignUp({ provider: "apple" }));
-    dispatch(setName(result?.user.displayName));
-    dispatch(setEmail(result?.user.email));
+
+    if (result) {
+      // CHECK IF APPLE ID HAS AN ACCOUNT
+      const q = query(
+        usersCollectionReference,
+        where("email", "==", result?.user.email)
+      );
+      const response = await getDocs(q);
+      // console.log(response);
+
+      if (response.docs.length > 0) {
+        // APPLE ID HAS AN ACCOUNT
+        // THROW ERROR
+        alert("Account already in use.");
+        console.log("account already in use");
+        return;
+      } else {
+        // APPLE ID DOESN'T HAVE AN ACCOUNT
+        // CONTINUE SIGN UP
+
+        dispatch(setProviderId("apple.com"));
+        dispatch(startProviderSignUp({ provider: "apple" }));
+        dispatch(setName(result?.user.displayName));
+        dispatch(setEmail(result?.user.email));
+      }
+    } else {
+      // NO RESULT, DO NOTHING
+      // ULTIMATELY, THROW AN ERROR
+      alert("An error occured.");
+      console.log("an error occured");
+      return;
+    }
   };
 
   return (

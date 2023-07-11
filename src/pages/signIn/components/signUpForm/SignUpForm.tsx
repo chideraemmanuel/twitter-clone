@@ -1,11 +1,4 @@
 import "./SignUpForm.scss";
-import Button from "../button/Button";
-import { FaApple, FaGoogle } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
-import Input from "../input/Input";
-import { signInWithPopup, signOut } from "firebase/auth";
-import { auth, googleProvider } from "../../../../config/firebase";
-import { useNavigate } from "react-router-dom";
 import SignUpInitial from "./containers/initial/SignUpInitial";
 import { useSelector } from "react-redux";
 import { StoreTypes } from "../../../../redux/store";

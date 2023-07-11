@@ -16,6 +16,7 @@ import { getDocs, query, where } from "firebase/firestore";
 import { auth, usersCollectionReference } from "../../../../config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { signInWithProvider } from "../../../../utils/signInWithProvider";
+import ConfirmationBox from "../confirmationBox/ConfirmationBox";
 
 const LoginForm: React.FC = () => {
   const {
@@ -26,22 +27,31 @@ const LoginForm: React.FC = () => {
   const dispatch = useDispatch();
 
   const handleNext = async () => {
-    if (email === "") return;
-    // await account existence confirmation then **
+    // if (email === "") return;
+    if (email === "") {
+      alert("Please enter your email");
+      return;
+    }
+
+    // CHECK IF ACCOUNT EXISTS
     const q = query(usersCollectionReference, where("email", "==", email));
-    const response = await getDocs(q);
-    console.log(response);
-    // console.log(response.docs[0].data());
-    // console.log(response.docs[0].exists());
-    // if (response.docs[0].data()) {
-    //   dispatch(nextLoginStep());
-    // }
-    if (response.docs.length > 0) {
-      dispatch(nextLoginStep());
-    } else {
-      // MANUAL MAIL DOES'NOT HAVE AN ACCOUNT
-      // throw error
-      console.log("no manual account, cannot move to next");
+
+    try {
+      const response = await getDocs(q);
+      // console.log(response);
+
+      if (response.docs.length > 0) {
+        // MANUAL MAIL HAS AN ACCOUNT
+        dispatch(nextLoginStep());
+      } else {
+        // MANUAL MAIL DOES NOT HAVE AN ACCOUNT
+        // throw error
+        alert("Sorry, we could not find your account.");
+        console.log("no manual account, cannot move to next");
+      }
+    } catch (error) {
+      alert("An error occured during email verification");
+      console.log(error);
     }
   };
 
@@ -50,29 +60,50 @@ const LoginForm: React.FC = () => {
       await signInWithEmailAndPassword(auth, email, password);
       console.log(auth);
     } catch (error) {
-      console.log("my error", error.message);
+      console.log(error);
       // FirebaseError: Firebase: Error (auth/wrong-password).
+      // if (error.message.includes('auth/wrong-password')) {
+      if (
+        error.message ===
+        "FirebaseError: Firebase: Error (auth/wrong-password)."
+      ) {
+        alert("Incorrect password");
+      } else {
+        alert("An error occured during login.");
+      }
     }
   };
 
   const handleGoogleLogin = async () => {
-    const result = await signInWithProvider("google");
+    try {
+      const result = await signInWithProvider("google");
 
-    // CHECK IF GOOGLE MAIL HAS AN ACCOUNT
-    const q = query(
-      usersCollectionReference,
-      where("email", "==", result?.user.email)
-    );
-    const response = await getDocs(q);
-    // console.log(response);
+      // CHECK IF GOOGLE MAIL HAS AN ACCOUNT
+      const q = query(
+        usersCollectionReference,
+        where("email", "==", result?.user.email)
+      );
 
-    if (response.docs.length > 0) {
-      // google mail has an account
-      dispatch(setCurrentUser(true));
-    } else {
-      // GOOGLE MAIL DOESN'T HAVE AN ACCOUNT
-      // throw error
-      console.log("no google account, cannot login");
+      try {
+        const response = await getDocs(q);
+        // console.log(response);
+
+        if (response.docs.length > 0) {
+          // google mail has an account
+          dispatch(setCurrentUser(true));
+        } else {
+          // GOOGLE MAIL DOESN'T HAVE AN ACCOUNT
+          // throw error
+          alert("Sorry, we could not find your account.");
+          console.log("no google account, cannot login");
+        }
+      } catch (error) {
+        alert("An error occured during account verification");
+        console.log(error);
+      }
+    } catch (error) {
+      alert("An error occured during sign in");
+      console.log(error);
     }
   };
 
@@ -119,10 +150,12 @@ const LoginForm: React.FC = () => {
         <div className="login-validation">
           <h2>Enter your password</h2>
 
-          <div className="login-validation__top">
+          {/* <div className="login-validation__top">
             <span>Email</span>
             <span>{email}</span>
-          </div>
+          </div> */}
+
+          <ConfirmationBox label="Email" value={email} />
 
           <Input
             type="password"

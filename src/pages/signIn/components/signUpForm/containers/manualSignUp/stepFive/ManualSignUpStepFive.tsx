@@ -26,7 +26,7 @@ const ManualSignUpStepFive: React.FC = () => {
   // console.log("isLoading", isLoading);
   // console.log("Error", error);
 
-  const handleCreateAccount = () => {
+  const handleSignUp = () => {
     createAccount({
       data: {
         name,
@@ -70,7 +70,7 @@ const ManualSignUpStepFive: React.FC = () => {
           disabled={isCreatingAccount}
           type="primary"
           // onClick={() => signUp({ name, email, DOB, username, password })}
-          onClick={handleCreateAccount}
+          onClick={handleSignUp}
         />
       </div>
     </div>

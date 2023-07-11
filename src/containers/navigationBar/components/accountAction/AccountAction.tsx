@@ -24,15 +24,15 @@ const AccountAction: React.FC = () => {
                 className="accountAction__actions--logout"
                 onClick={() => signOut(auth)}
               >
-                Log out @{currentUser?.username}
+                Log out @{currentUser.username}
               </button>
             </div>
           )}
           <ProfileImageAlt />
 
           <div className="accountAction__user">
-            <h5>{currentUser?.name}</h5>
-            <h4>@{currentUser?.username}</h4>
+            <h5>{currentUser.name}</h5>
+            <h4>@{currentUser.username}</h4>
           </div>
 
           <div className="accountAction__ellipsis">
