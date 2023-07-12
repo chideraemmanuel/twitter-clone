@@ -26,7 +26,6 @@ import { signInWithProvider } from "../../../../../../utils/signInWithProvider";
 import { useEffect } from "react";
 import { subscribe } from "../../../../../../utils/onAuthStateChange";
 import { getDocs, query, where } from "firebase/firestore";
-import { checkInternetConnectionStatus } from "../../../../../../utils/checkInternetConnectionStatus";
 
 const SignUpInitial: React.FC = () => {
   const dispatch = useDispatch();

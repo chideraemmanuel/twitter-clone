@@ -45,7 +45,7 @@ const ManualSignUpStepFive: React.FC = () => {
       },
       signUpType: "manual",
     });
-    dispatch(resetSignInForm());
+    // dispatch(resetSignInForm());
   };
 
   return (

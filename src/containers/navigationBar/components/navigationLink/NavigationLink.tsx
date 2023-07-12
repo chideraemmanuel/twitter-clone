@@ -9,8 +9,11 @@ const NavigationLink: React.FC<NavigationTypes> = ({
   activeIcon: ActiveIcon,
 }) => {
   return (
-    <NavLink to="/" className="navigation-link">
-      <Icon />
+    <NavLink to={`/${title}`} className="navigation-link">
+      <div className="navigation-link__icon">
+        <Icon />
+        <ActiveIcon />
+      </div>
       <span>{title}</span>
     </NavLink>
   );

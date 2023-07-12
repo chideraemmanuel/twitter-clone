@@ -57,7 +57,7 @@ const ProviderSignUpStepFive: React.FC = () => {
       signUpType: providerName,
     });
     dispatch(setCurrentUser(true));
-    dispatch(resetSignInForm());
+    // dispatch(resetSignInForm());
     // dispatch(setProviderId("google.com"));
   };
 

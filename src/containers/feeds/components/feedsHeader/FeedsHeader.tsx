@@ -4,8 +4,12 @@ import ProfileImage from "../../../../components/profileImage/ProfileImage";
 import ProfileImageAlt from "../../../../components/profileImageAlt/ProfileImageAlt";
 import "./FeedsHeader.scss";
 import { openMobileMenu } from "../../../../redux/slices/navigationSlice";
+import { useState } from "react";
 
 const FeedsHeader: React.FC = () => {
+  // const [feedsType, setFeedsType] = useState<"for you" | "following">(
+  //   "for you"
+  // );
   const dispatch = useDispatch();
 
   return (
@@ -21,7 +25,13 @@ const FeedsHeader: React.FC = () => {
 
       <div className="feeds-header__filter">
         <div className="feeds-header__filter--button">
-          <input type="radio" name="feedFilter" id="forYou" /* checked */ />
+          <input
+            type="radio"
+            name="feedFilter"
+            id="forYou"
+            // checked={feedsType === 'for you'}
+            onChange={(e) => console.log(e.target.value)}
+          />
           <label htmlFor="forYou">
             <span>For you</span>
           </label>

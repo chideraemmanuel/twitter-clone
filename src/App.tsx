@@ -17,6 +17,8 @@ import {
 } from "./redux/slices/signInSlice";
 import { StoreTypes } from "./redux/store";
 import { subscribe } from "./utils/onAuthStateChange";
+import NavigationLayout from "./layouts/navigationLayout/NavigationLayout";
+import Router from "./pages/Router";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -59,7 +61,10 @@ const App: React.FC = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/">
-        <Route index element={<Home children={<Feeds />} />} />
+        <Route index element={<Router />} />
+        <Route path="home" element={<NavigationLayout />}>
+          <Route index element={<Feeds />} />
+        </Route>
         <Route path="login" element={<SignIn />} />
       </Route>
     )

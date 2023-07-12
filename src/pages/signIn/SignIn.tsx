@@ -22,39 +22,41 @@ const SignIn: React.FC = () => {
   const { manual, provider } = signUpForm.type;
 
   //  NAVIGATE TO HOMEPAGE IF USER IS AVAILABLE (PROTECTING THE ROUTE)
-  // if (currentUser.active) {
-  //   return <Navigate to="/" replace />;
-  // }
+  if (currentUser.active) {
+    return <Navigate to="/home" replace />;
+  }
 
   return (
-    <div className="sign-in">
-      {/* ONLY RENDER ANYTHING WHEN USER ISN'T LOADING */}
-
+    <>
       {!currentUser.isLoading && (
-        <CardLayout>
-          <FormHeader
-            icon={
-              // ONLY SHOW PREVIOUS STEP ICON WHEN NEEDED (SIGN UP)
-              manual.step > 0 || provider.step > 0 ? (
-                <PreviousStepIcon
-                  action={
-                    manual.active
-                      ? previousManualSignInStep
-                      : previousProviderSignInStep
-                  }
-                />
-              ) : // ONLY SHOW PREVIOUS STEP ICON WHEN NEEDED (LOGIN)
-              loginForm.step > 1 ? (
-                <PreviousStepIcon action={previousLoginStep} />
-              ) : null
-            }
-          />
+        <div className="sign-in">
+          {/* ONLY RENDER ANYTHING WHEN USER ISN'T LOADING */}
 
-          {signUpForm.active && <SignUpForm />}
-          {loginForm.active && <LoginForm />}
-        </CardLayout>
+          <CardLayout>
+            <FormHeader
+              icon={
+                // ONLY SHOW PREVIOUS STEP ICON WHEN NEEDED (SIGN UP)
+                manual.step > 0 || provider.step > 0 ? (
+                  <PreviousStepIcon
+                    action={
+                      manual.active
+                        ? previousManualSignInStep
+                        : previousProviderSignInStep
+                    }
+                  />
+                ) : // ONLY SHOW PREVIOUS STEP ICON WHEN NEEDED (LOGIN)
+                loginForm.step > 1 ? (
+                  <PreviousStepIcon action={previousLoginStep} />
+                ) : null
+              }
+            />
+
+            {signUpForm.active && <SignUpForm />}
+            {loginForm.active && <LoginForm />}
+          </CardLayout>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 

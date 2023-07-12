@@ -19,17 +19,37 @@
     gap: 10px;
   }
 
-  // &.active {
-  //   span {
-  //     font-weight: 600;
-  //   }
-  // }
+  &.active {
+    span {
+      font-weight: 600;
+    }
 
-  svg {
-    font-size: var(--md-font);
+    .navigation-link__icon {
+      svg:first-child {
+        display: none;
+      }
 
-    @media screen and (max-width: 480px) {
-      font-size: var(--base-font);
+      svg:last-child {
+        display: inline-block;
+      }
+    }
+  }
+
+  &__icon {
+    svg {
+      font-size: var(--md-font);
+
+      @media screen and (max-width: 480px) {
+        font-size: var(--base-font);
+      }
+    }
+
+    svg:first-child {
+      display: inline-block;
+    }
+
+    svg:last-child {
+      display: none;
     }
   }
 
