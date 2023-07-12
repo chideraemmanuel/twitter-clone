@@ -3,10 +3,12 @@ import NavigationBar from "../../containers/navigationBar/NavigationBar";
 import Sidebar from "../../containers/sidebar/Sidebar";
 import "./Home.scss";
 import { auth } from "../../config/firebase";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { StoreTypes } from "../../redux/store";
 import MobileTweetButton from "../../containers/navigationBar/components/mobileNavigation/mobileTweetButton/MobileTweetButton";
 import CreateTweet from "../../containers/createTweet/CreateTweet";
+import { useEffect } from "react";
+import { resetSignInForm } from "../../redux/slices/signInSlice";
 
 interface Props {
   children: React.ReactNode;
@@ -18,10 +20,16 @@ const Home: React.FC<Props> = ({ children }) => {
   const { currentUser } = useSelector((store: StoreTypes) => store.signIn);
   const { isCreatingTweet } = useSelector((store: StoreTypes) => store.tweet);
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(resetSignInForm());
+  });
+
   //  NAVIGATE TO LOGIN PAGE IF USER IS NOT AVAILABLE (PROTECTING THE ROUTE)
-  if (!currentUser.active) {
-    return <Navigate to="/login" replace />;
-  }
+  // if (!currentUser.active) {
+  //   return <Navigate to="/login" replace />;
+  // }
 
   return (
     <div className="home">

@@ -26,6 +26,7 @@ import { signInWithProvider } from "../../../../../../utils/signInWithProvider";
 import { useEffect } from "react";
 import { subscribe } from "../../../../../../utils/onAuthStateChange";
 import { getDocs, query, where } from "firebase/firestore";
+import { checkInternetConnectionStatus } from "../../../../../../utils/checkInternetConnectionStatus";
 
 const SignUpInitial: React.FC = () => {
   const dispatch = useDispatch();
@@ -39,8 +40,14 @@ const SignUpInitial: React.FC = () => {
         usersCollectionReference,
         where("email", "==", result?.user.email)
       );
+      // const isConnected = checkInternetConnectionStatus()
 
       try {
+        if (!navigator.onLine) {
+          alert("Please check your internet connection");
+          return;
+        }
+
         const response = await getDocs(q);
         // console.log(response);
 

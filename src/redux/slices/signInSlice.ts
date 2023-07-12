@@ -238,6 +238,28 @@ const signInSlice = createSlice({
     nextLoginStep: (state: SignInStateTypes) => {
       state.loginForm.step += 1;
     },
+    // ************************
+    resetSignInForm: (state: SignInStateTypes) => {
+      state.signUpForm.active = false;
+      state.signUpForm.initialPageActive = false;
+      state.signUpForm.userInfo.name = "";
+      state.signUpForm.userInfo.email = "";
+      state.signUpForm.userInfo.DOB = "";
+      state.signUpForm.userInfo.username = "";
+      state.signUpForm.userInfo.password = "";
+      state.signUpForm.type.manual.active = false;
+      state.signUpForm.type.manual.step = 0;
+      state.signUpForm.type.provider.active = false;
+      state.signUpForm.type.provider.step = 0;
+      state.signUpForm.type.provider.providerName = "google";
+
+      // ***************
+
+      state.loginForm.active = true;
+      state.loginForm.loginInfo.email = "";
+      state.loginForm.loginInfo.password = "";
+      state.loginForm.step = 1;
+    },
   },
 });
 
@@ -262,6 +284,7 @@ export const {
   // setLoginInfoInput,
   previousLoginStep,
   nextLoginStep,
+  resetSignInForm,
 } = signInSlice.actions;
 
 export default signInSlice.reducer;

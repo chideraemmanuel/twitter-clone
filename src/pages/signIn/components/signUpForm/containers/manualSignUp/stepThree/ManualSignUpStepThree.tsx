@@ -31,6 +31,11 @@ const ManualSignUpStepThree: React.FC = () => {
     );
 
     try {
+      if (!navigator.onLine) {
+        alert("Please check your internet connection");
+        return;
+      }
+
       const response = await getDocs(q);
       // console.log(response);
 

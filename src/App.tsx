@@ -21,6 +21,7 @@ import { subscribe } from "./utils/onAuthStateChange";
 const App: React.FC = () => {
   const dispatch = useDispatch();
   // signOut(auth);
+  // console.log(auth);
 
   const { providerId } = useSelector((store: StoreTypes) => store.signIn);
 

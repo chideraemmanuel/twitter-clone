@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "../../../../button/Button";
 import FormTitle from "../../../../formTitle/FormTitle";
 import "./ManualSignUpStepFive.scss";
@@ -8,11 +8,14 @@ import {
   userTypes,
 } from "../../../../../../../hooks/useCreateAccount";
 import ConfirmationBox from "../../../../confirmationBox/ConfirmationBox";
+import { resetSignInForm } from "../../../../../../../redux/slices/signInSlice";
 
 const ManualSignUpStepFive: React.FC = () => {
   const { name, email, DOB, username, password } = useSelector(
     (store: StoreTypes) => store.signIn.signUpForm.userInfo
   );
+
+  const dispatch = useDispatch();
 
   // const signUp = (data: userTypes) => {
   //   createAccountManual(data);
@@ -27,6 +30,11 @@ const ManualSignUpStepFive: React.FC = () => {
   // console.log("Error", error);
 
   const handleSignUp = () => {
+    if (!navigator.onLine) {
+      alert("Please check your internet connection");
+      return;
+    }
+
     createAccount({
       data: {
         name,
@@ -37,6 +45,7 @@ const ManualSignUpStepFive: React.FC = () => {
       },
       signUpType: "manual",
     });
+    dispatch(resetSignInForm());
   };
 
   return (

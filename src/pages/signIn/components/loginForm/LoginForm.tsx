@@ -37,6 +37,11 @@ const LoginForm: React.FC = () => {
     const q = query(usersCollectionReference, where("email", "==", email));
 
     try {
+      if (!navigator.onLine) {
+        alert("Please check your internet connection");
+        return;
+      }
+
       const response = await getDocs(q);
       // console.log(response);
 

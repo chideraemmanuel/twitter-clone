@@ -9,6 +9,7 @@ import {
 } from "../../../../../../../hooks/useCreateAccount";
 import ConfirmationBox from "../../../../confirmationBox/ConfirmationBox";
 import {
+  resetSignInForm,
   setCurrentUser,
   setProviderId,
 } from "../../../../../../../redux/slices/signInSlice";
@@ -38,7 +39,12 @@ const ProviderSignUpStepFive: React.FC = () => {
   // console.log("isLoading", isLoading);
   // console.log("Error", error);
 
-  const handleSignUp = async () => {
+  const handleSignUp = () => {
+    if (!navigator.onLine) {
+      alert("Please check your internet connection");
+      return;
+    }
+
     createAccount({
       data: {
         name,
@@ -51,6 +57,7 @@ const ProviderSignUpStepFive: React.FC = () => {
       signUpType: providerName,
     });
     dispatch(setCurrentUser(true));
+    dispatch(resetSignInForm());
     // dispatch(setProviderId("google.com"));
   };
 
