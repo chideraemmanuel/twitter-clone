@@ -1,0 +1,49 @@
+.tweetDetailsTweet {
+  padding: 15px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &--author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      &_name {
+        h4 {
+          font-size: var(--base-font);
+        }
+
+        span {
+          font-size: var(--sm-font);
+        }
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &--text {
+      font-size: var(--base-font);
+    }
+
+    &--date {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--gray-700);
+
+      > * {
+        font-size: var(--base-font);
+      }
+    }
+  }
+}

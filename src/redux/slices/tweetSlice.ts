@@ -41,6 +41,7 @@ const tweetSlice = createSlice({
     },
     closeTweetCreation: (state: TweetStateTypes) => {
       state.isCreatingTweet = false;
+      state.tweetContent = "";
     },
     setTweetContent: (state: TweetStateTypes, action) => {
       state.tweetContent = action.payload;
@@ -53,6 +54,7 @@ const tweetSlice = createSlice({
     },
     closeReplyTweet: (state: TweetStateTypes) => {
       state.isReplyingTweet = false;
+      state.tweetReplyContent = "";
     },
     setTweetReplyContent: (state: TweetStateTypes, action) => {
       state.tweetReplyContent = action.payload;

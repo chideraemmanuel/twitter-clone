@@ -80,11 +80,11 @@ const ReplyTweet: React.FC = () => {
         </div>
       </div>
 
-      <form className="replyTweetInput">
+      <form className="replyTweetInput" onSubmit={handleReplyTweet}>
         <TweetInput
           value={tweetReplyContent}
           setValue={setTweetReplyContent}
-          placeholder="Reply Tweet!"
+          placeholder="Tweet your reply!"
         />
 
         <button

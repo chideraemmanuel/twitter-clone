@@ -1,64 +1,28 @@
-.tweet-actions {
+.tweetDetailsActions {
   display: flex;
   align-items: center;
-  gap: 30px;
-  //   border: 1px solid red;
-  //   overflow: hidden;
-
-  @media screen and (max-width: 768px) {
-    gap: 20px;
-  }
-
-  @media screen and (max-width: 540px) {
-    gap: 15px;
-  }
-
-  @media screen and (max-width: 480px) {
-    gap: 20px;
-  }
-
-  @media screen and (max-width: 375px) {
-    gap: 15px;
-  }
+  justify-content: space-around;
+  padding: 15px 0;
 
   button {
-    position: relative;
-    cursor: pointer;
-    background: transparent;
+    //   position: relative;
+    background-color: transparent;
     border: none;
+    cursor: pointer;
     outline: none;
-    // display: flex;
-    // align-items: center;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: 5px;
     color: var(--secondary-text-color);
 
-    @media screen and (max-width: 768px) {
-      gap: 5px;
-    }
-
     svg {
-      font-size: var(--base-font);
-      padding: 5px;
+      font-size: var(--md-font);
+      padding: 7px;
       box-sizing: content-box;
       //   background-color: red;
       border-radius: 50%;
       transition: 0.3s ease;
 
-      @media screen and (max-width: 768px) {
-        font-size: var(--sm-font);
-        padding: 3px;
-      }
-    }
-
-    span {
-      font-size: var(--sm-font);
-      transition: 0.3s ease;
-
-      @media screen and (max-width: 480px) {
-        font-size: var(--xs-font);
+      @media screen and (max-width: 375px) {
+        font-size: var(--base-font);
+        padding: 5px;
       }
     }
   }
@@ -119,6 +83,9 @@
         color: rgb(29, 155, 240);
       }
     }
+  }
+
+  &__bookmark {
   }
 
   &__share {

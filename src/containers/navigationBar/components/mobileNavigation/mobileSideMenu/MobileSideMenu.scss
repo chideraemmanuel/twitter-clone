@@ -20,8 +20,18 @@
     left: 0;
   }
 
-  &__logo {
-    padding-left: 15px;
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &--icon {
+      cursor: pointer;
+
+      svg {
+        font-size: var(--md-font);
+      }
+    }
   }
 
   &__profile {

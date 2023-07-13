@@ -8,6 +8,7 @@ import {
   FaCheckCircle,
   FaUser,
   FaListAlt,
+  FaTwitterSquare,
 } from "react-icons/fa";
 import {} from "react-icons/ai";
 import {} from "react-icons/bs";
@@ -119,13 +120,18 @@ export const mobileSideMenuConstants: NavigationTypes[] = [
     activeIcon: BiSolidUser,
   },
   {
-    title: "bookmarks",
-    icon: BiBookmark,
-    activeIcon: BiSolidBookmark,
+    title: "twitter blue",
+    icon: FaTwitterSquare,
+    activeIcon: FaTwitterSquare,
   },
   {
     title: "lists",
     icon: FaList,
     activeIcon: FaListAlt,
+  },
+  {
+    title: "bookmarks",
+    icon: BiBookmark,
+    activeIcon: BiSolidBookmark,
   },
 ];

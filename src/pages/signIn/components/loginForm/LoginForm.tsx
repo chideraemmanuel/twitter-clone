@@ -10,6 +10,7 @@ import {
   setCurrentUser,
   setLoginEmail,
   setLoginPassword,
+  setProviderId,
   toggleActiveForm,
 } from "../../../../redux/slices/signInSlice";
 import { getDocs, query, where } from "firebase/firestore";
@@ -23,6 +24,8 @@ const LoginForm: React.FC = () => {
     step,
     loginInfo: { email, password },
   } = useSelector((store: StoreTypes) => store.signIn.loginForm);
+
+  const { providerId } = useSelector((store: StoreTypes) => store.signIn);
 
   const dispatch = useDispatch();
 
@@ -47,6 +50,7 @@ const LoginForm: React.FC = () => {
 
       if (response.docs.length > 0) {
         // MANUAL MAIL HAS AN ACCOUNT
+        dispatch(setProviderId(null));
         dispatch(nextLoginStep());
       } else {
         // MANUAL MAIL DOES NOT HAVE AN ACCOUNT
@@ -85,7 +89,7 @@ const LoginForm: React.FC = () => {
     }
   };
 
-  const handleGoogleLogin = async () => {
+  const handleGoogleNext = async () => {
     if (!navigator.onLine) {
       alert("Please check your internet connection");
       return;
@@ -106,7 +110,9 @@ const LoginForm: React.FC = () => {
 
         if (response.docs.length > 0) {
           // google mail has an account
-          dispatch(setCurrentUser(true));
+          dispatch(setProviderId("google.com"));
+          dispatch(setLoginEmail(result?.user.email));
+          dispatch(nextLoginStep());
         } else {
           // GOOGLE MAIL DOESN'T HAVE AN ACCOUNT
           // throw error
@@ -119,6 +125,30 @@ const LoginForm: React.FC = () => {
       }
     } catch (error) {
       alert("An error occured during sign in");
+      console.log(error);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    const q = query(usersCollectionReference, where("email", "==", email));
+
+    try {
+      if (!navigator.onLine) {
+        alert("Please check your internet connection");
+        return;
+      }
+
+      const response = await getDocs(q);
+      // console.log(response);
+
+      const data = response.docs[0].data();
+
+      if (data.password === password) {
+        dispatch(setCurrentUser(true));
+      } else {
+        alert("Incorrect password");
+      }
+    } catch (error) {
       console.log(error);
     }
   };
@@ -170,7 +200,7 @@ const LoginForm: React.FC = () => {
             <Button
               text="Sign in with Google"
               icon={FcGoogle}
-              onClick={handleGoogleLogin}
+              onClick={handleGoogleNext}
             />
             <Button
               text="Sign in with Apple"
@@ -222,7 +252,14 @@ const LoginForm: React.FC = () => {
             setValue={setLoginPassword}
           />
 
-          <Button text="Login" type="dark" onClick={handleManualLogin} />
+          {!providerId && (
+            <Button text="Login" type="dark" onClick={handleManualLogin} />
+          )}
+          {providerId === "google.com" ? (
+            <Button text="Login" type="dark" onClick={handleGoogleLogin} />
+          ) : (
+            <Button text="Login" type="dark" onClick={handleAppleLogin} />
+          )}
         </div>
       )}
 

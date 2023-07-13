@@ -10,6 +10,7 @@ import ProfileImageAlt from "../../../../../components/profileImageAlt/ProfileIm
 import NavigationLink from "../../navigationLink/NavigationLink";
 import useGetUser from "../../../../../hooks/useGetUser";
 import { auth } from "../../../../../config/firebase";
+import { FiX } from "react-icons/fi";
 
 const MobileSideMenu: React.FC = () => {
   const { mobileMenuOpen } = useSelector(
@@ -32,9 +33,15 @@ const MobileSideMenu: React.FC = () => {
       <div
         className={mobileMenuOpen ? "mobileSideMenu active" : "mobileSideMenu"}
       >
-        {/* <div className="mobileSideMenu__logo">
-        <Logo />
-    </div> */}
+        <div className="mobileSideMenu__header">
+          <h4>Account info</h4>
+          <div
+            className="mobileSideMenu__header--icon"
+            onClick={() => dispatch(closeMobileMenu())}
+          >
+            <FiX />
+          </div>
+        </div>
         {currentUser && (
           <div className="mobileSideMenu__profile">
             <ProfileImageAlt />
@@ -53,9 +60,9 @@ const MobileSideMenu: React.FC = () => {
               </li>
             ))}
           </ul>
-
-          {/* <button className="mobileSideMenu__navigation--button">Tweet</button> */}
         </div>
+
+        <div className="mobileSideMenu__dropdowns"></div>
       </div>
     </>
   );

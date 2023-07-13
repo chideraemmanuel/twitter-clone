@@ -1,5 +1,6 @@
 .get-verified {
-  background-color: var(--accent);
+  // background-color: var(--accent);
+  background-color: rgb(239, 243, 244);
   border-radius: 10px;
   padding: 15px;
   display: flex;
@@ -7,15 +8,27 @@
   gap: 15px;
   align-items: flex-start;
 
+  @media (prefers-color-scheme: dark) {
+    background-color: invert($color: #eff3f4);
+  }
+
   h2 {
     font-size: var(--md-font);
     line-height: 1;
+
+    @media screen and (max-width: 1024px) {
+      font-size: var(--base-font);
+    }
   }
 
   h3 {
     font-size: var(--sm-font);
     line-height: 1;
     font-weight: 500;
+
+    @media screen and (max-width: 1024px) {
+      font-size: var(--xs-font);
+    }
   }
 
   a {
@@ -24,5 +37,15 @@
     border-radius: 100px;
     background-color: var(--secondary-color);
     color: var(--bg-color);
+    transition: 0.2s ease;
+    font-size: var(--base-font);
+
+    @media screen and (max-width: 1024px) {
+      font-size: var(--sm-font);
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 }
