@@ -22,6 +22,7 @@
   }
 
   button {
+    position: relative;
     cursor: pointer;
     background: transparent;
     border: none;
@@ -31,7 +32,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    gap: 7px;
+    gap: 5px;
     color: var(--secondary-text-color);
 
     @media screen and (max-width: 768px) {
@@ -65,12 +66,12 @@
   button:first-child {
     &:hover {
       svg {
-        background-color: rgba(80, 194, 255, 0.4);
-        color: #029bf0;
+        background-color: rgba(29, 155, 240, 0.1);
+        color: rgb(29, 155, 240);
       }
 
       span {
-        color: #029bf0;
+        color: rgb(29, 155, 240);
       }
     }
   }
@@ -78,12 +79,12 @@
   button:nth-child(2) {
     &:hover {
       svg {
-        background-color: rgba(90, 255, 90, 0.4);
-        color: #00c900;
+        background-color: rgba(0, 186, 124, 0.1);
+        color: rgb(0, 186, 124);
       }
 
       span {
-        color: #00ae00;
+        color: rgb(0, 186, 124);
       }
     }
   }
@@ -91,12 +92,12 @@
   button:nth-child(3) {
     &:hover {
       svg {
-        background-color: rgba(255, 100, 53, 0.4);
-        color: #ff3c00;
+        background-color: rgba(249, 24, 128, 0.1);
+        color: rgb(249, 24, 128);
       }
 
       span {
-        color: #ff3c00;
+        color: rgb(249, 24, 128);
       }
     }
   }
@@ -104,12 +105,12 @@
   button:nth-child(4) {
     &:hover {
       svg {
-        background-color: rgba(80, 194, 255, 0.4);
-        color: #029bf0;
+        background-color: rgba(29, 155, 240, 0.1);
+        color: rgb(29, 155, 240);
       }
 
       span {
-        color: #029bf0;
+        color: rgb(29, 155, 240);
       }
     }
   }
@@ -119,7 +120,7 @@
 
   &__like.liked {
     svg {
-      color: red;
+      color: rgb(249, 24, 128);
     }
   }
 }

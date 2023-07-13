@@ -1,55 +1,55 @@
-.tweet-options {
-  position: absolute;
-  right: 0;
-  top: 20px;
-  background-color: var(--gray-100);
-  padding: 20px 0;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  width: 330px;
-  z-index: 5;
+// .tweet-options {
+//   position: absolute;
+//   right: 0;
+//   top: 20px;
+//   background-color: var(--gray-100);
+//   padding: 20px 0;
+//   border-radius: 10px;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   gap: 3px;
+//   width: 330px;
+//   z-index: 5;
 
-  @media screen and (max-width: 768px) {
-    width: 310px;
-    padding: 10px 0;
-  }
+//   @media screen and (max-width: 768px) {
+//     width: 310px;
+//     padding: 10px 0;
+//   }
 
-  @media screen and (max-width: 480px) {
-    width: 270px;
-  }
+//   @media screen and (max-width: 480px) {
+//     width: 270px;
+//   }
 
-  @media (prefers-color-scheme: light) {
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.2);
-  }
+//   @media (prefers-color-scheme: light) {
+//     background-color: #fff;
+//     box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.2);
+//   }
 
-  > a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 7px 15px;
+//   > a {
+//     display: flex;
+//     align-items: center;
+//     gap: 10px;
+//     padding: 7px 15px;
 
-    &:hover {
-      background-color: var(--gray-200);
-    }
+//     &:hover {
+//       background-color: var(--gray-200);
+//     }
 
-    svg {
-      font-size: var(--base-font);
+//     svg {
+//       font-size: var(--base-font);
 
-      @media screen and (max-width: 480px) {
-        font-size: var(--sm-font);
-      }
-    }
+//       @media screen and (max-width: 480px) {
+//         font-size: var(--sm-font);
+//       }
+//     }
 
-    span {
-      font-size: var(--sm-font);
+//     span {
+//       font-size: var(--sm-font);
 
-      @media screen and (max-width: 480px) {
-        font-size: var(--xs-font);
-      }
-    }
-  }
-}
+//       @media screen and (max-width: 480px) {
+//         font-size: var(--xs-font);
+//       }
+//     }
+//   }
+// }

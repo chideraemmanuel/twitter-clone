@@ -1,6 +1,6 @@
 import ProfileImage from "../../../../components/profileImage/ProfileImage";
 import "./Tweet.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TweetActions from "./components/tweetActions/TweetActions";
 import { VscEllipsis } from "react-icons/vsc";
 import { IoEllipsisHorizontal } from "react-icons/io5";
@@ -12,6 +12,7 @@ import { TweetTypes } from "../../../../types/tweetTypes";
 import ReplyTweet from "./components/replyTweet/ReplyTweet";
 import { useSelector } from "react-redux";
 import { StoreTypes } from "../../../../redux/store";
+import Options from "../../../../components/options/Options";
 
 const Tweet: React.FC<TweetTypes> = ({
   id,
@@ -30,6 +31,8 @@ const Tweet: React.FC<TweetTypes> = ({
 
   const { isReplyingTweet } = useSelector((store: StoreTypes) => store.tweet);
 
+  const navigate = useNavigate();
+
   return (
     <>
       {isReplyingTweet && tweetAuthor && (
@@ -42,7 +45,13 @@ const Tweet: React.FC<TweetTypes> = ({
 
       {tweetAuthor && (
         <div className="tweet">
-          <ProfileImage />
+          <div
+            className="tweet__navigator"
+            onClick={() => navigate(`/tweet/${id}`)}
+          ></div>
+          <div className="tweet__profileImage">
+            <ProfileImage />
+          </div>
 
           <div className="tweet__info">
             <div className="tweet__info--header">
@@ -53,20 +62,22 @@ const Tweet: React.FC<TweetTypes> = ({
               </Link>
 
               <div className="tweet__info--header_options">
-                <button onClick={() => setOptionsActive(!optionsActive)}>
+                {/* <button onClick={() => setOptionsActive(!optionsActive)}>
                   <IoEllipsisHorizontal />
                 </button>
 
-                {optionsActive && <TweetOptions />}
+                {optionsActive && <TweetOptions />} */}
+                <Options list={<TweetOptions />} />
               </div>
             </div>
 
-            <Link to="/" className="tweet__info--text">
+            <div
+              className="tweet__info--text"
+              onClick={() => navigate(`/tweet/${id}`)}
+            >
               <p>{tweetContent.text}</p>
-            </Link>
-
+            </div>
             {/* <TweetImages /> */}
-
             <TweetActions
               tweetStats={tweetStats}
               tweetId={id}

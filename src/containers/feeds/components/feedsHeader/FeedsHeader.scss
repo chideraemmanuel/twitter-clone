@@ -8,32 +8,6 @@
   top: 0;
   z-index: 10;
 
-  &__top {
-    padding: 15px 20px;
-
-    h1 {
-      font-size: var(--md-font);
-      font-weight: 500;
-
-      @media screen and (max-width: 480px) {
-        display: none;
-      }
-    }
-
-    &--mobile {
-      display: none;
-
-      @media screen and (max-width: 480px) {
-        display: flex;
-
-        .logo {
-          flex: 1;
-          text-align: center;
-        }
-      }
-    }
-  }
-
   &__filter {
     display: flex;
     align-items: center;

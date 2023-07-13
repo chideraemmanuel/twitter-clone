@@ -91,7 +91,7 @@ export const navigationConstants: NavigationTypes[] = [
 
 export const mobileNavigationConstants: NavigationTypes[] = [
   {
-    title: "/",
+    title: "/home",
     icon: BiHomeCircle,
     activeIcon: BiSolidHomeCircle,
   },

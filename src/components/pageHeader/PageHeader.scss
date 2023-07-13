@@ -1,0 +1,35 @@
+.page-header {
+  padding: 15px 20px;
+
+  &__desktop {
+    &--title {
+      font-size: var(--md-font);
+      font-weight: 500;
+
+      @media screen and (max-width: 480px) {
+        display: none;
+      }
+    }
+  }
+
+  &__mobile {
+    display: none;
+
+    @media screen and (max-width: 480px) {
+      display: flex;
+
+      //   > *:last-child {
+      //     flex: 1;
+      //     text-align: center;
+      //   }
+    }
+
+    &--header {
+      font-size: var(--md-font);
+      font-weight: 500;
+      flex: 1;
+      margin-right: var(--xl-font);
+      text-align: center;
+    }
+  }
+}

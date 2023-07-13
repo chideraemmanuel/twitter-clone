@@ -19,6 +19,8 @@ import { StoreTypes } from "./redux/store";
 import { subscribe } from "./utils/onAuthStateChange";
 import NavigationLayout from "./layouts/navigationLayout/NavigationLayout";
 import Router from "./pages/Router";
+import TweetDetails from "./pages/tweetDetails/TweetDetails";
+import ProtectedRoutes from "./pages/ProtectedRoutes";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -62,9 +64,18 @@ const App: React.FC = () => {
     createRoutesFromElements(
       <Route path="/">
         <Route index element={<Router />} />
-        <Route path="home" element={<NavigationLayout />}>
-          <Route index element={<Feeds />} />
+
+        <Route element={<ProtectedRoutes />}>
+          {/* HOME PAGE */}
+          <Route path="home" element={<NavigationLayout />}>
+            <Route index element={<Home />} />
+          </Route>
+          {/* TWEET DETAILS */}
+          <Route path="tweet/:tweetId" element={<NavigationLayout />}>
+            <Route index element={<TweetDetails />} />
+          </Route>
         </Route>
+        {/* LOGIN PAGE */}
         <Route path="login" element={<SignIn />} />
       </Route>
     )

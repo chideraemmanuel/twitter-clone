@@ -12,6 +12,6 @@ const fetchTweet = async ({ queryKey }: { queryKey: any[] }) => {
   return { ...response.data(), id: response.id };
 };
 
-export const useFetchTweet = (tweetId: string) => {
+export const useGetTweet = (tweetId: string) => {
   return useQuery(["fetch tweet", tweetId], fetchTweet);
 };

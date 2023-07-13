@@ -79,7 +79,8 @@ const LoginForm: React.FC = () => {
       ) {
         alert("Incorrect password");
       } else {
-        alert("An error occured during login.");
+        // alert("An error occured during login.");
+        alert("Incorrect password");
       }
     }
   };

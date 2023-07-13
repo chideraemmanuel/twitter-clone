@@ -1,0 +1,28 @@
+.tweet-details {
+  &__header {
+    padding: 15px 20px;
+    background: var(--header-bg);
+    backdrop-filter: var(--header-bg-blur);
+    border-bottom: var(--border);
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+    h2 {
+      font-weight: 600;
+      font-size: var(--md-font);
+      flex: 1;
+      text-align: center;
+      margin-right: var(--md-font);
+    }
+
+    &--icon {
+      cursor: pointer;
+      svg {
+        font-size: var(--md-font);
+      }
+    }
+  }
+}

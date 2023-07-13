@@ -9,7 +9,7 @@ import { resetSignInForm } from "../../redux/slices/signInSlice";
 import { Navigate, Outlet } from "react-router-dom";
 import Sidebar from "../../containers/sidebar/Sidebar";
 
-const NavigationLayout = () => {
+const NavigationLayout: React.FC = () => {
   const { currentUser } = useSelector((store: StoreTypes) => store.signIn);
   const { isCreatingTweet } = useSelector((store: StoreTypes) => store.tweet);
 
@@ -20,9 +20,9 @@ const NavigationLayout = () => {
   }, []);
 
   //  NAVIGATE TO LOGIN PAGE IF USER IS NOT AVAILABLE (PROTECTING THE ROUTE)
-  if (!currentUser.active) {
-    return <Navigate to="/login" replace />;
-  }
+  // if (!currentUser.active) {
+  //   return <Navigate to="/login" replace />;
+  // }
 
   return (
     <div className="navigation-layout">

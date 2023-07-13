@@ -20,7 +20,8 @@ import {
   setRepliedTweetContent,
 } from "../../../../../../redux/slices/tweetSlice";
 import { useLikeTweet } from "../../../../../../hooks/useLikeTweet";
-import { useFetchTweet } from "../../../../../../hooks/useFetchTweet";
+import { useGetTweet } from "../../../../../../hooks/useGetTweet";
+import Confetti from "react-confetti";
 
 interface Props {
   tweetStats: TweetStatsTypes;
@@ -92,7 +93,7 @@ const TweetActions: React.FC<Props> = ({
 
       <button className="tweet-actions__retweet">
         <FaRetweet />
-        <span>638</span>
+        {/* <span>638</span> */}
       </button>
 
       <button
@@ -101,14 +102,26 @@ const TweetActions: React.FC<Props> = ({
         }
         onClick={handleLike}
       >
-        {findLikerUID ? <AiFillHeart /> : <AiOutlineHeart />}
+        {findLikerUID ? (
+          <>
+            {/* <Confetti
+              width={5}
+              height={5}
+              recycle={false}
+              numberOfPieces={100}
+            /> */}
+            <AiFillHeart />{" "}
+          </>
+        ) : (
+          <AiOutlineHeart />
+        )}
 
         {likes.length > 0 && <span>{likes.length}</span>}
       </button>
 
       <button className="tweet-actions__activity">
         <BiPoll />
-        <span>169k</span>
+        {/* <span>169k</span> */}
       </button>
 
       <button className="tweet-actions__share">

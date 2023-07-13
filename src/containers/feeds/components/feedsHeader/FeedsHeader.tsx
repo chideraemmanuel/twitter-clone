@@ -14,15 +14,6 @@ const FeedsHeader: React.FC = () => {
 
   return (
     <div className="feeds-header">
-      <div className="feeds-header__top">
-        <h1>Home</h1>
-
-        <div className="feeds-header__top--mobile">
-          <ProfileImageAlt onClick={() => dispatch(openMobileMenu())} />
-          <Logo />
-        </div>
-      </div>
-
       <div className="feeds-header__filter">
         <div className="feeds-header__filter--button">
           <input

@@ -20,7 +20,6 @@ const Feeds: React.FC = () => {
     <div className="feeds">
       <FeedsHeader />
       <WhatIsHappening />
-      {/* {isReplyingTweet && <ReplyTweet />} */}
 
       <div className="feeds__content">
         {isLoading && <Spinner />}

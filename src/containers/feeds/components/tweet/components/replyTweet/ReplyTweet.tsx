@@ -15,7 +15,7 @@ import { useReplyTweet } from "../../../../../../hooks/useReplyTweet";
 import { auth, db } from "../../../../../../config/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { useEffect } from "react";
-import { useFetchTweet } from "../../../../../../hooks/useFetchTweet";
+import { useGetTweet } from "../../../../../../hooks/useGetTweet";
 
 // interface Props {
 //   tweetId: string;
@@ -32,10 +32,6 @@ const ReplyTweet: React.FC = () => {
   );
 
   const dispatch = useDispatch();
-
-  // const { data: tweetData, isLoading: isTweetDataLoading } =
-  //   useFetchTweet(tweetId);
-  // console.log(tweetData);
 
   const {
     mutate: replyTweet,
