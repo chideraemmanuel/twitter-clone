@@ -60,22 +60,17 @@
 
     // &--links {
     // }
+  }
 
-    &--button {
-      background-color: var(--primary-color);
-      border: none;
-      width: 100%;
-      border-radius: 100px;
-      padding: 10px;
-      color: #fff;
-      font-size: var(--base-font);
-      cursor: pointer;
-      transition: 0.2s ease;
-
-      &:active {
-        background-color: darken($color: #029bf0, $amount: 10);
-      }
-    }
+  &__logout {
+    cursor: pointer;
+    background-color: var(--secondary-color);
+    color: var(--bg-color);
+    border: none;
+    width: 100%;
+    padding: 10px;
+    border-radius: 100px;
+    font-size: var(--base-font);
   }
 }
 

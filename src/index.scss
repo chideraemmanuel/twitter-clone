@@ -104,6 +104,10 @@ body {
 
 body {
   color: var(--primary-text-color);
+
+  @media screen and (max-width: 480px) {
+    padding-bottom: calc(10px + 10px + var(--lg-font));
+  }
 }
 
 a {

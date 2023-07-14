@@ -8,6 +8,7 @@ import NavigationLink from "../../navigationLink/NavigationLink";
 import useGetUser from "../../../../../hooks/useGetUser";
 import { auth } from "../../../../../config/firebase";
 import { FiX } from "react-icons/fi";
+import { signOut } from "firebase/auth";
 
 const MobileSideMenu: React.FC = () => {
   const { mobileMenuOpen } = useSelector(
@@ -63,6 +64,13 @@ const MobileSideMenu: React.FC = () => {
         </div>
 
         <div className="mobileSideMenu__dropdowns"></div>
+
+        <button
+          className="mobileSideMenu__logout"
+          onClick={() => signOut(auth)}
+        >
+          Logout
+        </button>
       </div>
     </>
   );
