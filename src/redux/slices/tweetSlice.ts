@@ -1,4 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { Timestamp } from "firebase/firestore";
+import { TweetTypes } from "../../types/tweetTypes";
+import { SignInStateTypes } from "./signInSlice";
 
 interface RepliedTweetTypes {
   id: string;
@@ -12,6 +15,7 @@ interface RepliedTweetTypes {
 export interface TweetStateTypes {
   isCreatingTweet: boolean;
   tweetContent: string;
+  replyInputFocused: boolean;
   isReplyingTweet: boolean;
   tweetReplyContent: string;
   repliedTweet: RepliedTweetTypes;
@@ -20,6 +24,7 @@ export interface TweetStateTypes {
 const initialState: TweetStateTypes = {
   isCreatingTweet: false,
   tweetContent: "",
+  replyInputFocused: false,
   isReplyingTweet: false,
   tweetReplyContent: "",
   repliedTweet: {
@@ -70,6 +75,9 @@ const tweetSlice = createSlice({
       state.repliedTweet.id = action.payload.id;
       state.repliedTweet.content = action.payload.content;
     },
+    focusReplyInput: (state: TweetStateTypes) => {
+      state.replyInputFocused = true;
+    },
   },
 });
 
@@ -83,6 +91,7 @@ export const {
   setTweetReplyContent,
   resetTweetReplyContent,
   setRepliedTweetContent,
+  focusReplyInput,
 } = tweetSlice.actions;
 
 export default tweetSlice.reducer;

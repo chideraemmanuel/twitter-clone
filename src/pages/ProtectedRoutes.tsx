@@ -12,12 +12,12 @@ const ProtectedRoutes = () => {
 
   return (
     <>
-      {/* {currentUser.active && !currentUser.isLoading ? (
+      {currentUser.active && !currentUser.isLoading ? (
         <Outlet />
       ) : (
         <Navigate to="/login" replace />
-      )} */}
-      <Outlet />
+      )}
+      {/* <Outlet /> */}
     </>
   );
 };

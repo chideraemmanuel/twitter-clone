@@ -17,12 +17,17 @@ import { useReplyTweet } from "../../hooks/useReplyTweet";
 import { auth } from "../../config/firebase";
 import { getTweetConstants } from "../../hooks/usePostTweet";
 import Spinner from "../../components/spinner/Spinner";
+import useGetUser from "../../hooks/useGetUser";
+import TweetDetailsReplies from "./components/tweetDetailsReplies/TweetDetailsReplies";
 
 const TweetDetails: React.FC = () => {
   const { tweetId } = useParams();
 
   const { currentUser } = useSelector((store: StoreTypes) => store.signIn);
-  const { tweetReplyContent } = useSelector((store: StoreTypes) => store.tweet);
+
+  const { tweetReplyContent, replyInputFocused } = useSelector(
+    (store: StoreTypes) => store.tweet
+  );
 
   const dispatch = useDispatch();
 
@@ -30,11 +35,10 @@ const TweetDetails: React.FC = () => {
   //     return <Navigate to="/login" replace />;
   //   }
 
-  // const { data: tweet, isLoading: isFetchingTweet } = useGetTweet(tweetId);
-  const tweet = true;
-  const isFetchingTweet = false;
+  const { data: tweet, isLoading: isFetchingTweet } = useGetTweet(tweetId);
+  // console.log(tweet);
 
-  // const { comments, likes } = tweet?.tweetStats;
+  const { data: tweetAuthor } = useGetUser(tweet?.tweetAuthorUID);
 
   const {
     mutate: replyTweet,
@@ -43,18 +47,17 @@ const TweetDetails: React.FC = () => {
   } = useReplyTweet();
 
   const handleReplyTweet = () => {
-    // console.log("Replied!");
-
-    if (!auth.currentUser) return;
+    if (!auth.currentUser || !tweetId) return;
 
     replyTweet({
       data: getTweetConstants(auth.currentUser.uid, tweetReplyContent),
-      tweetId: tweet?.id,
+      // tweetId: tweet?.id,
+      tweetId: tweetId,
     });
 
     // MIGHT ALSO RESET REPLIED TWEET CONTENT
     dispatch(resetTweetReplyContent());
-    dispatch(closeReplyTweet());
+    // dispatch(closeReplyTweet());
   };
 
   // const isPostingReply = false
@@ -74,24 +77,30 @@ const TweetDetails: React.FC = () => {
       {isFetchingTweet && <Spinner />}
       {tweet && (
         <>
-          <TweetDetailsTweet />
+          <TweetDetailsTweet tweet={tweet} tweetAuthor={tweetAuthor} />
 
           <div className="tweet-details__stats">
             <div>
-              <span>23</span>
+              <span>0</span>
               <span>Retweets</span>
             </div>
             <div>
-              <span>2</span>
-              <span>Quotes</span>
+              {/* <span>2</span>
+              <span>Quotes</span> */}
+              <span>{tweet.tweetStats.comments}</span>
+              <span>
+                {tweet.tweetStats.comments === 1 ? "Comment" : "Comments"}
+              </span>
             </div>
             <div>
-              <span>206</span>
-              {/* <span>{likes.length}</span> */}
-              <span>Likes</span>
+              {/* <span>100</span> */}
+              <span>{tweet.tweetStats.likes.length}</span>
+              <span>
+                {tweet.tweetStats.likes.length === 1 ? "Like" : "Likes"}
+              </span>
             </div>
             <div>
-              <span>5</span>
+              <span>0</span>
               <span>Bookmarks</span>
             </div>
           </div>
@@ -117,6 +126,8 @@ const TweetDetails: React.FC = () => {
               {isPostingReply ? "Posting reply..." : "Reply"}
             </button>
           </form>
+
+          <TweetDetailsReplies tweetId={tweet.id} />
         </>
       )}
     </div>

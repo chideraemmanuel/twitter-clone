@@ -82,6 +82,9 @@ export const useLikeTweet = () => {
   const queryClient = useQueryClient();
 
   return useMutation(likeTweet, {
-    onSuccess: () => queryClient.invalidateQueries("fetch tweets"),
+    onSuccess: () => {
+      queryClient.invalidateQueries("fetch tweets");
+      queryClient.invalidateQueries("fetch tweet");
+    },
   });
 };

@@ -10,45 +10,36 @@ import { useState } from "react";
 import useGetUser from "../../../../hooks/useGetUser";
 import { TweetTypes } from "../../../../types/tweetTypes";
 import ReplyTweet from "./components/replyTweet/ReplyTweet";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { StoreTypes } from "../../../../redux/store";
 import Options from "../../../../components/options/Options";
 
-const Tweet: React.FC<TweetTypes> = ({
-  id,
-  createdAt,
-  tweetAuthorUID,
-  tweetContent,
-  tweetStats,
-}) => {
-  const [optionsActive, setOptionsActive] = useState(false);
+interface Props {
+  tweet: TweetTypes;
+}
 
-  // const { data } = useGetUser(tweetAuthorUID);
-  const { data: tweetAuthor } = useGetUser(tweetAuthorUID);
-  // const { name, username } = data;
-  // console.log(data);
-  // console.log(createdAt.toDate());
-
-  const { isReplyingTweet } = useSelector((store: StoreTypes) => store.tweet);
+const Tweet: React.FC<Props> = ({ tweet }) => {
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
+  const { isReplyingTweet } = useSelector((store: StoreTypes) => store.tweet);
+
+  const { id, createdAt, tweetAuthorUID, tweetContent, tweetStats } = tweet;
+
+  const { data: tweetAuthor } = useGetUser(tweetAuthorUID);
+
+  const handleNavigate = () => {
+    navigate(`/tweet/${id}`);
+  };
+
   return (
     <>
-      {isReplyingTweet && tweetAuthor && (
-        <ReplyTweet
-        // tweetAuthor={tweetAuthor}
-        // tweetContent={tweetContent}
-        // tweetId={id}
-        />
-      )}
+      {isReplyingTweet && tweetAuthor && <ReplyTweet />}
 
       {tweetAuthor && (
         <div className="tweet">
-          <div
-            className="tweet__navigator"
-            onClick={() => navigate(`/tweet/${id}`)}
-          ></div>
+          <div className="tweet__navigator" onClick={handleNavigate}></div>
           <div className="tweet__profileImage">
             <ProfileImage />
           </div>
@@ -62,28 +53,15 @@ const Tweet: React.FC<TweetTypes> = ({
               </Link>
 
               <div className="tweet__info--header_options">
-                {/* <button onClick={() => setOptionsActive(!optionsActive)}>
-                  <IoEllipsisHorizontal />
-                </button>
-
-                {optionsActive && <TweetOptions />} */}
                 <Options list={<TweetOptions />} />
               </div>
             </div>
 
-            <div
-              className="tweet__info--text"
-              onClick={() => navigate(`/tweet/${id}`)}
-            >
+            <div className="tweet__info--text" onClick={handleNavigate}>
               <p>{tweetContent.text}</p>
             </div>
             {/* <TweetImages /> */}
-            <TweetActions
-              tweetStats={tweetStats}
-              tweetId={id}
-              tweetAuthor={tweetAuthor}
-              tweetContent={tweetContent}
-            />
+            <TweetActions tweet={tweet} tweetAuthor={tweetAuthor} />
           </div>
         </div>
       )}

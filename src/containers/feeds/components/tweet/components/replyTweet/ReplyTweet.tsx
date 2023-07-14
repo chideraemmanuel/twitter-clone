@@ -16,6 +16,7 @@ import { auth, db } from "../../../../../../config/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { useEffect } from "react";
 import { useGetTweet } from "../../../../../../hooks/useGetTweet";
+import { getTweetConstants } from "../../../../../../hooks/usePostTweet";
 
 // interface Props {
 //   tweetId: string;
@@ -40,16 +41,14 @@ const ReplyTweet: React.FC = () => {
   } = useReplyTweet();
 
   const handleReplyTweet = () => {
-    // console.log("Replied!");
+    // console.log(auth);
+    // console.log(repliedTweet.id);
 
     if (!auth.currentUser) return;
 
     replyTweet({
-      tweetId: repliedTweet.id,
-      reply: {
-        replyAuthorUID: auth.currentUser.uid,
-        comment: tweetReplyContent,
-      },
+      data: getTweetConstants(auth.currentUser.uid, tweetReplyContent),
+      tweetId: repliedTweet?.id,
     });
 
     // MIGHT ALSO RESET REPLIED TWEET CONTENT

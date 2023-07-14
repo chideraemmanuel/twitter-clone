@@ -10,6 +10,7 @@ import { MdOutlinePoll, MdOutlineFileUpload } from "react-icons/md";
 import {
   TweetContentTypes,
   TweetStatsTypes,
+  TweetTypes,
 } from "../../../../../../types/tweetTypes";
 // import { likeTweet } from "../../../../../../utils/likeTweet";
 import { auth } from "../../../../../../config/firebase";
@@ -23,22 +24,26 @@ import { useLikeTweet } from "../../../../../../hooks/useLikeTweet";
 import { useGetTweet } from "../../../../../../hooks/useGetTweet";
 import Confetti from "react-confetti";
 
+// interface Props {
+//   tweetStats: TweetStatsTypes;
+//   tweetId: string;
+//   tweetContent: TweetContentTypes;
+//   tweetAuthor: {
+//     name: string;
+//     username: string;
+//   };
+// }
+
 interface Props {
-  tweetStats: TweetStatsTypes;
-  tweetId: string;
-  tweetContent: TweetContentTypes;
+  tweet: TweetTypes;
   tweetAuthor: {
     name: string;
     username: string;
   };
 }
 
-const TweetActions: React.FC<Props> = ({
-  tweetStats,
-  tweetId,
-  tweetContent,
-  tweetAuthor,
-}) => {
+const TweetActions: React.FC<Props> = ({ tweet, tweetAuthor }) => {
+  const { tweetStats, id, tweetContent } = tweet;
   const { comments, likes } = tweetStats;
 
   // console.log(tweetAuthor);
@@ -57,7 +62,7 @@ const TweetActions: React.FC<Props> = ({
   const handleLike = () => {
     if (!auth.currentUser) return;
     likeTweet({
-      tweetId,
+      id,
       tweetLikerUID: auth.currentUser.uid,
     });
   };
@@ -68,7 +73,7 @@ const TweetActions: React.FC<Props> = ({
 
     dispatch(
       setRepliedTweetContent({
-        id: tweetId,
+        id,
         author: {
           displayName: tweetAuthor.name,
           username: tweetAuthor.username,
@@ -88,7 +93,7 @@ const TweetActions: React.FC<Props> = ({
         onClick={handleComment}
       >
         <FaRegComment />
-        {comments.length > 0 && <span>{comments.length}</span>}
+        {comments > 0 && <span>{comments}</span>}
       </button>
 
       <button className="tweet-actions__retweet">

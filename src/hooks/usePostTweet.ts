@@ -32,7 +32,7 @@ export const getTweetConstants = (
     },
     tweetStats: {
       likes: [],
-      comments: [],
+      comments: 0,
     },
   };
 };

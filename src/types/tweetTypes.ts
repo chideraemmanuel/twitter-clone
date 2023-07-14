@@ -1,6 +1,8 @@
+import { FieldValue, Timestamp } from "firebase/firestore";
+
 export interface TweetTypes {
   id?: string;
-  createdAt: any;
+  createdAt: Timestamp | FieldValue | null;
   tweetAuthorUID: string;
   tweetContent: TweetContentTypes;
   tweetStats: TweetStatsTypes;
@@ -12,7 +14,8 @@ export interface TweetContentTypes {
 
 export interface TweetStatsTypes {
   likes: TweetLikeInfoTypes[] | [];
-  comments: TweetCommentInfoTypes[] | [];
+  // comments: TweetCommentInfoTypes[] | [];
+  comments: number;
 }
 
 export interface TweetLikeInfoTypes {
