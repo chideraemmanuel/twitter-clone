@@ -2,6 +2,7 @@ import PageHeader from "../../components/pageHeader/PageHeader";
 import "./Home.scss";
 import Logo from "../../components/logo/Logo";
 import Feeds from "../../containers/feeds/Feeds";
+import MobileTweetButton from "../../containers/navigationBar/components/mobileNavigation/mobileTweetButton/MobileTweetButton";
 // import { useSelector } from "react-redux";
 // import { StoreTypes } from "../../redux/store";
 
@@ -15,6 +16,7 @@ const Home: React.FC = () => {
   return (
     <div className="home">
       <PageHeader title="Home" mobileHeader={<Logo />} />
+      <MobileTweetButton />
 
       <main className="home__main">
         <Feeds />

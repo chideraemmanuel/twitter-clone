@@ -43,7 +43,7 @@ const TweetActions: React.FC<Props> = ({ tweet, tweetAuthor }) => {
     if (!auth.currentUser) return;
     likeTweet({
       // @ts-ignore
-      id,
+      tweetId: id,
       tweetLikerUID: auth.currentUser.uid,
     });
   };

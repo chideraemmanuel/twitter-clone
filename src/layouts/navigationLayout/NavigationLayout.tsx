@@ -1,7 +1,7 @@
 import "./NavigationLayout.scss";
 import { useEffect } from "react";
 import NavigationBar from "../../containers/navigationBar/NavigationBar";
-import MobileTweetButton from "../../containers/navigationBar/components/mobileNavigation/mobileTweetButton/MobileTweetButton";
+// import MobileTweetButton from "../../containers/navigationBar/components/mobileNavigation/mobileTweetButton/MobileTweetButton";
 import CreateTweet from "../../containers/createTweet/CreateTweet";
 import { useDispatch, useSelector } from "react-redux";
 import { StoreTypes } from "../../redux/store";
@@ -27,7 +27,7 @@ const NavigationLayout: React.FC = () => {
   return (
     <div className="navigation-layout">
       <NavigationBar />
-      <MobileTweetButton />
+      {/* <MobileTweetButton /> */}
       {isCreatingTweet && <CreateTweet />}
 
       <main className="navigation-layout__main">

@@ -8,8 +8,10 @@
   // border: 1px solid blue;
   border-bottom: var(--border);
 
-  &:hover {
-    background-color: var(--accent);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: var(--accent);
+    }
   }
 
   > * {
