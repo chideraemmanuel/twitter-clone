@@ -1,3 +1,5 @@
+import { useMutation, useQueryClient } from "react-query";
+import { TweetLikeInfoTypes } from "../types/tweetTypes";
 import {
   arrayRemove,
   arrayUnion,
@@ -5,44 +7,40 @@ import {
   getDoc,
   setDoc,
 } from "firebase/firestore";
-import { useMutation, useQueryClient } from "react-query";
 import { db } from "../config/firebase";
-import { TweetLikeInfoTypes } from "../types/tweetTypes";
 
 interface Params {
-  tweetId: string;
-  tweetLikerUID: string;
+  replyId: string;
+  originalTweetId: string;
+  replyLikerUID: string;
 }
 
-const likeTweet = async (payload: Params) => {
-  const { tweetId, tweetLikerUID } = payload;
+const likeTweetReply = async (payload: Params) => {
+  const { replyId, originalTweetId, replyLikerUID } = payload;
 
   // REFERENCE TO TWEET THAT IS BEING LIKED
-  const tweetReference = doc(db, "tweets", tweetId);
+  const replyReference = doc(db, `tweets/${originalTweetId}/replies`, replyId);
 
   // FETCH LIKED TWEET FOR CHECKS
-  const response = await getDoc(tweetReference);
+  const response = await getDoc(replyReference);
 
   const { tweetStats } = response.data();
 
   // CHECK IF TWEET HAS BEEN LIKED BY CURRENT USER
   const findLikerUID = tweetStats.likes.find(
-    (like: TweetLikeInfoTypes) => like.tweetLikerUID === tweetLikerUID
+    (like: TweetLikeInfoTypes) => like.replyLikerUID === replyLikerUID
   );
-
-  //   console.log(findLikerUID);
 
   if (findLikerUID) {
     // HAS ALREADY BEEN LIKED
     // FILTER OUT THE CURRENT USER'S LIKE
-
     try {
       await setDoc(
-        tweetReference,
+        replyReference,
         {
           tweetStats: {
             likes: arrayRemove({
-              tweetLikerUID,
+              replyLikerUID,
             }),
           },
         },
@@ -55,11 +53,11 @@ const likeTweet = async (payload: Params) => {
     // HAS NOT BEEN LIKED
     try {
       await setDoc(
-        tweetReference,
+        replyReference,
         {
           tweetStats: {
             likes: arrayUnion({
-              tweetLikerUID,
+              replyLikerUID,
             }),
           },
         },
@@ -71,13 +69,14 @@ const likeTweet = async (payload: Params) => {
   }
 };
 
-export const useLikeTweet = () => {
+export const useLikeTweetReply = () => {
   const queryClient = useQueryClient();
 
-  return useMutation(likeTweet, {
+  return useMutation(likeTweetReply, {
     onSuccess: () => {
       queryClient.invalidateQueries("fetch tweets");
       queryClient.invalidateQueries("fetch tweet");
+      queryClient.invalidateQueries("fetch tweet replies");
     },
   });
 };

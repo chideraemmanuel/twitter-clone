@@ -1,0 +1,93 @@
+.tweetReply {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  padding: 20px;
+  gap: 10px;
+  z-index: 1;
+  border-bottom: var(--border);
+
+  &:hover {
+    // background-color: var(--accent);
+  }
+
+  > * {
+    min-width: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 15px;
+  }
+
+  &__navigator {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+  }
+
+  &__profileImage {
+    align-self: flex-start;
+  }
+
+  &__info {
+    z-index: 3;
+
+    &--header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      > a {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: var(--sm-font);
+
+        @media screen and (max-width: 480px) {
+          // font-size: var(--sm-font);
+        }
+
+        p {
+          font-weight: bold;
+          cursor: pointer;
+          // text-transform: capitalize;
+        }
+
+        span:nth-child(2) {
+        }
+
+        span:last-child {
+        }
+      }
+
+      &_options {
+        position: relative;
+
+        button {
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+
+          svg {
+            font-size: var(--base-font);
+            @media screen and (max-width: 480px) {
+              font-size: var(--sm-font);
+            }
+          }
+        }
+      }
+    }
+
+    &--text {
+      display: inline-block;
+      font-size: var(--sm-font);
+      padding: 5px 0 10px;
+      cursor: pointer;
+      width: 100%;
+
+      @media screen and (max-width: 480px) {
+        // font-size: var(--xs-font);
+      }
+    }
+  }
+}

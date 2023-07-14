@@ -8,13 +8,17 @@ import Tweet from "./components/tweet/Tweet";
 import ReplyTweet from "./components/tweet/components/replyTweet/ReplyTweet";
 import WhatIsHappening from "./components/whatIsHappening/WhatIsHappening";
 import { StoreTypes } from "../../redux/store";
+import { useLikeTweet } from "../../hooks/useLikeTweet";
+import { auth } from "../../config/firebase";
 
 const Feeds: React.FC = () => {
-  const { data: tweets, isLoading, error, isError } = useGetTweets();
-  // console.log(navigator.onLine);
-  // useGetTweets();
-
   const { isReplyingTweet } = useSelector((store: StoreTypes) => store.tweet);
+
+  const {
+    data: tweets,
+    isLoading: isFetchingTweets,
+    error: fetchError,
+  } = useGetTweets();
 
   return (
     <div className="feeds">
@@ -22,8 +26,8 @@ const Feeds: React.FC = () => {
       <WhatIsHappening />
 
       <div className="feeds__content">
-        {isLoading && <Spinner />}
-        {!navigator.onLine && !isLoading && <p>Error...</p>}
+        {isFetchingTweets && <Spinner />}
+        {!navigator.onLine && !isFetchingTweets && <p>Error...</p>}
         {tweets &&
           tweets.map((tweet) => <Tweet tweet={tweet} key={tweet.id} />)}
       </div>

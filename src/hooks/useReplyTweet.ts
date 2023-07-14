@@ -33,7 +33,7 @@ const replyTweet = async (replyInfo: ReplyInfoTypes) => {
     `/tweets/${tweetId}/replies`
   );
 
-  // INCREMENT TWEETS IN TWEET COLLECTION
+  // INCREMENT TWEET REPLIES IN TWEET COLLECTION
   await setDoc(
     tweetReference,
     {
@@ -45,7 +45,7 @@ const replyTweet = async (replyInfo: ReplyInfoTypes) => {
     { merge: true }
   );
 
-  // ADD DATA TO TWEET REPLIES COLLECTION
+  // ADD REPLY DATA TO TWEET REPLIES COLLECTION
   await addDoc(tweetRepliesCollectionReference, data);
 };
 

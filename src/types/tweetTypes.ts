@@ -19,7 +19,8 @@ export interface TweetStatsTypes {
 }
 
 export interface TweetLikeInfoTypes {
-  tweetLikerUID: string;
+  tweetLikerUID?: string;
+  replyLikerUID?: string;
   // username: string;
   // displayName: string;
 }

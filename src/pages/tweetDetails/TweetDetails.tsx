@@ -127,7 +127,7 @@ const TweetDetails: React.FC = () => {
             </button>
           </form>
 
-          <TweetDetailsReplies tweetId={tweet.id} />
+          <TweetDetailsReplies originalTweetId={tweet.id} />
         </>
       )}
     </div>

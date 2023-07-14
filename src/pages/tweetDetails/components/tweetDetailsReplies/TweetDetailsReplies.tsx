@@ -1,19 +1,20 @@
 import Tweet from "../../../../containers/feeds/components/tweet/Tweet";
 import { useGetTweetReplies } from "../../../../hooks/useGetTweetReplies";
+import TweetReply from "../tweetReply/TweetReply";
 import "./TweetDetailsReplies.scss";
 
 interface Props {
-  tweetId: string;
+  originalTweetId: string;
 }
 
-const TweetDetailsReplies: React.FC<Props> = ({ tweetId }) => {
-  const { data: tweetReplies, isLoading } = useGetTweetReplies(tweetId);
+const TweetDetailsReplies: React.FC<Props> = ({ originalTweetId }) => {
+  const { data: tweetReplies, isLoading } = useGetTweetReplies(originalTweetId);
   //   console.log(tweetReplies);
 
   return (
     <div className="tweetDetailsReplies">
       {tweetReplies?.map((tweetReply) => (
-        <Tweet tweet={tweetReply} />
+        <TweetReply reply={tweetReply} originalTweetId={originalTweetId} />
       ))}
     </div>
   );

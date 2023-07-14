@@ -1,0 +1,121 @@
+.tweetReplyActions {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  @media screen and (max-width: 768px) {
+    gap: 20px;
+  }
+
+  @media screen and (max-width: 540px) {
+    gap: 15px;
+  }
+
+  @media screen and (max-width: 480px) {
+    gap: 20px;
+  }
+
+  @media screen and (max-width: 375px) {
+    gap: 15px;
+  }
+
+  button {
+    position: relative;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 5px;
+    color: var(--secondary-text-color);
+
+    @media screen and (max-width: 768px) {
+      gap: 5px;
+    }
+
+    svg {
+      font-size: var(--base-font);
+      padding: 5px;
+      box-sizing: content-box;
+      border-radius: 50%;
+      transition: 0.3s ease;
+
+      @media screen and (max-width: 768px) {
+        font-size: var(--sm-font);
+        padding: 3px;
+      }
+    }
+
+    span {
+      font-size: var(--sm-font);
+      transition: 0.3s ease;
+
+      @media screen and (max-width: 480px) {
+        font-size: var(--xs-font);
+      }
+    }
+  }
+
+  &__comment {
+    &:hover {
+      svg {
+        background-color: rgba(29, 155, 240, 0.1);
+        color: rgb(29, 155, 240);
+      }
+
+      span {
+        color: rgb(29, 155, 240);
+      }
+    }
+  }
+
+  &__retweet {
+    &:hover {
+      svg {
+        background-color: rgba(0, 186, 124, 0.1);
+        color: rgb(0, 186, 124);
+      }
+
+      span {
+        color: rgb(0, 186, 124);
+      }
+    }
+  }
+
+  &__like {
+    &:hover {
+      svg {
+        background-color: rgba(249, 24, 128, 0.1);
+        color: rgb(249, 24, 128);
+      }
+
+      span {
+        color: rgb(249, 24, 128);
+      }
+    }
+
+    &.liked {
+      svg {
+        color: rgb(249, 24, 128);
+      }
+    }
+  }
+
+  &__activity {
+    &:hover {
+      svg {
+        background-color: rgba(29, 155, 240, 0.1);
+        color: rgb(29, 155, 240);
+      }
+
+      span {
+        color: rgb(29, 155, 240);
+      }
+    }
+  }
+
+  &__share {
+  }
+}
