@@ -257,9 +257,10 @@ const LoginForm: React.FC = () => {
           {!providerId && (
             <Button text="Login" type="dark" onClick={handleManualLogin} />
           )}
-          {providerId === "google.com" ? (
+          {providerId && providerId === "google.com" && (
             <Button text="Login" type="dark" onClick={handleGoogleLogin} />
-          ) : (
+          )}
+          {providerId && providerId === "apple.com" && (
             <Button text="Login" type="dark" onClick={handleAppleLogin} />
           )}
         </div>
