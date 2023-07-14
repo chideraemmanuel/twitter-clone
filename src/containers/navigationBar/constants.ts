@@ -1,17 +1,4 @@
-import {
-  FaHome,
-  FaSearch,
-  FaBell,
-  FaMailBulk,
-  FaList,
-  FaBookmark,
-  FaCheckCircle,
-  FaUser,
-  FaListAlt,
-  FaTwitterSquare,
-} from "react-icons/fa";
-import {} from "react-icons/ai";
-import {} from "react-icons/bs";
+import { FaList, FaListAlt, FaTwitterSquare } from "react-icons/fa";
 import {
   BiSearch,
   BiSolidSearch,
@@ -28,8 +15,6 @@ import {
   BiUser,
   BiSolidUser,
 } from "react-icons/bi";
-import { HiMail, HiOutlineMail } from "react-icons/hi";
-import {} from "react-icons/ai";
 import {
   IoEllipsisHorizontalCircle,
   IoEllipsisHorizontalCircleOutline,

@@ -1,4 +1,3 @@
-import { Dispatch } from "react";
 import { IconType } from "react-icons";
 import "./Button.scss";
 

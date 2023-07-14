@@ -1,13 +1,6 @@
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  query,
-  where,
-} from "firebase/firestore";
+import { getDocs, query, where } from "firebase/firestore";
 import { useQuery } from "react-query";
-import { db, usersCollectionReference } from "../config/firebase";
+import { usersCollectionReference } from "../config/firebase";
 
 const fetchUser = async ({ queryKey }: { queryKey: any[] }) => {
   const uid: string = queryKey[1];

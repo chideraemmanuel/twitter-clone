@@ -1,16 +1,7 @@
-import {
-  addDoc,
-  arrayUnion,
-  collection,
-  doc,
-  increment,
-  setDoc,
-  updateDoc,
-} from "firebase/firestore";
+import { addDoc, collection, doc, increment, setDoc } from "firebase/firestore";
 import { useMutation, useQueryClient } from "react-query";
 import { db } from "../config/firebase";
-import { TweetCommentInfoTypes, TweetTypes } from "../types/tweetTypes";
-import useGetUser from "./useGetUser";
+import { TweetTypes } from "../types/tweetTypes";
 
 // let replyTweet: () => number
 

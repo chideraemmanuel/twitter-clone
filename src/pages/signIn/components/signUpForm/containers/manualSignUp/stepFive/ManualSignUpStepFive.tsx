@@ -1,33 +1,18 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Button from "../../../../button/Button";
 import FormTitle from "../../../../formTitle/FormTitle";
 import "./ManualSignUpStepFive.scss";
 import { StoreTypes } from "../../../../../../../redux/store";
-import {
-  useCreateAccount,
-  userTypes,
-} from "../../../../../../../hooks/useCreateAccount";
+import { useCreateAccount } from "../../../../../../../hooks/useCreateAccount";
 import ConfirmationBox from "../../../../confirmationBox/ConfirmationBox";
-import { resetSignInForm } from "../../../../../../../redux/slices/signInSlice";
 
 const ManualSignUpStepFive: React.FC = () => {
   const { name, email, DOB, username, password } = useSelector(
     (store: StoreTypes) => store.signIn.signUpForm.userInfo
   );
 
-  const dispatch = useDispatch();
-
-  // const signUp = (data: userTypes) => {
-  //   createAccountManual(data);
-  //   // navigate("/");
-  // };
-
   const { mutate: createAccount, isLoading: isCreatingAccount } =
     useCreateAccount();
-
-  // console.log("Data", data);
-  // console.log("isLoading", isLoading);
-  // console.log("Error", error);
 
   const handleSignUp = () => {
     if (!navigator.onLine) {

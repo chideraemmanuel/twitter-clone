@@ -1,4 +1,3 @@
-import { IoEllipsisHorizontal } from "react-icons/io5";
 import "./Trend.scss";
 import { Link } from "react-router-dom";
 import Options from "../../../../../../components/options/Options";
@@ -16,6 +15,7 @@ const Trend: React.FC = () => {
         <IoEllipsisHorizontal />
       </button> */}
       <div className="trend-options">
+        {/* @ts-ignore */}
         <Options />
       </div>
     </div>

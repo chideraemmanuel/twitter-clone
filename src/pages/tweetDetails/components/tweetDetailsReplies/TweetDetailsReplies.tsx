@@ -8,12 +8,13 @@ interface Props {
 }
 
 const TweetDetailsReplies: React.FC<Props> = ({ originalTweetId }) => {
-  const { data: tweetReplies, isLoading } = useGetTweetReplies(originalTweetId);
+  const { data: tweetReplies } = useGetTweetReplies(originalTweetId);
   //   console.log(tweetReplies);
 
   return (
     <div className="tweetDetailsReplies">
       {tweetReplies?.map((tweetReply) => (
+        // @ts-ignore
         <TweetReply reply={tweetReply} originalTweetId={originalTweetId} />
       ))}
     </div>

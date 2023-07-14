@@ -12,7 +12,7 @@ import { StoreTypes } from "../../../../../../../redux/store";
 const ManualSignUpStepFour: React.FC = () => {
   const dispatch = useDispatch();
 
-  const { name, email, DOB, username, password } = useSelector(
+  const { password } = useSelector(
     (store: StoreTypes) => store.signIn.signUpForm.userInfo
   );
 

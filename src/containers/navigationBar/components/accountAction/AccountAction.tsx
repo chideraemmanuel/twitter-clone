@@ -9,6 +9,7 @@ import useGetUser from "../../../../hooks/useGetUser";
 const AccountAction: React.FC = () => {
   const [isActionsOpen, setIsActionsOpen] = useState(false);
 
+  // @ts-ignore
   const { data: currentUser } = useGetUser(auth.currentUser?.uid);
 
   return (
@@ -24,6 +25,7 @@ const AccountAction: React.FC = () => {
                 className="accountAction__actions--logout"
                 onClick={() => signOut(auth)}
               >
+                {/* @ts-ignore */}
                 Log out @{currentUser.username}
               </button>
             </div>
@@ -31,7 +33,9 @@ const AccountAction: React.FC = () => {
           <ProfileImageAlt />
 
           <div className="accountAction__user">
+            {/* @ts-ignore */}
             <h5>{currentUser.name}</h5>
+            {/* @ts-ignore */}
             <h4>@{currentUser.username}</h4>
           </div>
 

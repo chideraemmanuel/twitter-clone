@@ -1,7 +1,7 @@
 import { addDoc } from "firebase/firestore";
 import { auth, usersCollectionReference } from "../config/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useMutation, useQuery } from "react-query";
+import { useMutation } from "react-query";
 
 export interface userTypes {
   name: string;

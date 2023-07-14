@@ -1,11 +1,5 @@
-import { useNavigate } from "react-router-dom";
 import "./SignUpInitial.scss";
-import { onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
-import {
-  auth,
-  googleProvider,
-  usersCollectionReference,
-} from "../../../../../../config/firebase";
+import { usersCollectionReference } from "../../../../../../config/firebase";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
 import Button from "../../../button/Button";
@@ -13,7 +7,6 @@ import FormTitle from "../../../formTitle/FormTitle";
 import FormDivision from "../../../formDivision/FormDivision";
 import { useDispatch } from "react-redux";
 import {
-  setCurrentUser,
   setEmail,
   setName,
   setProviderId,
@@ -23,8 +16,6 @@ import {
   toggleActiveForm,
 } from "../../../../../../redux/slices/signInSlice";
 import { signInWithProvider } from "../../../../../../utils/signInWithProvider";
-import { useEffect } from "react";
-import { subscribe } from "../../../../../../utils/onAuthStateChange";
 import { getDocs, query, where } from "firebase/firestore";
 
 const SignUpInitial: React.FC = () => {

@@ -23,6 +23,7 @@ const likeTweet = async (payload: Params) => {
   // FETCH LIKED TWEET FOR CHECKS
   const response = await getDoc(tweetReference);
 
+  // @ts-ignore
   const { tweetStats } = response.data();
 
   // CHECK IF TWEET HAS BEEN LIKED BY CURRENT USER

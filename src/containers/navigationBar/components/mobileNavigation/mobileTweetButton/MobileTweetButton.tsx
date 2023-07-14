@@ -1,5 +1,5 @@
 import "./MobileTweetButton.scss";
-import { FaFeather } from "react-icons/fa";
+// import { FaFeather } from "react-icons/fa";
 import { FiFeather } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import { openTweetCreation } from "../../../../../redux/slices/tweetSlice";

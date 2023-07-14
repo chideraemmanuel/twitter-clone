@@ -13,7 +13,7 @@ interface Props {
 }
 
 const TweetReply: React.FC<Props> = ({ reply, originalTweetId }) => {
-  const { id, createdAt, tweetAuthorUID, tweetContent, tweetStats } = reply;
+  const { tweetAuthorUID, tweetContent } = reply;
 
   const { data: tweetAuthor } = useGetUser(tweetAuthorUID);
 
@@ -34,7 +34,9 @@ const TweetReply: React.FC<Props> = ({ reply, originalTweetId }) => {
           <div className="tweetReply__info">
             <div className="tweetReply__info--header">
               <Link to="/">
+                {/* @ts-ignore */}
                 {tweetAuthor && <p>{tweetAuthor.name}</p>}
+                {/* @ts-ignore */}
                 {tweetAuthor && <span>@{tweetAuthor.username}</span>}
                 <span>- 19h</span>
               </Link>
@@ -53,6 +55,7 @@ const TweetReply: React.FC<Props> = ({ reply, originalTweetId }) => {
             {/* <TweetImages /> */}
             <TweetReplyActions
               reply={reply}
+              // @ts-ignore
               tweetAuthor={tweetAuthor}
               originalTweetId={originalTweetId}
             />

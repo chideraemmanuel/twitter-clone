@@ -1,4 +1,3 @@
-import { FaTimes } from "react-icons/fa";
 import "./CreateTweet.scss";
 import TweetInput from "./components/tweetInput/TweetInput";
 import WhoCanReplyTweet from "./components/whoCanReplyTweet/WhoCanReplyTweet";
@@ -18,7 +17,7 @@ const CreateTweet: React.FC = () => {
 
   const { tweetContent } = useSelector((store: StoreTypes) => store.tweet);
 
-  const { mutate: postTweet, isLoading: isPosting, error } = usePostTweet();
+  const { mutate: postTweet, isLoading: isPosting } = usePostTweet();
 
   const handlePostTweet = () => {
     if (!auth.currentUser) return;

@@ -1,10 +1,5 @@
 import { signInWithPopup } from "firebase/auth";
 import { appleProvider, auth, googleProvider } from "../config/firebase";
-import { useQuery } from "react-query";
-import { useDispatch } from "react-redux";
-import { setProviderId } from "../redux/slices/signInSlice";
-
-// FETCH ALL USERS FROM FIRESTORE
 
 export const signInWithProvider = async (provider: "google" | "apple") => {
   if (provider === "google") {

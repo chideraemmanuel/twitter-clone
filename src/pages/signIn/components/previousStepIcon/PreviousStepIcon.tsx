@@ -1,5 +1,4 @@
 import "./PreviousStepIcon.scss";
-import { FaArrowLeft } from "react-icons/fa";
 import { FiArrowLeft } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 

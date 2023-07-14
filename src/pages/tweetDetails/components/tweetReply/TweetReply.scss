@@ -7,9 +7,9 @@
   z-index: 1;
   border-bottom: var(--border);
 
-  &:hover {
-    // background-color: var(--accent);
-  }
+  // &:hover {
+  //   // background-color: var(--accent);
+  // }
 
   > * {
     min-width: 0;
@@ -53,11 +53,11 @@
           // text-transform: capitalize;
         }
 
-        span:nth-child(2) {
-        }
+        // span:nth-child(2) {
+        // }
 
-        span:last-child {
-        }
+        // span:last-child {
+        // }
       }
 
       &_options {

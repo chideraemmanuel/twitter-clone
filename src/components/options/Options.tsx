@@ -7,18 +7,18 @@ interface Props {
 }
 
 const Options: React.FC<Props> = ({ list }) => {
-  //   const [optionsActive, setOptionsActive] = useState(false);
+  const [optionsActive, setOptionsActive] = useState(false);
 
   return (
     <div className="options">
       <button
         className="options__button"
-        // onClick={() => setOptionsActive(!optionsActive)}
+        onClick={() => setOptionsActive(false)}
       >
         <IoEllipsisHorizontal />
       </button>
 
-      {/* {optionsActive && <div className="options__content">{list}</div>} */}
+      {optionsActive && <div className="options__content">{list}</div>}
     </div>
   );
 };

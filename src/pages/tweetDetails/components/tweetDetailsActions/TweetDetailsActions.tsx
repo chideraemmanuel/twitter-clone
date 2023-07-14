@@ -6,10 +6,7 @@ import { FaRegComment, FaRetweet } from "react-icons/fa";
 import { useLikeTweet } from "../../../../hooks/useLikeTweet";
 import { auth } from "../../../../config/firebase";
 import { TweetStatsTypes } from "../../../../types/tweetTypes";
-import { useDispatch } from "react-redux";
-import { focusReplyInput } from "../../../../redux/slices/tweetSlice";
-
-const liked = false;
+// import { useDispatch } from "react-redux";
 
 interface Props {
   tweetId: string;
@@ -17,9 +14,9 @@ interface Props {
 }
 
 const TweetDetailsActions: React.FC<Props> = ({ tweetId, tweetStats }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const { mutate: likeTweet, isLoading, isError } = useLikeTweet();
+  const { mutate: likeTweet } = useLikeTweet();
 
   // CHECK IF CURRENT USER ALREADY LIKED TWEET
   const findLikerUID = tweetStats.likes.find(

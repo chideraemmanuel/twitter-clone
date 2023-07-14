@@ -1,8 +1,4 @@
-import { FaTimes } from "react-icons/fa";
 import "./CardLayout.scss";
-import Logo from "../../../../components/logo/Logo";
-import { IconType } from "react-icons";
-
 interface Props {
   children: React.ReactNode;
 }

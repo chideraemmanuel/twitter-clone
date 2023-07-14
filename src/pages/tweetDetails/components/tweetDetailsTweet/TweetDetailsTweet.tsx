@@ -1,8 +1,6 @@
-import { useSelector } from "react-redux";
 import Options from "../../../../components/options/Options";
 import ProfileImage from "../../../../components/profileImage/ProfileImage";
 import "./TweetDetailsTweet.scss";
-import { StoreTypes } from "../../../../redux/store";
 import { TweetTypes } from "../../../../types/tweetTypes";
 import moment from "moment";
 
@@ -33,6 +31,7 @@ const TweetDetailsTweet: React.FC<Props> = ({ tweet, tweetAuthor }) => {
           </div>
         </div>
 
+        {/* @ts-ignore */}
         <Options />
       </div>
 
@@ -41,8 +40,10 @@ const TweetDetailsTweet: React.FC<Props> = ({ tweet, tweetAuthor }) => {
 
         <div className="tweetDetailsTweet__content--date">
           {/* <span>{createdAt?.toDate().getTime()}</span> */}
+          {/* @ts-ignore */}
           <span>{moment(createdAt?.toDate()).format("h:mm a")}</span>
           <span>•</span>
+          {/* @ts-ignore */}
           <span>{moment(createdAt?.toDate()).format("MMM Do, YYYY")}</span>
         </div>
       </div>

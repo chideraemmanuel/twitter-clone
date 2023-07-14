@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux";
 import "./PageHeader.scss";
 import ProfileImageAlt from "../profileImageAlt/ProfileImageAlt";
-import Logo from "../logo/Logo";
 import { openMobileMenu } from "../../redux/slices/navigationSlice";
 
 interface Props {

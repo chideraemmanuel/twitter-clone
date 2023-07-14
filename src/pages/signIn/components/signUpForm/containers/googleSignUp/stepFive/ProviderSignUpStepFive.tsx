@@ -3,16 +3,9 @@ import Button from "../../../../button/Button";
 import FormTitle from "../../../../formTitle/FormTitle";
 import "./ProviderSignUpStepFive.scss";
 import { StoreTypes } from "../../../../../../../redux/store";
-import {
-  useCreateAccount,
-  userTypes,
-} from "../../../../../../../hooks/useCreateAccount";
+import { useCreateAccount } from "../../../../../../../hooks/useCreateAccount";
 import ConfirmationBox from "../../../../confirmationBox/ConfirmationBox";
-import {
-  resetSignInForm,
-  setCurrentUser,
-  setProviderId,
-} from "../../../../../../../redux/slices/signInSlice";
+import { setCurrentUser } from "../../../../../../../redux/slices/signInSlice";
 
 const ProviderSignUpStepFive: React.FC = () => {
   const { name, email, DOB, username, password } = useSelector(

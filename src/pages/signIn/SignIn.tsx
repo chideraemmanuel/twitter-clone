@@ -1,9 +1,8 @@
-import { Link, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import "./SignIn.scss";
 import CardLayout from "./components/card/CardLayout";
 import LoginForm from "./components/loginForm/LoginForm";
 import SignUpForm from "./components/signUpForm/SignUpForm";
-import { auth } from "../../config/firebase";
 import { useSelector } from "react-redux";
 import { StoreTypes } from "../../redux/store";
 import PreviousStepIcon from "./components/previousStepIcon/PreviousStepIcon";

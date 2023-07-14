@@ -6,17 +6,12 @@ import {
 } from "react-router-dom";
 import "./App.scss";
 import Home from "./pages/home/Home";
-import Feeds from "./containers/feeds/Feeds";
 import SignIn from "./pages/signIn/SignIn";
 import { auth } from "./config/firebase";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setCurrentUser,
-  startProviderSignUp,
-} from "./redux/slices/signInSlice";
+import { setCurrentUser } from "./redux/slices/signInSlice";
 import { StoreTypes } from "./redux/store";
-import { subscribe } from "./utils/onAuthStateChange";
 import NavigationLayout from "./layouts/navigationLayout/NavigationLayout";
 import Router from "./pages/Router";
 import TweetDetails from "./pages/tweetDetails/TweetDetails";

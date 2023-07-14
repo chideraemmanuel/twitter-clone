@@ -1,15 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./TweetDetails.scss";
 import { StoreTypes } from "../../redux/store";
-import { Navigate, useParams } from "react-router-dom";
-import PageHeader from "../../components/pageHeader/PageHeader";
-import { FiArrowLeft, FiChevronLeft } from "react-icons/fi";
+import { useParams } from "react-router-dom";
+import { FiArrowLeft } from "react-icons/fi";
 import { useGetTweet } from "../../hooks/useGetTweet";
 import TweetDetailsTweet from "./components/tweetDetailsTweet/TweetDetailsTweet";
 import TweetDetailsActions from "./components/tweetDetailsActions/TweetDetailsActions";
 import TweetInput from "../../containers/createTweet/components/tweetInput/TweetInput";
 import {
-  closeReplyTweet,
   resetTweetReplyContent,
   setTweetReplyContent,
 } from "../../redux/slices/tweetSlice";
@@ -23,11 +21,9 @@ import TweetDetailsReplies from "./components/tweetDetailsReplies/TweetDetailsRe
 const TweetDetails: React.FC = () => {
   const { tweetId } = useParams();
 
-  const { currentUser } = useSelector((store: StoreTypes) => store.signIn);
+  // const { currentUser } = useSelector((store: StoreTypes) => store.signIn);
 
-  const { tweetReplyContent, replyInputFocused } = useSelector(
-    (store: StoreTypes) => store.tweet
-  );
+  const { tweetReplyContent } = useSelector((store: StoreTypes) => store.tweet);
 
   const dispatch = useDispatch();
 
@@ -35,16 +31,14 @@ const TweetDetails: React.FC = () => {
   //     return <Navigate to="/login" replace />;
   //   }
 
+  // @ts-ignore
   const { data: tweet, isLoading: isFetchingTweet } = useGetTweet(tweetId);
   // console.log(tweet);
 
+  // @ts-ignore
   const { data: tweetAuthor } = useGetUser(tweet?.tweetAuthorUID);
 
-  const {
-    mutate: replyTweet,
-    isLoading: isPostingReply,
-    isError,
-  } = useReplyTweet();
+  const { mutate: replyTweet, isLoading: isPostingReply } = useReplyTweet();
 
   const handleReplyTweet = () => {
     if (!auth.currentUser || !tweetId) return;
@@ -77,6 +71,7 @@ const TweetDetails: React.FC = () => {
       {isFetchingTweet && <Spinner />}
       {tweet && (
         <>
+          {/* @ts-ignore */}
           <TweetDetailsTweet tweet={tweet} tweetAuthor={tweetAuthor} />
 
           <div className="tweet-details__stats">
@@ -87,15 +82,19 @@ const TweetDetails: React.FC = () => {
             <div>
               {/* <span>2</span>
               <span>Quotes</span> */}
+              {/* @ts-ignore */}
               <span>{tweet.tweetStats.comments}</span>
               <span>
+                {/* @ts-ignore */}
                 {tweet.tweetStats.comments === 1 ? "Comment" : "Comments"}
               </span>
             </div>
             <div>
               {/* <span>100</span> */}
+              {/* @ts-ignore */}
               <span>{tweet.tweetStats.likes.length}</span>
               <span>
+                {/* @ts-ignore */}
                 {tweet.tweetStats.likes.length === 1 ? "Like" : "Likes"}
               </span>
             </div>
@@ -107,6 +106,7 @@ const TweetDetails: React.FC = () => {
 
           <TweetDetailsActions
             tweetId={tweet.id}
+            // @ts-ignore
             tweetStats={tweet.tweetStats}
           />
 

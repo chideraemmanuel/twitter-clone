@@ -14,7 +14,7 @@ import { usersCollectionReference } from "../../../../../../../config/firebase";
 const ManualSignUpStepThree: React.FC = () => {
   const dispatch = useDispatch();
 
-  const { name, email, DOB, username, password } = useSelector(
+  const { username } = useSelector(
     (store: StoreTypes) => store.signIn.signUpForm.userInfo
   );
 

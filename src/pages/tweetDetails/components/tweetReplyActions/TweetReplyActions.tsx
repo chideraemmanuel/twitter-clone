@@ -16,12 +16,8 @@ interface Props {
   originalTweetId: string;
 }
 
-const TweetReplyActions: React.FC<Props> = ({
-  reply,
-  tweetAuthor,
-  originalTweetId,
-}) => {
-  const { tweetStats, id, tweetContent } = reply;
+const TweetReplyActions: React.FC<Props> = ({ reply, originalTweetId }) => {
+  const { tweetStats, id } = reply;
   console.log(reply);
   const { comments, likes } = tweetStats;
 
@@ -30,12 +26,13 @@ const TweetReplyActions: React.FC<Props> = ({
     (like) => like.replyLikerUID === auth.currentUser?.uid
   );
 
-  const { mutate: likeTweetReply, isLoading, isError } = useLikeTweetReply();
+  const { mutate: likeTweetReply } = useLikeTweetReply();
 
   const handleLike = () => {
     if (!auth.currentUser) return;
     likeTweetReply({
       originalTweetId,
+      // @ts-ignore
       replyId: id,
       replyLikerUID: auth.currentUser.uid,
     });

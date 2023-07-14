@@ -1,7 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Timestamp } from "firebase/firestore";
-import { TweetTypes } from "../../types/tweetTypes";
-import { SignInStateTypes } from "./signInSlice";
 
 interface RepliedTweetTypes {
   id: string;

@@ -1,9 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import ProfileImage from "../../../../components/profileImage/ProfileImage";
 import TweetInput from "../../../createTweet/components/tweetInput/TweetInput";
 import WhoCanReplyTweet from "../../../createTweet/components/whoCanReplyTweet/WhoCanReplyTweet";
 import "./WhatIsHappening.scss";
-import { FaImage, FaListAlt, FaList } from "react-icons/fa";
 import { StoreTypes } from "../../../../redux/store";
 import {
   getTweetConstants,
@@ -20,7 +18,7 @@ const WhatIsHappening: React.FC = () => {
 
   const { tweetContent } = useSelector((store: StoreTypes) => store.tweet);
 
-  const { mutate: postTweet, isLoading: isPosting, error } = usePostTweet();
+  const { mutate: postTweet, isLoading: isPosting } = usePostTweet();
 
   const handlePostTweet = () => {
     if (!auth.currentUser) return;

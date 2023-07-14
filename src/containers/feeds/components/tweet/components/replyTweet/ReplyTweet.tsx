@@ -10,22 +10,9 @@ import {
   resetTweetReplyContent,
   setTweetReplyContent,
 } from "../../../../../../redux/slices/tweetSlice";
-import { TweetContentTypes } from "../../../../../../types/tweetTypes";
 import { useReplyTweet } from "../../../../../../hooks/useReplyTweet";
-import { auth, db } from "../../../../../../config/firebase";
-import { doc, getDoc } from "firebase/firestore";
-import { useEffect } from "react";
-import { useGetTweet } from "../../../../../../hooks/useGetTweet";
+import { auth } from "../../../../../../config/firebase";
 import { getTweetConstants } from "../../../../../../hooks/usePostTweet";
-
-// interface Props {
-//   tweetId: string;
-//   tweetContent: TweetContentTypes;
-//   tweetAuthor: {
-//     name: string;
-//     username: string;
-//   };
-// }
 
 const ReplyTweet: React.FC = () => {
   const { tweetReplyContent, repliedTweet } = useSelector(
@@ -34,11 +21,7 @@ const ReplyTweet: React.FC = () => {
 
   const dispatch = useDispatch();
 
-  const {
-    mutate: replyTweet,
-    isLoading: isPostingReply,
-    isError,
-  } = useReplyTweet();
+  const { mutate: replyTweet, isLoading: isPostingReply } = useReplyTweet();
 
   const handleReplyTweet = () => {
     // console.log(auth);

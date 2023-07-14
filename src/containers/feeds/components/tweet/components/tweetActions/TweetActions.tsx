@@ -1,18 +1,9 @@
 import "./TweetActions.scss";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { FaRetweet, FaHeart, FaRegHeart, FaRegComment } from "react-icons/fa";
-import { LiaRetweetSolid, LiaPollSolid } from "react-icons/lia";
-import { BiPoll, BiUpload } from "react-icons/bi";
-import { BsHeart, BsHeartFill, BsUpload } from "react-icons/bs";
-import { FiShare, FiUpload } from "react-icons/fi";
-import { LuUpload } from "react-icons/lu";
-import { MdOutlinePoll, MdOutlineFileUpload } from "react-icons/md";
-import {
-  TweetContentTypes,
-  TweetStatsTypes,
-  TweetTypes,
-} from "../../../../../../types/tweetTypes";
-// import { likeTweet } from "../../../../../../utils/likeTweet";
+import { FaRetweet, FaRegComment } from "react-icons/fa";
+import { BiPoll } from "react-icons/bi";
+import { FiUpload } from "react-icons/fi";
+import { TweetTypes } from "../../../../../../types/tweetTypes";
 import { auth } from "../../../../../../config/firebase";
 import { useDispatch } from "react-redux";
 import {
@@ -21,18 +12,7 @@ import {
   setRepliedTweetContent,
 } from "../../../../../../redux/slices/tweetSlice";
 import { useLikeTweet } from "../../../../../../hooks/useLikeTweet";
-import { useGetTweet } from "../../../../../../hooks/useGetTweet";
-import Confetti from "react-confetti";
-
-// interface Props {
-//   tweetStats: TweetStatsTypes;
-//   tweetId: string;
-//   tweetContent: TweetContentTypes;
-//   tweetAuthor: {
-//     name: string;
-//     username: string;
-//   };
-// }
+// import Confetti from "react-confetti";
 
 interface Props {
   tweet: TweetTypes;
@@ -57,11 +37,12 @@ const TweetActions: React.FC<Props> = ({ tweet, tweetAuthor }) => {
 
   // console.log(findLikerUID);
 
-  const { mutate: likeTweet, isLoading, isError } = useLikeTweet();
+  const { mutate: likeTweet } = useLikeTweet();
 
   const handleLike = () => {
     if (!auth.currentUser) return;
     likeTweet({
+      // @ts-ignore
       id,
       tweetLikerUID: auth.currentUser.uid,
     });
@@ -73,6 +54,7 @@ const TweetActions: React.FC<Props> = ({ tweet, tweetAuthor }) => {
 
     dispatch(
       setRepliedTweetContent({
+        // @ts-ignore
         id,
         author: {
           displayName: tweetAuthor.name,

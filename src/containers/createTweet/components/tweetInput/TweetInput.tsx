@@ -1,8 +1,6 @@
 import "./TweetInput.scss";
 import ProfileImageAlt from "../../../../components/profileImageAlt/ProfileImageAlt";
-import { useDispatch, useSelector } from "react-redux";
-import { StoreTypes } from "../../../../redux/store";
-import { setTweetContent } from "../../../../redux/slices/tweetSlice";
+import { useDispatch } from "react-redux";
 
 interface Props {
   value: string;

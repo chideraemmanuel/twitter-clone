@@ -6,7 +6,6 @@ const NavigationBar: React.FC = () => {
   return (
     <nav className="navbar">
       <DesktopNavigation />
-      {/* <MobileSideMenu /> */}
       <MobileNavigation />
     </nav>
   );

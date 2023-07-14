@@ -1,4 +1,3 @@
-import { FaTimes } from "react-icons/fa";
 import "./InterceptionHOC.scss";
 import { useDispatch } from "react-redux";
 import { FiX } from "react-icons/fi";
@@ -21,7 +20,6 @@ const InterceptionHOC: React.FC<Props> = ({
           className="interception__box--icon"
           onClick={() => dispatch(closeInterceptionAction())}
         >
-          {/* <FaTimes /> */}
           <FiX />
         </div>
 

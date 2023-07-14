@@ -1,4 +1,4 @@
-import { FaApple, FaGoogle } from "react-icons/fa";
+import { FaApple } from "react-icons/fa";
 import Button from "../button/Button";
 import Input from "../input/Input";
 import "./LoginForm.scss";
@@ -50,6 +50,7 @@ const LoginForm: React.FC = () => {
 
       if (response.docs.length > 0) {
         // MANUAL MAIL HAS AN ACCOUNT
+        // @ts-ignore
         dispatch(setProviderId(null));
         dispatch(nextLoginStep());
       } else {
@@ -78,6 +79,7 @@ const LoginForm: React.FC = () => {
       // FirebaseError: Firebase: Error (auth/wrong-password).
       // if (error.message.includes('auth/wrong-password')) {
       if (
+        // @ts-ignore
         error.message ===
         "FirebaseError: Firebase: Error (auth/wrong-password)."
       ) {

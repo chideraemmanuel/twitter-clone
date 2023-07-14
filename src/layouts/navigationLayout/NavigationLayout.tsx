@@ -6,11 +6,11 @@ import CreateTweet from "../../containers/createTweet/CreateTweet";
 import { useDispatch, useSelector } from "react-redux";
 import { StoreTypes } from "../../redux/store";
 import { resetSignInForm } from "../../redux/slices/signInSlice";
-import { Navigate, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Sidebar from "../../containers/sidebar/Sidebar";
 
 const NavigationLayout: React.FC = () => {
-  const { currentUser } = useSelector((store: StoreTypes) => store.signIn);
+  // const { currentUser } = useSelector((store: StoreTypes) => store.signIn);
   const { isCreatingTweet } = useSelector((store: StoreTypes) => store.tweet);
 
   const dispatch = useDispatch();

@@ -1,8 +1,6 @@
-import { useState } from "react";
-import { getDocs, onSnapshot } from "firebase/firestore";
+import { getDocs } from "firebase/firestore";
 import { useQuery } from "react-query";
 import { tweetsCollectionReference } from "../config/firebase";
-import { useEffect } from "react";
 
 const fetchTweets = async () => {
   // might not need onsnapshot because of react query's background fetch

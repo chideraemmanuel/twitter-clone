@@ -6,15 +6,13 @@ import "./ProviderSignUpStepOne.scss";
 import {
   nextProviderSignInStep,
   setDOB,
-  setEmail,
-  setName,
 } from "../../../../../../../redux/slices/signInSlice";
 import { StoreTypes } from "../../../../../../../redux/store";
 
 const ProviderSignUpStepOne: React.FC = () => {
   const dispatch = useDispatch();
 
-  const { name, email, DOB, username, password } = useSelector(
+  const { DOB } = useSelector(
     (store: StoreTypes) => store.signIn.signUpForm.userInfo
   );
 

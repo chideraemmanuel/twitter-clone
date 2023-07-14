@@ -1,7 +1,4 @@
-import {
-  mobileSideMenuConstants,
-  navigationConstants,
-} from "../../../constants";
+import { mobileSideMenuConstants } from "../../../constants";
 import "./MobileSideMenu.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { StoreTypes } from "../../../../../redux/store";
@@ -19,6 +16,7 @@ const MobileSideMenu: React.FC = () => {
 
   const dispatch = useDispatch();
 
+  // @ts-ignore
   const { data: currentUser } = useGetUser(auth.currentUser?.uid);
 
   return (
@@ -46,7 +44,9 @@ const MobileSideMenu: React.FC = () => {
           <div className="mobileSideMenu__profile">
             <ProfileImageAlt />
             <div className="mobileSideMenu__profile--name">
+              {/* @ts-ignore */}
               <span>{currentUser.name}</span>
+              {/* @ts-ignore */}
               <span>@{currentUser.username}</span>
             </div>
           </div>
