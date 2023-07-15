@@ -20,11 +20,13 @@
       }
     }
 
-    &:hover {
-      background-color: rgba(29, 155, 240, 0.1);
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background-color: rgba(29, 155, 240, 0.1);
 
-      svg {
-        color: rgb(29, 155, 240);
+        svg {
+          color: rgb(29, 155, 240);
+        }
       }
     }
   }

@@ -1,2 +1,7 @@
-// .manualSignUpStepTwo {
-// }
+.manualSignUpStepTwo {
+  &__info {
+    p {
+      font-size: var(--sm-font);
+    }
+  }
+}

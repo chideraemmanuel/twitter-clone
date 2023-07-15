@@ -13,6 +13,7 @@ const FeedsHeader: React.FC = () => {
             type="radio"
             name="feedFilter"
             id="forYou"
+            checked
             // checked={feedsType === 'for you'}
             onChange={(e) => console.log(e.target.value)}
           />

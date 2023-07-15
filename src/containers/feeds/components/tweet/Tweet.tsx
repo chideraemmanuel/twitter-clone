@@ -9,6 +9,7 @@ import ReplyTweet from "./components/replyTweet/ReplyTweet";
 import { useSelector } from "react-redux";
 import { StoreTypes } from "../../../../redux/store";
 import Options from "../../../../components/options/Options";
+import { formatToRelative } from "../../../../utils/timeFormatter";
 
 interface Props {
   tweet: TweetTypes;
@@ -19,13 +20,17 @@ const Tweet: React.FC<Props> = ({ tweet }) => {
 
   const { isReplyingTweet } = useSelector((store: StoreTypes) => store.tweet);
 
-  const { id, tweetAuthorUID, tweetContent } = tweet;
+  const { id, tweetAuthorUID, tweetContent, createdAt } = tweet;
 
   const { data: tweetAuthor } = useGetUser(tweetAuthorUID);
 
   const handleNavigate = () => {
     navigate(`/tweet/${id}`);
   };
+
+  // @ts-ignore
+  const formattedTime = formatToRelative(createdAt);
+  // formatToRelative(createdAt);
 
   return (
     <>
@@ -45,7 +50,7 @@ const Tweet: React.FC<Props> = ({ tweet }) => {
                 {tweetAuthor && <p>{tweetAuthor.name}</p>}
                 {/* @ts-ignore */}
                 {tweetAuthor && <span>@{tweetAuthor.username}</span>}
-                <span>- 19h</span>
+                <span>• {formattedTime}</span>
               </Link>
 
               <div className="tweet__info--header_options">

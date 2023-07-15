@@ -9,7 +9,8 @@
   align-items: flex-start;
 
   @media (prefers-color-scheme: dark) {
-    background-color: invert($color: #eff3f4);
+    // background-color: invert($color: #eff3f4);
+    background-color: var(--accent);
   }
 
   h2 {

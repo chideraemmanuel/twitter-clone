@@ -73,7 +73,12 @@ const ManualSignUpStepOne: React.FC = () => {
           <Input type="email" label="Email" value={email} setValue={setEmail} />
 
           {/* <input type="date" name="" id="" /> */}
-          <Input type="date" value={DOB} setValue={setDOB} />
+          <Input
+            type="date"
+            value={DOB}
+            setValue={setDOB}
+            label="Date of birth"
+          />
         </div>
       </div>
 

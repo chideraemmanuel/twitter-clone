@@ -82,17 +82,17 @@ export const mobileNavigationConstants: NavigationTypes[] = [
     activeIcon: BiSolidHomeCircle,
   },
   {
-    title: "explore",
+    title: "/explore",
     icon: BiSearch,
     activeIcon: BiSolidSearch,
   },
   {
-    title: "notifications",
+    title: "/notifications",
     icon: BiBell,
     activeIcon: BiSolidBell,
   },
   {
-    title: "messages",
+    title: "/messages",
     icon: BiEnvelope,
     activeIcon: BiSolidEnvelope,
   },

@@ -35,9 +35,9 @@
     gap: 5px;
     color: var(--secondary-text-color);
 
-    @media screen and (max-width: 768px) {
-      gap: 5px;
-    }
+    // @media screen and (max-width: 768px) {
+    //   gap: 5px;
+    // }
 
     svg {
       font-size: var(--base-font);
@@ -47,10 +47,10 @@
       border-radius: 50%;
       transition: 0.3s ease;
 
-      @media screen and (max-width: 768px) {
-        font-size: var(--sm-font);
-        padding: 3px;
-      }
+      // @media screen and (max-width: 768px) {
+      //   font-size: var(--base-font);
+      //   padding: 3px;
+      // }
     }
 
     span {
@@ -63,64 +63,66 @@
     }
   }
 
-  &__comment {
-    &:hover {
-      svg {
-        background-color: rgba(29, 155, 240, 0.1);
-        color: rgb(29, 155, 240);
-      }
+  @media (hover: hover) and (pointer: fine) {
+    &__comment {
+      &:hover {
+        svg {
+          background-color: rgba(29, 155, 240, 0.1);
+          color: rgb(29, 155, 240);
+        }
 
-      span {
-        color: rgb(29, 155, 240);
-      }
-    }
-  }
-
-  &__retweet {
-    &:hover {
-      svg {
-        background-color: rgba(0, 186, 124, 0.1);
-        color: rgb(0, 186, 124);
-      }
-
-      span {
-        color: rgb(0, 186, 124);
-      }
-    }
-  }
-
-  &__like {
-    &:hover {
-      svg {
-        background-color: rgba(249, 24, 128, 0.1);
-        color: rgb(249, 24, 128);
-      }
-
-      span {
-        color: rgb(249, 24, 128);
+        span {
+          color: rgb(29, 155, 240);
+        }
       }
     }
 
-    &.liked {
-      svg {
-        color: rgb(249, 24, 128);
+    &__retweet {
+      &:hover {
+        svg {
+          background-color: rgba(0, 186, 124, 0.1);
+          color: rgb(0, 186, 124);
+        }
+
+        span {
+          color: rgb(0, 186, 124);
+        }
       }
     }
-  }
 
-  &__activity {
-    &:hover {
-      svg {
-        background-color: rgba(29, 155, 240, 0.1);
-        color: rgb(29, 155, 240);
+    &__like {
+      &:hover {
+        svg {
+          background-color: rgba(249, 24, 128, 0.1);
+          color: rgb(249, 24, 128);
+        }
+
+        span {
+          color: rgb(249, 24, 128);
+        }
       }
 
-      span {
-        color: rgb(29, 155, 240);
+      &.liked {
+        svg {
+          color: rgb(249, 24, 128);
+        }
       }
     }
-  }
 
-  &__share {
+    &__activity {
+      &:hover {
+        svg {
+          background-color: rgba(29, 155, 240, 0.1);
+          color: rgb(29, 155, 240);
+        }
+
+        span {
+          color: rgb(29, 155, 240);
+        }
+      }
+    }
+
+    // &__share {
+    // }
   }
 }

@@ -11,6 +11,12 @@ const ProviderSignUpStepTwo: React.FC = () => {
     <div className="providerSignUpStepTwo">
       <div className="providerSignUpStepTwo__info">
         <FormTitle text="Customize your experience" />
+
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci
+          culpa nihil reprehenderit, in nemo accusamus! Fugit dicta eveniet eum.
+          Saepe qui ea neque animi enim veritatis modi excepturi vel obcaecati?
+        </p>
       </div>
 
       <Button

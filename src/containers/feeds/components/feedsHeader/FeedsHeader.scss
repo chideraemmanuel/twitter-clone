@@ -2,6 +2,7 @@
   //   background-color: var(--header-bg);
   background: var(--header-bg);
   backdrop-filter: var(--header-bg-blur);
+  -webkit-backdrop-filter: var(--header-bg-blur);
   //   padding: 24px var(--side-padding);
   border-bottom: var(--border);
   position: sticky;
@@ -16,9 +17,12 @@
     &--button {
       flex: 1;
       text-align: center;
+      background-color: var(--bg-color);
 
-      &:hover {
-        background-color: var(--accent);
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          background-color: var(--accent);
+        }
       }
 
       input {

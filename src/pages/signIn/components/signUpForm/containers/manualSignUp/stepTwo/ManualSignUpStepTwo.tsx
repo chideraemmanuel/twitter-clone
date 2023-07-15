@@ -11,6 +11,13 @@ const ManualSignUpStepTwo: React.FC = () => {
     <div className="manualSignUpStepTwo">
       <div className="manualSignUpStepTwo__info">
         <FormTitle text="Customize your experience" />
+
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
+          veniam consectetur illo cupiditate ratione alias repudiandae minima
+          obcaecati pariatur? Sed labore quaerat, magnam optio vel
+          necessitatibus repellat est neque in.
+        </p>
       </div>
 
       <Button
