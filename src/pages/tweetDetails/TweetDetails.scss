@@ -20,6 +20,7 @@
     padding: 15px 0;
     background: var(--header-bg);
     backdrop-filter: var(--header-bg-blur);
+    -webkit-backdrop-filter: var(--header-bg-blur);
     border-bottom: var(--border);
     display: flex;
     align-items: center;
