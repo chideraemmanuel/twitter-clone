@@ -27,5 +27,9 @@
     border-right: var(--border);
     border-left: var(--border);
     min-height: 100vh;
+
+    @media screen and (max-width: 480px) {
+      padding-bottom: calc(10px + 10px + var(--lg-font));
+    }
   }
 }

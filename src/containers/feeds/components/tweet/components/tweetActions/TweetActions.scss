@@ -101,12 +101,6 @@
           color: rgb(249, 24, 128);
         }
       }
-
-      &.liked {
-        svg {
-          color: rgb(249, 24, 128);
-        }
-      }
     }
 
     &__activity {
@@ -124,5 +118,11 @@
 
     // &__share {
     // }
+  }
+
+  &__like.liked {
+    svg {
+      color: rgb(249, 24, 128);
+    }
   }
 }
