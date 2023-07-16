@@ -13,9 +13,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "./redux/slices/signInSlice";
 import { StoreTypes } from "./redux/store";
 import NavigationLayout from "./layouts/navigationLayout/NavigationLayout";
-import Router from "./pages/Router";
 import TweetDetails from "./pages/tweetDetails/TweetDetails";
 import ProtectedRoutes from "./pages/ProtectedRoutes";
+import RootLayout from "./layouts/RootLayout";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -57,9 +57,7 @@ const App: React.FC = () => {
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/">
-        <Route index element={<Router />} />
-
+      <Route path="/" element={<RootLayout />}>
         <Route element={<ProtectedRoutes />}>
           {/* HOME PAGE */}
           <Route path="home" element={<NavigationLayout />}>

@@ -1,9 +1,13 @@
 import { useSelector } from "react-redux";
 import { StoreTypes } from "../redux/store";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 
-const ProtectedRoutes = () => {
+const ProtectedRoutes: React.FC = () => {
   const { currentUser } = useSelector((store: StoreTypes) => store.signIn);
+
+  const location = useLocation();
+
+  // console.log(location);
 
   //   if (!currentUser.active) {
   //     return <Navigate to="/login" replace />;
@@ -14,7 +18,7 @@ const ProtectedRoutes = () => {
       {currentUser.active && !currentUser.isLoading ? (
         <Outlet />
       ) : (
-        <Navigate to="/login" replace />
+        <Navigate to="/login" replace state={{ path: location.pathname }} />
       )}
       {/* <Outlet /> */}
     </>

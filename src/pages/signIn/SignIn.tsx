@@ -1,4 +1,4 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import "./SignIn.scss";
 import CardLayout from "./components/card/CardLayout";
 import LoginForm from "./components/loginForm/LoginForm";
@@ -21,8 +21,11 @@ const SignIn: React.FC = () => {
   const { manual, provider } = signUpForm.type;
 
   //  NAVIGATE TO HOMEPAGE IF USER IS AVAILABLE (PROTECTING THE ROUTE)
+  const location = useLocation();
+  const redirectPath = location.state?.path || "/home";
+
   if (currentUser.active) {
-    return <Navigate to="/home" replace />;
+    return <Navigate to={redirectPath} replace />;
   }
 
   return (
